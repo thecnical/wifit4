@@ -16,9 +16,9 @@ import usb.core
 import usb.util
 import libusb_package
 
-from wifit3.device.manager import wlan_ifaces
-from wifit3.chips.rtl8922au import firmware
-from wifit3.chips.rtl8922au.constants import (
+from wifit4.device.manager import wlan_ifaces
+from wifit4.chips.rtl8922au import firmware
+from wifit4.chips.rtl8922au.constants import (
     ADDR_CAM_W1_LEN, ADDR_CAM_W2_VALID, ADDR_CAM_W9_SEC_ENT_MODE, ADDR_CAM_W12_BSSID_LEN,
     ADDR_CAM_W13_BSSID_VALID, ADDR_CAM_W13_BSSID_MASK, ADDR_CAM_ENT_SHORT_SIZE, BSSID_CAM_ENT_SIZE,
     RTW89_ADDR_CAM_SEC_NORMAL, RTW89_BSSID_MATCH_ALL, RTW89_NET_TYPE_NO_LINK,

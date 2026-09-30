@@ -6,7 +6,7 @@ and the M6 ``inject_frame`` stub. (The bring-up sequence is verified in
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
-import wifit3.chips.rtl8812au_dkms.driver as drv
+import wifit4.chips.rtl8812au_dkms.driver as drv
 
 
 def _fake_params():

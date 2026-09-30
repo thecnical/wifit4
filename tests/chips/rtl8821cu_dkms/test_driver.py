@@ -6,7 +6,7 @@ is tagged `[untested variant]`, and a 2-antenna board (no ported coex module) is
 import logging
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
+from wifit4.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
 
 
 def _info(**kw):
@@ -18,7 +18,7 @@ def _info(**kw):
 
 def _log(info, caplog):
     drv = object.__new__(Rtl8821cuDkmsDriver)     # skip __init__ (no USB device needed)
-    with caplog.at_level(logging.INFO, logger="wifit3.chips.rtl8821cu_dkms.driver"):
+    with caplog.at_level(logging.INFO, logger="wifit4.chips.rtl8821cu_dkms.driver"):
         drv._log_detected_config(info)
     return caplog.text
 

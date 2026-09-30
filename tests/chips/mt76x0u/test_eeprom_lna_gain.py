@@ -5,13 +5,13 @@
 the ``!= 0 && != 0xff`` validity fallback to lna_5g[0], the 0xff→0 guard, and s8
 sign-extension (the kernel stores the result in `mt76x02_rx_freq_cal.lna_gain`).
 """
-from wifit3.chips.mt76x0u.constants import (
+from wifit4.chips.mt76x0u.constants import (
     MT76X0_EEPROM_SIZE,
     MT_EE_LNA_GAIN,
     MT_EE_RSSI_OFFSET_2G_1,
     MT_EE_RSSI_OFFSET_5G_1,
 )
-from wifit3.chips.mt76x0u.eeprom import EEPROMCache, lna_gain_for_channel
+from wifit4.chips.mt76x0u.eeprom import EEPROMCache, lna_gain_for_channel
 
 
 def _cache(*, lna_2g=0, lna_5g0=0, lna_5g1=0, lna_5g2=0) -> EEPROMCache:

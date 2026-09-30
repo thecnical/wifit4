@@ -6,9 +6,9 @@ bad delta table or an off-by-one can't silently change TX power. The cold-boot c
 delta table -> absolute -3) must write OFDM idx 25 (0xc80=0x300000c0) + CCK idx 17
 (0xa22=0x17 ...), matching the wire.
 """
-from wifit3.chips.rtl8188eus_dkms import powertrack
+from wifit4.chips.rtl8188eus_dkms import powertrack
 
-_RF = "wifit3.chips.rtl8188eus_dkms.powertrack.rf"
+_RF = "wifit4.chips.rtl8188eus_dkms.powertrack.rf"
 
 
 class RegTx:

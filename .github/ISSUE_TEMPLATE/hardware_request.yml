@@ -1,16 +1,16 @@
 name: Hardware request
-description: Ask for wifit3 to support a new USB Wi-Fi adapter.
+description: Ask for wifit4 to support a new USB Wi-Fi adapter.
 title: "[Hardware]: "
 labels: ["hardware-request"]
 body:
   - type: markdown
     attributes:
       value: |
-        Request wifit3 to support a new wireless USB adapter.
+        Request wifit4 to support a new wireless USB adapter.
 
         Adding a chipset is contributor-driven: I can't port devices I don't have.
         If you have the adapter and want to help, you can port it yourself using a coding agent and
-        https://github.com/derv82/wifit3/blob/master/docs/porting/METHODOLOGY.md
+        https://github.com/derv82/wifit4/blob/master/docs/porting/METHODOLOGY.md
         
         Even if you can't capture/port the driver, please still file the request
         so I know there is demand for the device.

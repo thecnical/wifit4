@@ -1,7 +1,7 @@
-from wifit3.chips.driver import FakeMacSupport
-from wifit3.models import AccessPoint
-from wifit3.wlan.array import WlanArray
-from wifit3.wlan.interface import WlanInterface
+from wifit4.chips.driver import FakeMacSupport
+from wifit4.models import AccessPoint
+from wifit4.wlan.array import WlanArray
+from wifit4.wlan.interface import WlanInterface
 
 class MockDriver:
     """A dummy driver that swallows TX and pretends to tune channels."""

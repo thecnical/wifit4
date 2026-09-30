@@ -1,8 +1,8 @@
 import struct
 
 
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.dot11.packet import (
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.dot11.packet import (
     WepDataPacket, BeaconPacket, AuthPacket, AssocRespPacket, DeauthPacket, ProbeReqPacket,
 )
 
@@ -542,7 +542,7 @@ def test_channel_absent_when_no_ie_provides_it():
 
 def test_wds_frame_is_ignored():
     """A 4-address WDS data frame (to_ds AND from_ds) is intentionally dropped:
-    wifit3 has no use for repeater/mesh links. It passes _is_valid_frame (real
+    wifit4 has no use for repeater/mesh links. It passes _is_valid_frame (real
     addr2/addr3), so the rejection is the parser's own, not the validator's."""
     fc0 = 0x08                       # data, subtype 0
     fc1 = 0x01 | 0x02                # to_ds + from_ds = WDS

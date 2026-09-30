@@ -27,9 +27,9 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from wifit3.campaigns.pbc import WpsPbcCapture
-from wifit3.campaigns.wps.registrar import PinResult
-from wifit3.device.manager import wlan_ifaces, wlan_close
+from wifit4.campaigns.pbc import WpsPbcCapture
+from wifit4.campaigns.wps.registrar import PinResult
+from wifit4.device.manager import wlan_ifaces, wlan_close
 
 
 def step(label):
@@ -75,7 +75,7 @@ def load_default_target() -> dict:
 async def discover_iface(debug):
     ifaces = wlan_ifaces()
     if not ifaces:
-        fail("No supported wifit3 card found.")
+        fail("No supported wifit4 card found.")
     iface = ifaces[0]
     info(f"Using {iface.name}: {iface.description}")
     if not await iface.connect(progress_cb=lambda p, m: None):
@@ -156,7 +156,7 @@ def main() -> int:
                    help="attempt immediately without waiting for the PBC window")
     p.add_argument("--wait", type=float, default=60.0, help="seconds to wait for the window")
     p.add_argument("--scan-secs", type=float, default=6.0)
-    p.add_argument("--out", default="wifit3-wps-pbc.pcap", help="pcap output path")
+    p.add_argument("--out", default="wifit4-wps-pbc.pcap", help="pcap output path")
     p.add_argument("--debug", action="store_true")
     args = p.parse_args()
 

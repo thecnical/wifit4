@@ -24,7 +24,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Add src/ to sys.path so we can `import wifit3.*` without an editable
+# Add src/ to sys.path so we can `import wifit4.*` without an editable
 # install. AND make the parent of `probes/` importable so `from probes
 # import ...` resolves; Python auto-adds the script's own dir to
 # sys.path[0] when running ``python scripts/rx/soak.py``, so this
@@ -38,8 +38,8 @@ from dev import select_device
 from probes import ALL_PROBES
 from report import write_csv, write_markdown
 
-from wifit3.device.manager import wlan_ifaces, wlan_close
-from wifit3.wlan.array import WlanArray
+from wifit4.device.manager import wlan_ifaces, wlan_close
+from wifit4.wlan.array import WlanArray
 
 logger = logging.getLogger("rx.soak")
 
@@ -54,7 +54,7 @@ def _chipset_slug(iface) -> str:
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Wifit3 diagnostic soak: runs every enabled probe in "
+            "wifit4 diagnostic soak: runs every enabled probe in "
             "probes.ALL_PROBES against the first connected card and "
             "writes a Markdown report + CSV."
         ),

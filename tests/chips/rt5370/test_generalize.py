@@ -5,10 +5,10 @@ scripts/chips/rt5370/verify_pcap.py; these cover the runtime-EEPROM branches it 
 capture only ever shows the one card)."""
 from __future__ import annotations
 
-from wifit3.chips.rt5370 import chan
-from wifit3.chips.rt5370 import constants as C
-from wifit3.chips.rt5370.constants import ChipInfo, get_field
-from wifit3.chips.rt5370.eeprom import (
+from wifit4.chips.rt5370 import chan
+from wifit4.chips.rt5370 import constants as C
+from wifit4.chips.rt5370.constants import ChipInfo, get_field
+from wifit4.chips.rt5370.eeprom import (
     RfChip, parse_eeprom, resolve_rf_chip,
 )
 

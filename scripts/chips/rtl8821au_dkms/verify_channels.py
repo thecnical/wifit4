@@ -30,7 +30,7 @@ sys.path.insert(0, str(Path(__file__).parent))   # verify_pcap (op extractor + r
 
 import rtw88_pcap_replay as rp
 import verify_pcap as vp
-from wifit3.chips.rtl8821au_dkms import chan, txpower
+from wifit4.chips.rtl8821au_dkms import chan, txpower
 
 _IW_LINE = re.compile(r"^\[(\d+\.\d+)\] Executing:.*set channel (\d+)")
 _TXAGC_LO, _TXAGC_HI = 0x0C20, 0x0C54   # direct TXAGC register span (completeness check)

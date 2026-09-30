@@ -13,7 +13,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 SRC = REPO / "driver_captures/captures_rtl8821au/driver-source/hal/phydm/rtl8821a"
-OUTDIR = REPO / "src/wifit3/chips/rtl8821au_dkms"
+OUTDIR = REPO / "src/wifit4/chips/rtl8821au_dkms"
 
 TABLES = [
     ("halhwimg8821a_bb.c", "array_mp_8821a_phy_reg", "bb_phy_reg_tbl.py", "BB_PHY_REG"),

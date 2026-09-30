@@ -7,7 +7,7 @@ The tally and arming live on the ``Driver`` base (``record_ack`` / ``enable_rx_a
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
+from wifit4.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
 
 
 def _ack_buf(ra: bytes) -> bytes:

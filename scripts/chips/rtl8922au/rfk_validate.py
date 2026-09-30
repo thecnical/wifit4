@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8922au.driver import RTL8922AUDriver
+from wifit4.chips.rtl8922au.driver import RTL8922AUDriver
 
 
 def _find():

@@ -1,7 +1,7 @@
 """Tests for the passive WEP IV collector + rate/ETA estimation."""
 import pytest
 
-from wifit3.wlan.wep_store import RateTracker, WepCaptureStore
+from wifit4.wlan.wep_store import RateTracker, WepCaptureStore
 
 BSSID = "11:22:33:44:55:66"
 
@@ -123,7 +123,7 @@ def test_arp_candidates_stored_both_directions():
 
 
 def test_arp_ring_capped():
-    from wifit3.wlan.wep_store import ARP_RING_MAXLEN
+    from wifit4.wlan.wep_store import ARP_RING_MAXLEN
     c = WepCaptureStore()
     for i in range(ARP_RING_MAXLEN + 50):
         c.record_broadcast_frame(BSSID, i.to_bytes(2, "big") + b"\x00" * 66)
@@ -150,7 +150,7 @@ def test_chop_candidates_include_non_arp_broadcast_frames():
 
 
 def test_chop_candidates_skip_runts():
-    from wifit3.wlan.wep_store import CHOP_MIN_LEN
+    from wifit4.wlan.wep_store import CHOP_MIN_LEN
     c = WepCaptureStore()
     c.record_broadcast_frame(BSSID, b"\x00" * (CHOP_MIN_LEN - 1))   # too short
     assert c.chop_candidates(BSSID) == []

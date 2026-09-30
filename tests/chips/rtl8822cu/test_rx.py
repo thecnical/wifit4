@@ -5,7 +5,7 @@ that saturated strong signals to 0 dBm, and dropping OFDM phy-status types 2..5.
 Expected dBm come from the vendor formula pwdb = (s8)byte - 110, floor -120, no upper
 clamp (phydm_get_physts_0_jgr3 / phydm_get_physts_ofdm_cmn_jgr3, phydm_phystatus.c).
 """
-from wifit3.chips.rtl8822cu.rx import _phy_rssi, iter_bulk_frames
+from wifit4.chips.rtl8822cu.rx import _phy_rssi, iter_bulk_frames
 
 
 def _cck(pwdb_a, gain_a=0):

@@ -4,8 +4,8 @@ import struct
 
 import pytest
 
-from wifit3.models import HandshakeMessage, Handshake
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.models import HandshakeMessage, Handshake
+from wifit4.dot11.parser import WlanFrameParser
 
 
 def _build_eapol_frame(

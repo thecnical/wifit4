@@ -1,11 +1,11 @@
 # Linux Driver Credits
 
-wifit3's userland drivers are Python re-implementations of **GPLv2 Linux kernel and vendor DKMS drivers**. Every card wifit3 supports works because someone (often over
+wifit4's userland drivers are Python re-implementations of **GPLv2 Linux kernel and vendor DKMS drivers**. Every card wifit4 supports works because someone (often over
 fifteen-plus years) first reverse-engineered and wrote, debugged, and maintained the driver we ported from. This file credits them.
 
 **How this list was built.** We tallied commit authorship of each upstream driver (the
 mainline `torvalds/linux` driver paths and the vendor GitHub repos) and mapped every
-substantive contributor to the wifit3 card(s) their work made possible. Tree-wide
+substantive contributor to the wifit4 card(s) their work made possible. Tree-wide
 mechanical commits (checkpatch / SPDX / build-warning sweeps) are filtered out so the
 people who actually *built* the drivers stand out. Ordering favors **breadth** (how many of
 our drivers a person underpins) then **depth** (volume of authorship upstream), though the
@@ -25,7 +25,7 @@ Realtek USB Wi-Fi working for the Linux community, year after year, outside the 
 
 - **Christian "kimo" B.** ([@kimocoder](https://github.com/kimocoder)) — RTL8188EUS.
   **Our biggest thanks.** Christian took over **wifite2** when its original maintainer
-  stepped away, and has kept it alive and evolving for years since. wifit3 owes its
+  stepped away, and has kept it alive and evolving for years since. wifit4 owes its
   lineage to that work. (He also maintains `aircrack-ng`'s RTL8188EUS driver, ported here.)
 - **Nick Morrow** ([@morrownr](https://github.com/morrownr)) — RTL8812AU, RTL8821AU, RTL8814AU, RTL8822BU, MT7921AU
 - **@5kft** ([@5kft](https://github.com/5kft)) — RTL8821AU, RTL8822BU

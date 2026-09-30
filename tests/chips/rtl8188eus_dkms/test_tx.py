@@ -4,7 +4,7 @@ Locks the 32-byte mgmt descriptor (update_txdesc MGNT branch) byte-for-byte agai
 cold-boot capture's injected deauth, plus the field positions and the XOR checksum. Live
 TX is the user's to fire.
 """
-from wifit3.chips.rtl8188eus_dkms import tx
+from wifit4.chips.rtl8188eus_dkms import tx
 
 # A 26-byte (deauth) MPDU at seq 0, 1 Mbps — byte-diffed against capture-1's aireplay deauth
 # descriptor. The descriptor is pure metadata (no MAC/BSSID — those live in the MPDU).

@@ -6,7 +6,7 @@ no-BT set_channel band-switch routes through btcwifionly without touching t.btc.
 """
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821cu_dkms import btcwifionly, chan
+from wifit4.chips.rtl8821cu_dkms import btcwifionly, chan
 
 
 class Rec:

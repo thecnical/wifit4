@@ -1,7 +1,7 @@
 # Themes
 
-Wifit3's custom themes are plain Textual `Theme` objects in
-[`src/wifit3/ui/themes.py`](../src/wifit3/ui/themes.py).
+wifit4's custom themes are plain Textual `Theme` objects in
+[`src/wifit4/ui/themes.py`](../src/wifit4/ui/themes.py).
 The themes are registered alongside Textual's built-in themes on startup.
 
 **RTFM:** Textual's `Theme` Reference: https://textual.textualize.io/guide/design/
@@ -16,7 +16,7 @@ Two edits in `themes.py`:
 ```python
 def custom_themes() -> list[Theme]:
     return [
-        _wifit3_green_dark(), 
+        _wifit4_green_dark(), 
         _my_theme(),   # add here
     ]
 ```
@@ -52,7 +52,7 @@ def _my_theme() -> Theme:
             # Splash's Logo (WiFi bars):
             THEME_BARS_PRIMARY_KEY: "#00ff22",
             THEME_BARS_SECONDARY_KEY: "#008f22",
-            # Splash's Giant letters ("wifit3"):
+            # Splash's Giant letters ("wifit4"):
             THEME_TEXT_PRIMARY_KEY: "#f4fff8",
             THEME_TEXT_SECONDARY_KEY: "#7aa88a",
         },

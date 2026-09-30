@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.chips.rtl8821au.tx import (
+from wifit4.chips.rtl8821au.tx import (
     TX_DESC_QSEL_MGMT,
     TX_PKT_DESC_SZ,
     build_deauth_frame,

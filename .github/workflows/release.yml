@@ -1,4 +1,4 @@
-# Build the distributable wifit3 binaries and publish them as a GitHub Release.
+# Build the distributable wifit4 binaries and publish them as a GitHub Release.
 #
 # How a binary becomes a downloadable release asset (the two-stage pipeline):
 #   1. `build` runs once per OS (a matrix), each runner produces its onefile binary with
@@ -35,14 +35,14 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: wifit3-windows-x64.exe
-            build_path: dist/wifit3.exe
+            artifact_name: wifit4-windows-x64.exe
+            build_path: dist/wifit4.exe
           - os: ubuntu-22.04          # build on older glibc so the binary runs on more distros
-            artifact_name: wifit3-linux-x64
-            build_path: dist/wifit3
+            artifact_name: wifit4-linux-x64
+            build_path: dist/wifit4
           - os: ubuntu-22.04-arm      # GitHub-hosted arm64 Linux runner (free for public repos); native arm64 build
-            artifact_name: wifit3-linux-arm64
-            build_path: dist/wifit3
+            artifact_name: wifit4-linux-arm64
+            build_path: dist/wifit4
           # macOS: see build-macos
 
     steps:
@@ -56,10 +56,10 @@ jobs:
         shell: bash
         run: |
           tag="${GITHUB_REF_NAME#v}"
-          proj=$(grep -m1 '^__version__ = ' src/wifit3/__init__.py | sed -E 's/.*"(.*)".*/\1/')
+          proj=$(grep -m1 '^__version__ = ' src/wifit4/__init__.py | sed -E 's/.*"(.*)".*/\1/')
           echo "tag=$tag  __version__=$proj"
           if [ "$tag" != "$proj" ]; then
-            echo "::error::Tag v$tag does not match src/wifit3/__init__.py __version__ $proj"
+            echo "::error::Tag v$tag does not match src/wifit4/__init__.py __version__ $proj"
             exit 1
           fi
 
@@ -73,7 +73,7 @@ jobs:
         run: uv sync --group dev
 
       - name: Build onefile binary
-        run: uv run pyinstaller wifit3.spec --noconfirm --clean
+        run: uv run pyinstaller wifit4.spec --noconfirm --clean
 
       # Boot the just-built binary headless (Textual run_test — no TTY) to prove the bundle
       # actually launches: --smoke loads the packed libusb backend and mounts every screen,
@@ -88,7 +88,7 @@ jobs:
           "${{ matrix.build_path }}" --smoke
           echo "bundle smoke OK"
 
-      # PyInstaller emits dist/wifit3.exe (Windows) or dist/wifit3 (Linux); stage it under a
+      # PyInstaller emits dist/wifit4.exe (Windows) or dist/wifit4 (Linux); stage it under a
       # per-OS name. bash runs on both runners (Git Bash on Windows), so one step covers both.
       - name: Stage artifact
         shell: bash
@@ -116,10 +116,10 @@ jobs:
         shell: bash
         run: |
           tag="${GITHUB_REF_NAME#v}"
-          proj=$(grep -m1 '^__version__ = ' src/wifit3/__init__.py | sed -E 's/.*"(.*)".*/\1/')
+          proj=$(grep -m1 '^__version__ = ' src/wifit4/__init__.py | sed -E 's/.*"(.*)".*/\1/')
           echo "tag=$tag  __version__=$proj"
           if [ "$tag" != "$proj" ]; then
-            echo "::error::Tag v$tag does not match src/wifit3/__init__.py __version__ $proj"
+            echo "::error::Tag v$tag does not match src/wifit4/__init__.py __version__ $proj"
             exit 1
           fi
 
@@ -161,7 +161,7 @@ jobs:
           grep -qw x86_64 <<<"$lipo_output" && grep -qw arm64 <<<"$lipo_output"
 
       - name: Build onefile binary (universal2)
-        run: uv run --no-sync pyinstaller wifit3.spec --noconfirm --clean
+        run: uv run --no-sync pyinstaller wifit4.spec --noconfirm --clean
 
       # Boot the bundle on BOTH slices: arm64 natively, x86_64 under Rosetta (installed on demand;
       # available on GitHub's arm64 runners). Catches a thin-sliced lib or dropped data file per-arch.
@@ -169,24 +169,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          lipo_output=$(lipo -archs dist/wifit3)
+          lipo_output=$(lipo -archs dist/wifit4)
           grep -qw x86_64 <<<"$lipo_output" && grep -qw arm64 <<<"$lipo_output"
-          dist/wifit3 --version
-          dist/wifit3 --smoke
+          dist/wifit4 --version
+          dist/wifit4 --smoke
           sudo softwareupdate --install-rosetta --agree-to-license
-          arch -x86_64 dist/wifit3 --smoke
+          arch -x86_64 dist/wifit4 --smoke
           echo "universal2 bundle smoke OK"
 
       - name: Stage artifact
         run: |
           mkdir -p out
-          cp dist/wifit3 out/wifit3-macos-universal2
+          cp dist/wifit4 out/wifit4-macos-universal2
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v7
         with:
-          name: wifit3-macos-universal2
-          path: out/wifit3-macos-universal2
+          name: wifit4-macos-universal2
+          path: out/wifit4-macos-universal2
           if-no-files-found: error
 
   release:

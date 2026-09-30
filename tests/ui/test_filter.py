@@ -3,9 +3,9 @@ import pytest
 from textual.app import App, ComposeResult
 from textual.widgets import Button, Input, Select
 
-from wifit3.models import AccessPoint
-from wifit3.ui.encryption_format import EncryptionType
-from wifit3.ui.screens.filter import EncryptionFilter, FilterBar, ScanFilter, text_matches
+from wifit4.models import AccessPoint
+from wifit4.ui.encryption_format import EncryptionType
+from wifit4.ui.screens.filter import EncryptionFilter, FilterBar, ScanFilter, text_matches
 
 
 def _ap(**kw) -> AccessPoint:

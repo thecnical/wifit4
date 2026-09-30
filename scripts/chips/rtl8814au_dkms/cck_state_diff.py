@@ -26,8 +26,8 @@ import rtw88_pcap_replay as rp
 import verify_pcap as vp
 import dump_tune_regs as dt  # (reuse _bring_up)
 
-from wifit3.chips.rtl8814au_dkms import constants as C
-from wifit3.chips.rtl8814au_dkms.transport import Rtl8814auTransport
+from wifit4.chips.rtl8814au_dkms import constants as C
+from wifit4.chips.rtl8814au_dkms.transport import Rtl8814auTransport
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl8814au"
 

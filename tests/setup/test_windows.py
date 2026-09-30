@@ -1,4 +1,4 @@
-"""Unit tests for the pure helpers in wifit3.setup.windows.
+"""Unit tests for the pure helpers in wifit4.setup.windows.
 
 The elevated ShellExecuteExW path can't be exercised without a real UAC prompt + driver
 rebind, so it's left to manual hardware testing; everything testable in isolation (argv
@@ -9,8 +9,8 @@ import platform
 
 import pytest
 
-from wifit3.setup.base import SetupResult
-from wifit3.setup.windows import (
+from wifit4.setup.base import SetupResult
+from wifit4.setup.windows import (
     _LIBUSB_SERVICES,
     _PNPUTIL_OK,
     _Node,
@@ -52,8 +52,8 @@ def test_build_args_omits_name_when_none():
 def test_build_args_dest_appends_absolute_extraction_dir():
     # wdi-simple's default extraction dir is relative ("usb_driver") -> fails from System32
     # when elevated; we always pass an absolute --dest.
-    args = _build_args(0x0BDA, 0x8187, dest=r"C:\Temp\wifit3_winusb")
-    assert args[args.index("--dest") + 1] == r"C:\Temp\wifit3_winusb"
+    args = _build_args(0x0BDA, 0x8187, dest=r"C:\Temp\wifit4_winusb")
+    assert args[args.index("--dest") + 1] == r"C:\Temp\wifit4_winusb"
 
 
 def test_build_args_omits_dest_when_none():
@@ -133,7 +133,7 @@ def test_ours_matches_the_name_we_passed_as_wdi_name():
 
 
 def test_ours_matches_chipset_prefix_from_an_older_build():
-    # An older wifit3 passed a different product_name; the chipset prefix still claims it.
+    # An older wifit4 passed a different product_name; the chipset prefix still claims it.
     text = _inf("libwdi", "VID_0E8D&PID_7961", "MT7921AU (some older product name)")
     assert _ours(text, 0x0E8D, 0x7961, "MT7921AU (AWUS036AXML / Panda PAU0F)", "MT7921AU")
 

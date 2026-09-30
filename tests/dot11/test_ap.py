@@ -3,11 +3,11 @@ import struct
 
 import pytest
 
-from wifit3.dot11.ap import auth_resp, assoc_resp, eapol_m1, beacon_clone
-from wifit3.dot11.eapol import (
+from wifit4.dot11.ap import auth_resp, assoc_resp, eapol_m1, beacon_clone
+from wifit4.dot11.eapol import (
     data_header, eapol_key, set_mic, LLC_SNAP_EAPOL, MIC_OFFSET, MIC_LEN, NONCE_LEN,
 )
-from wifit3.dot11.ie import ssid_ie, rates_ie, ds_param_ie
+from wifit4.dot11.ie import ssid_ie, rates_ie, ds_param_ie
 
 _BSSID = bytes.fromhex("112233445566")
 _CLIENT = bytes.fromhex("aabbccddeeff")

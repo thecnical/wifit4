@@ -7,10 +7,10 @@ import pytest
 from textual.app import App
 from textual.widgets import DataTable
 
-from wifit3.models import AccessPoint, IdKey, IdSource
-from wifit3.persist.vault import Vault
-from wifit3.ui.screens.filter import EncryptionFilter, ScanFilter
-from wifit3.ui.screens.scanner import ScannerView
+from wifit4.models import AccessPoint, IdKey, IdSource
+from wifit4.persist.vault import Vault
+from wifit4.ui.screens.filter import EncryptionFilter, ScanFilter
+from wifit4.ui.screens.scanner import ScannerView
 
 
 class _FakeIface:

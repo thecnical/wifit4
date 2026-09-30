@@ -6,7 +6,7 @@ leaves the sequence to hardware)."""
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
+from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
 
 
 def _ack_buf(ra: bytes) -> bytes:

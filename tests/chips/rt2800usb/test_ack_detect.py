@@ -6,7 +6,7 @@ No hardware — synthetic frames. The Ralink monitor RX filter already admits AC
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
-import wifit3.chips.rt2800usb.driver as drv
+import wifit4.chips.rt2800usb.driver as drv
 
 
 def _ack_mpdu(ra: bytes) -> bytes:

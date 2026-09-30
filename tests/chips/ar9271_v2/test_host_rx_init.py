@@ -5,9 +5,9 @@ phy-error bits and resolves to the STA default 0x207.
 """
 import struct
 
-from wifit3.chips.ar9271_v2 import hw, reg as R, rx
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import hw, reg as R, rx
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 
 class FakeDev:

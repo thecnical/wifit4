@@ -3,7 +3,7 @@ wiring fed to the shared RxReaderThread. (Thread/loop hand-off is covered by
 tests/chips/test_rx_reader.py.)"""
 from unittest.mock import MagicMock
 
-import wifit3.chips.mt76x0u.rx as rx
+import wifit4.chips.mt76x0u.rx as rx
 
 
 def test_dispatch_decodes_parses_and_fires_callback(monkeypatch):
@@ -14,7 +14,7 @@ def test_dispatch_decodes_parses_and_fires_callback(monkeypatch):
     monkeypatch.setattr(rx, "decode_rx_packet",
                         lambda data: rxobj if data == b"BULK" else None)
     monkeypatch.setattr(
-        "wifit3.dot11.parser.WlanFrameParser.parse_80211_frame",
+        "wifit4.dot11.parser.WlanFrameParser.parse_80211_frame",
         staticmethod(lambda frame, rssi: {"type": "beacon", "rssi": rssi}),
     )
     got = []

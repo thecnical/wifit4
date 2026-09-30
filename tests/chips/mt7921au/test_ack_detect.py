@@ -9,8 +9,8 @@ The tally and arming live on the ``Driver`` base (``record_ack`` / ``enable_rx_a
 import struct
 from unittest.mock import AsyncMock, MagicMock
 
-from wifit3.chips.mt7921au import tx
-from wifit3.chips.mt7921au.driver import MT7921AUDriver
+from wifit4.chips.mt7921au import tx
+from wifit4.chips.mt7921au.driver import MT7921AUDriver
 
 
 def _ack_rx(ra: bytes) -> bytes:

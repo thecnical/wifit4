@@ -6,9 +6,9 @@ the vendor driver; the values here come from that adapter's EFUSE PG bytes throu
 """
 import pytest
 
-from wifit3.chips.rtl8822cu import phy
-from wifit3.chips.rtl8822cu.efuse import EfuseInfo, hal_rfpath_init
-from wifit3.chips.rtl8822cu.txpwr_index import txpwr_idx_state
+from wifit4.chips.rtl8822cu import phy
+from wifit4.chips.rtl8822cu.efuse import EfuseInfo, hal_rfpath_init
+from wifit4.chips.rtl8822cu.txpwr_index import txpwr_idx_state
 
 from . import recorded_txagc
 from .recorded_txagc import DIFF_GROUP_DWORD, SECTION_REF_2G, SECTION_REF_5G_OFDM

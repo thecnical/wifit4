@@ -1,7 +1,7 @@
 # Firmware provenance
 
-Wifit3 is licensed **GPL-2.0-only**, but the 24 firmware blobs it ships under
-`src/wifit3/chips/<chip>/assets/` (`*.bin`, plus the ath9k `*.fw`) are **not** GPL. Each is a vendor binary that the
+wifit4 is licensed **GPL-2.0-only**, but the 24 firmware blobs it ships under
+`src/wifit4/chips/<chip>/assets/` (`*.bin`, plus the ath9k `*.fw`) are **not** GPL. Each is a vendor binary that the
 silicon needs loaded at bring-up, redistributed here *verbatim* under its own
 manufacturer's license, exactly as Linux's
 [`linux-firmware`](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git)
@@ -68,7 +68,7 @@ Notes:
   blobs are byte-identical to them (ILM+DLM == `mt7662.bin[32:]`; rom-patch body ==
   `mt7662_rom_patch.bin[30:]`, the 30-byte `mt76x02_patch_header` stripped). The similarly
   named `mt7662u.bin` (a different, larger build that `WHENCE` files under `mt76x2u` /
-  `LICENCE.mediatek`) is *not* what mainline loads or what wifit3 ships, called out here so
+  `LICENCE.mediatek`) is *not* what mainline loads or what wifit4 ships, called out here so
   the provenance and the governing license stay correct.
 
 ## Per-vendor license summary

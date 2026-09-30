@@ -26,9 +26,9 @@ import rtw88_pcap_replay as rp
 import verify_pcap as vp
 import dump_tune_regs as dt
 
-from wifit3.chips.rtl8814au_dkms import constants as C
-from wifit3.chips.rtl8814au_dkms.rf import _rf_read
-from wifit3.chips.rtl8814au_dkms.transport import Rtl8814auTransport
+from wifit4.chips.rtl8814au_dkms import constants as C
+from wifit4.chips.rtl8814au_dkms.rf import _rf_read
+from wifit4.chips.rtl8814au_dkms.transport import Rtl8814auTransport
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl8814au"
 LSSI = {0x0C90: "a", 0x0E90: "b", 0x1890: "c", 0x1A90: "d"}

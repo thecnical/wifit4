@@ -16,7 +16,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 SRC_C = (REPO / "driver_captures" / "captures_8188eu" / "driver-source"
          / "hal" / "rtl8188e" / "hal8188e_t_fw.c")
-OUT = REPO / "src" / "wifit3" / "chips" / "rtl8188eus_dkms" / "assets" / "rtl8188eufw.bin"
+OUT = REPO / "src" / "wifit4" / "chips" / "rtl8188eus_dkms" / "assets" / "rtl8188eufw.bin"
 ARRAY = "array_mp_8188e_t_fw_nic"
 
 

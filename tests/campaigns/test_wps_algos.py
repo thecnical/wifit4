@@ -3,11 +3,11 @@
 import subprocess
 import sys
 
-from wifit3.campaigns.wps import wps_algos as A
-from wifit3.dot11.wsc.crypto import pin_is_valid
+from wifit4.campaigns.wps import wps_algos as A
+from wifit4.dot11.wsc.crypto import pin_is_valid
 
 _MAC = bytes.fromhex("001122334455")
-_PINDB_MOD = "wifit3.campaigns.wps.wps_pindb"
+_PINDB_MOD = "wifit4.campaigns.wps.wps_pindb"
 
 
 def test_generator_vectors():
@@ -92,7 +92,7 @@ def test_string_bssid_normalized():
 
 def test_pindb_is_lazy_loaded():
     code = (
-        "import sys, wifit3.campaigns.wps.wps_algos as a; "
+        "import sys, wifit4.campaigns.wps.wps_algos as a; "
         f"assert {_PINDB_MOD!r} not in sys.modules, 'database imported at module load'; "
         "a.pins_for(bytes.fromhex('001122334455')); "
         f"assert {_PINDB_MOD!r} in sys.modules, 'database not imported after pins_for'"

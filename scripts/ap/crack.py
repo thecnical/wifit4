@@ -23,7 +23,7 @@ except Exception:                                                 # noqa: BLE001
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "src"))
 
-from wifit3.crack import wpa_psk
+from wifit4.crack import wpa_psk
 
 
 def _candidates(a) -> list[str]:

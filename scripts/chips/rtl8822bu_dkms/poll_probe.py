@@ -23,8 +23,8 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu_dkms import bringup, cal, chipid
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.chips.rtl8822bu_dkms import bringup, cal, chipid
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
 
 USB_VID, USB_PID = 0x2357, 0x0138
 

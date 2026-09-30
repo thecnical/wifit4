@@ -1,12 +1,12 @@
 """FakeAP responder as a state machine: feed parsed client frames, assert responses + stats."""
 import asyncio
 
-from wifit3.campaigns.eviltwin import FakeAP, ClientPhase
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.dot11.probe import probe_req
-from wifit3.dot11.auth_assoc import auth_req, assoc_req
-from wifit3.dot11.eapol import eapol_key, data_header, LLC_SNAP_EAPOL
-from wifit3.dot11.ie import GENERIC_RSN_IE
+from wifit4.campaigns.eviltwin import FakeAP, ClientPhase
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.dot11.probe import probe_req
+from wifit4.dot11.auth_assoc import auth_req, assoc_req
+from wifit4.dot11.eapol import eapol_key, data_header, LLC_SNAP_EAPOL
+from wifit4.dot11.ie import GENERIC_RSN_IE
 
 _BSSID = bytes.fromhex("9483c48c3f78")
 _CLIENT = bytes.fromhex("02aabbccddee")

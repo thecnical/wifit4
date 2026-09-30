@@ -5,8 +5,8 @@ quiet) + rtw88xxa_false_alarm_statistics (sum FA, then reset the counters).
 """
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtl8812au import constants as C
-from wifit3.chips.rtl8812au import dynamic
+from wifit4.chips.rtl8812au import constants as C
+from wifit4.chips.rtl8812au import dynamic
 
 
 def test_dig_init_seeds_from_live_igi_without_writing():

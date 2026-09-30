@@ -10,7 +10,7 @@ Covers the parts that bit us in production:
 
 import pytest
 
-from wifit3.chips.mt76x2u import eeprom
+from wifit4.chips.mt76x2u import eeprom
 
 
 def _word_le(b: bytes, offset: int = 0) -> int:

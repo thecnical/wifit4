@@ -9,9 +9,9 @@ import sys
 import zipfile
 from pathlib import Path
 
-from wifit3.models import AccessPoint, CaptureType, Handshake, HandshakeMessage
-from wifit3.persist.config import Config
-from wifit3.persist.vault import Vault
+from wifit4.models import AccessPoint, CaptureType, Handshake, HandshakeMessage
+from wifit4.persist.config import Config
+from wifit4.persist.vault import Vault
 
 
 # ---- handshake fixtures (mirror tests/persist/test_save.py) -----------------
@@ -170,7 +170,7 @@ def test_wpa_psk_has_a_kind_label():
 
 
 def test_vault_records_error_when_index_load_fails(tmp_path, monkeypatch):
-    import wifit3.persist.vault as vault_mod
+    import wifit4.persist.vault as vault_mod
 
     def boom():
         raise OSError("disk gone")
@@ -278,7 +278,7 @@ def test_zip_captures_dedupes_shared_path(tmp_path):
 
 def test_open_directory_uses_platform_launcher(tmp_path, mocker):
     mocker.patch.object(sys, "platform", "linux")
-    popen = mocker.patch("wifit3.persist.vault.subprocess.Popen")
+    popen = mocker.patch("wifit4.persist.vault.subprocess.Popen")
     Vault().open_directory()
     popen.assert_called_once_with(["xdg-open", str(tmp_path)])
 

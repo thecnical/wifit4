@@ -1,4 +1,4 @@
-# Wifit3: Known Bugs & QoL
+# wifit4: Known Bugs & QoL
 
 Tracked defects and design debt. Each entry is a **problem statement**, not a prescribed
 solution. The fix is whatever's simplest, tackled one at a time. Where a simple direction is
@@ -35,7 +35,7 @@ gets wrong values with no error raised: little or no RX/TX, or wedging.
 
 Chipsets confirmed to honor EFUSE: RTL8821AU, RTL8822BU, RTL8822CU.
 
-Direction: per driver, list the EFUSE fields the vendor driver reads, compare against the wifit3
+Direction: per driver, list the EFUSE fields the vendor driver reads, compare against the wifit4
 driver, port what is missing. The vendor's per field parsers are uniformly named, so the field list
 comes out of the vendored source directly:
 

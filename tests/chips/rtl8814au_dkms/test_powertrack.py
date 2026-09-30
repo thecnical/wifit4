@@ -6,8 +6,8 @@ provably COMPUTED (from the delta-swing tables + the EFUSE thermal base), not ha
 the negative-delta chain, the per-path register writes, and the per-hop clear + band-switch
 ``default_ofdm_index`` reload.
 """
-from wifit3.chips.rtl8814au_dkms import powertrack, watchdog
-from wifit3.chips.rtl8814au_dkms import powertrack_tbl as T
+from wifit4.chips.rtl8814au_dkms import powertrack, watchdog
+from wifit4.chips.rtl8814au_dkms import powertrack_tbl as T
 
 
 class Rec:

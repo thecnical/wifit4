@@ -7,8 +7,8 @@ actually changes which phy_cond rows a card walks (the whole point of threading 
 """
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821au_dkms import efuse
-from wifit3.chips.rtl8821au_dkms.phy_cond import JaguarParams, apply_table
+from wifit4.chips.rtl8821au_dkms import efuse
+from wifit4.chips.rtl8821au_dkms.phy_cond import JaguarParams, apply_table
 
 
 def _map(pa=0x00, lna2g=0x00, lna5g=0x00, valid_id=True):

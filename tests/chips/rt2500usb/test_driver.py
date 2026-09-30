@@ -13,8 +13,8 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.chips.rt2500usb.bbp import eeprom_bbp_overrides, reset_tuner
-from wifit3.chips.rt2500usb.chan import (
+from wifit4.chips.rt2500usb.bbp import eeprom_bbp_overrides, reset_tuner
+from wifit4.chips.rt2500usb.chan import (
     RF_VALS_2522,
     RF_VALS_2523,
     RF_VALS_2524,
@@ -27,8 +27,8 @@ from wifit3.chips.rt2500usb.chan import (
     is_rf_ported,
     rf_write,
 )
-from wifit3.chips.rt2500usb import monitor
-from wifit3.chips.rt2500usb.constants import (
+from wifit4.chips.rt2500usb import monitor
+from wifit4.chips.rt2500usb.constants import (
     ANTENNA_A,
     DEFAULT_TXPOWER,
     EEPROM_SIZE,
@@ -65,16 +65,16 @@ from wifit3.chips.rt2500usb.constants import (
     USB_MODE_TEST,
     USB_SINGLE_WRITE,
 )
-from wifit3.chips.rt2500usb import SUPPORTED_IDS
-from wifit3.chips.rt2500usb.driver import RT2500USBDriver
-from wifit3.chips.rt2500usb.mac import (
+from wifit4.chips.rt2500usb import SUPPORTED_IDS
+from wifit4.chips.rt2500usb.driver import RT2500USBDriver
+from wifit4.chips.rt2500usb.mac import (
     apply_monitor_filter,
     init_registers,
     set_state,
 )
-from wifit3.chips.rt2500usb.rx import parse_rx_urb
-from wifit3.chips.rt2500usb.transport import get_field16, set_field16
-from wifit3.chips.rt2500usb.tx import _tx_data_len, build_tx_desc, build_tx_urb
+from wifit4.chips.rt2500usb.rx import parse_rx_urb
+from wifit4.chips.rt2500usb.transport import get_field16, set_field16
+from wifit4.chips.rt2500usb.tx import _tx_data_len, build_tx_desc, build_tx_urb
 
 
 class FakeTransport:
@@ -491,7 +491,7 @@ def test_driver_claims_nintendo_connector():
 
 
 def test_driver_registered_in_manager():
-    from wifit3.device.manager import driver_for
+    from wifit4.device.manager import driver_for
     cls, _ = driver_for(0x0411, 0x008B)   # the Nintendo/RT2570 id claimed above
     assert cls is RT2500USBDriver
 

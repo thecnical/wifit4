@@ -3,8 +3,8 @@
 Kernel reference: mt76x02_mac.c:1213-1229 (cc_reset),
 mt76x02_beacon.c:205-213 (init_beacon_config).
 """
-from wifit3.chips.mt76x2u import constants as C
-from wifit3.chips.mt76x2u import mac
+from wifit4.chips.mt76x2u import constants as C
+from wifit4.chips.mt76x2u import mac
 
 
 class FakeTransport:

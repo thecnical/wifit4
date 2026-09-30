@@ -28,39 +28,39 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtw88_8814au.constants import (
+from wifit4.chips.rtw88_8814au.constants import (
     REG_CR,
     REG_MCUFW_CTRL,
     REG_SYS_CFG1,
     USB_IDS_8814AU,
 )
-from wifit3.chips.rtw88_8814au.firmware import (
+from wifit4.chips.rtw88_8814au.firmware import (
     download_firmware,
     download_firmware_validate,
     load_firmware_blob,
     parse_fw_header,
 )
-from wifit3.chips.rtw88_8814au.fifo import (
+from wifit4.chips.rtw88_8814au.fifo import (
     count_bulk_out_eps,
     rtw_init_trx_cfg,
 )
-from wifit3.chips.rtw88_8814au.mac import (
+from wifit4.chips.rtw88_8814au.mac import (
     cut_mask_from_sys_cfg1,
     is_chip_warm,
     mac_power_on,
 )
-from wifit3.chips.rtw88_8814au import chan, rf as rf8814
-from wifit3.chips.rtw88_8814au.constants import RF_RCK1_V1
-from wifit3.chips.rtw88_8814au.efuse import read_efuse
-from wifit3.chips.rtw88_8814au.phy import (
+from wifit4.chips.rtw88_8814au import chan, rf as rf8814
+from wifit4.chips.rtw88_8814au.constants import RF_RCK1_V1
+from wifit4.chips.rtw88_8814au.efuse import read_efuse
+from wifit4.chips.rtw88_8814au.phy import (
     EfuseDefaults,
     defaults_from_efuse,
     load_mac_table,
     phy_set_param,
 )
-from wifit3.chips.rtw88_8814au import rx as rx8814, tx as tx8814
-from wifit3.chips.rtw88_8814au.transport import RTL8814AUTransport
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtw88_8814au import rx as rx8814, tx as tx8814
+from wifit4.chips.rtw88_8814au.transport import RTL8814AUTransport
+from wifit4.dot11.parser import WlanFrameParser
 import dataclasses
 
 
@@ -473,7 +473,7 @@ def phase_rx(dev, transport: RTL8814AUTransport) -> None:
 
 def _reset_phy_counters(transport) -> None:
     """Reset FA/CCA/CRC counters (tail of rtw8814a_false_alarm_statistics)."""
-    from wifit3.chips.rtw88_8814au.constants import REG_CNTRST, REG_FAS
+    from wifit4.chips.rtw88_8814au.constants import REG_CNTRST, REG_FAS
     transport.write32_set(REG_FAS, 1 << 17)
     transport.write32_clr(REG_FAS, 1 << 17)
     transport.write32_clr(0x0A2C, 1 << 15)   # REG_CCK0_FAREPORT
@@ -483,7 +483,7 @@ def _reset_phy_counters(transport) -> None:
 
 
 def _read_phy_counters(transport) -> dict:
-    from wifit3.chips.rtw88_8814au import constants as C
+    from wifit4.chips.rtw88_8814au import constants as C
     def crc(reg):
         v = transport.read32(reg)
         return (v & 0xFFFF, (v >> 16) & 0xFFFF)   # (ok, err)

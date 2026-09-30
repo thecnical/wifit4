@@ -8,8 +8,8 @@ EEPROM-derived. These tests pin that plus the inherited RT3572/RT5392 branches.
 """
 from __future__ import annotations
 
-from wifit3.chips.rt5572.constants import RT_RT3572, RT_RT5392, RT_RT5592
-from wifit3.chips.rt5572.eeprom import (
+from wifit4.chips.rt5572.constants import RT_RT3572, RT_RT5392, RT_RT5592
+from wifit4.chips.rt5572.eeprom import (
     RF3022, RF3052, RF5392, RF5592, parse_eeprom, resolve_rf_chip,
 )
 

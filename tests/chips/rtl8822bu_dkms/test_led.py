@@ -1,4 +1,4 @@
-from wifit3.chips.rtl8822bu_dkms import led
+from wifit4.chips.rtl8822bu_dkms import led
 
 
 class _Regs:

@@ -1,7 +1,7 @@
 """Tests for the WPS PIN keyspace."""
 
-from wifit3.campaigns.wps import pins
-from wifit3.dot11.wsc.crypto import pin_is_valid
+from wifit4.campaigns.wps import pins
+from wifit4.dot11.wsc.crypto import pin_is_valid
 
 
 def test_full_pin_checksum_valid():

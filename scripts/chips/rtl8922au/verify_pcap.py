@@ -21,12 +21,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "src"))
 
-from wifit3.chips.rtl8922au import SUPPORTED_IDS
-from wifit3.chips.rtl8922au.driver import RTL8922AUDriver
-from wifit3.chips.rtl8922au import chan as chanmod
-from wifit3.chips.rtl8922au import rx as rxmod
-from wifit3.chips.rtl8922au.rx import iter_bulk_frames
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8922au import SUPPORTED_IDS
+from wifit4.chips.rtl8922au.driver import RTL8922AUDriver
+from wifit4.chips.rtl8922au import chan as chanmod
+from wifit4.chips.rtl8922au import rx as rxmod
+from wifit4.chips.rtl8922au.rx import iter_bulk_frames
+from wifit4.dot11.parser import WlanFrameParser
 
 DEFAULT_CAP = "driver_captures/captures_rtw89_8922au_git/capture-1.pcap"
 RTW89_USB_VENQT = 0x05
@@ -501,7 +501,7 @@ def validate_rx(bufs: list[bytes], verbose: bool) -> tuple[int, int, int, int]:
 
 
 def run(cap: str | None = None, verbose: bool = False) -> int:
-    logging.getLogger("wifit3").setLevel(logging.CRITICAL)
+    logging.getLogger("wifit4").setLevel(logging.CRITICAL)
     path = cap or DEFAULT_CAP
     if not Path(path).exists():
         print(f"FAIL: no such capture {path}")

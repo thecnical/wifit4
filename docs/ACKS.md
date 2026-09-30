@@ -1,6 +1,6 @@
 # ACKs: diagnosing hardware auto-ACK and retry
 
-## Wifit3's ACK architecture
+## wifit4's ACK architecture
 
 Three layers. A **campaign** (pmkid / WPS-pin / WPS-pbc / wep) asks a **`WlanInterface`** to inject
 and to watch for the recipient's ACK; the interface delegates to its **`Driver`**, which owns every

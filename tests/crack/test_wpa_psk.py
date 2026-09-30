@@ -1,6 +1,6 @@
 """WPA-PSK key derivation tests: IEEE 802.11i Annex J PMK vectors + MIC self-consistency."""
-from wifit3.crack import wpa_psk
-from wifit3.dot11.eapol import eapol_key, set_mic, MIC_OFFSET, MIC_LEN
+from wifit4.crack import wpa_psk
+from wifit4.dot11.eapol import eapol_key, set_mic, MIC_OFFSET, MIC_LEN
 
 
 def test_pmk_ieee_annex_j_vectors():

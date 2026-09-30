@@ -6,7 +6,7 @@ ACKs, so ``_enable_rx_acks`` is a documented no-op; the tally + arming live on t
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
-import wifit3.chips.rt5572.driver as drv
+import wifit4.chips.rt5572.driver as drv
 
 
 def _ack_mpdu(ra: bytes) -> bytes:

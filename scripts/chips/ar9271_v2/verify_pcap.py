@@ -45,8 +45,8 @@ CAP_DIR = REPO / "driver_captures" / "captures_ath9k_htc_newddevice"
 
 _IMPORT_ERR = None
 try:
-    from wifit3.chips.ar9271_v2 import constants as C, gpio, reg as R, rx, tx
-    from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
+    from wifit4.chips.ar9271_v2 import constants as C, gpio, reg as R, rx, tx
+    from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
 except ImportError as e:                                  # driver not scaffolded yet
     _IMPORT_ERR = e
 
@@ -215,7 +215,7 @@ class Walk:
         """Peek ahead to the next AR_PHY_SYNTH_CONTROL (0x9874) write and decode the channel it
         tunes — the mac80211 scan order is the capture's input, so we read the requested frequency
         off the wire and let the driver reproduce the per-channel registers."""
-        from wifit3.chips.ar9271_v2 import chan as chanmod
+        from wifit4.chips.ar9271_v2 import chan as chanmod
         for j in range(self.i, len(self.ops)):
             op = self.ops[j]
             data = op.get("data")

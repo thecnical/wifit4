@@ -1,6 +1,6 @@
 """stop_hopping() must drain an in-flight channel tune before returning.
 
-Reproduces the cross-family "bad Focus" bug (wifit3.log @ 03:49:53): a channel-hop
+Reproduces the cross-family "bad Focus" bug (wifit4.log @ 03:49:53): a channel-hop
 set_channel offloads to a run_in_executor thread that cancellation can't stop. When Focus
 entry cancels the hop loop mid-tune, the orphaned tune keeps running and finishes *after*
 stop_hopping returns, moving the chip onto a stale hop channel right as Focus pins its
@@ -13,7 +13,7 @@ from __future__ import annotations
 import asyncio
 import threading
 
-from wifit3.wlan.interface import WlanInterface
+from wifit4.wlan.interface import WlanInterface
 
 
 class _OrphanProneDriver:

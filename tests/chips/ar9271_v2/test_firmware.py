@@ -1,6 +1,6 @@
 """M1: the cold-boot firmware download emits the exact ath9k_hif_usb_download_fw sequence."""
-from wifit3.chips.ar9271_v2 import constants as C, firmware
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2 import constants as C, firmware
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
 
 
 class FakeDev:

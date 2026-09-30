@@ -30,8 +30,8 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8821cu_dkms import btc, efuse, led, tx, watchdog
-from wifit3.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
+from wifit4.chips.rtl8821cu_dkms import btc, efuse, led, tx, watchdog
+from wifit4.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
 
 DEFAULT_CAP = REPO / "driver_captures" / "captures_rtl8821cu" / "capture-1.pcap"
 
@@ -248,7 +248,7 @@ def run(cap: str | None = None) -> int:
     # byte; this verifies the port's byte fidelity, not the retry config value. Scope the patch to the
     # operational walk ONLY: connect()'s FW reserved-page download shares tx.build_mgnt_txdesc and
     # must keep the shipped retry_ctrl=True default, so install it after connect() returns.
-    import wifit3.chips.rtl8821cu_dkms.tx as _cu_tx
+    import wifit4.chips.rtl8821cu_dkms.tx as _cu_tx
     _cu_build = _cu_tx.build_mgnt_txdesc
     _cu_tx.build_mgnt_txdesc = lambda *a, **k: _cu_build(*a, **{**k, "retry_ctrl": False})
     try:

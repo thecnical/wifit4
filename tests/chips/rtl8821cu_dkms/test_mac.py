@@ -6,7 +6,7 @@ reference burn skips it byte-identically.
 """
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821cu_dkms import mac
+from wifit4.chips.rtl8821cu_dkms import mac
 
 _PAD_CTRL1_P3 = mac.REG_PAD_CTRL1 + 3    # 0x0067
 

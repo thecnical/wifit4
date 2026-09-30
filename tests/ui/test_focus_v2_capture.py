@@ -1,13 +1,13 @@
 """Logic-only tests for FocusViewV2 state derivations."""
 
-from wifit3.persist.vault import Vault
+from wifit4.persist.vault import Vault
 from tests.wlan.mocks import build_ap, mock_array
-from wifit3.ui import focus_model as fm
-from wifit3.campaigns.pmkid import PmkidHarvestAttack
-from wifit3.campaigns.deauth import DeauthCampaign
-from wifit3.campaigns.eviltwin import EvilTwinCampaign
-from wifit3.campaigns.wep import WepCampaign
-from wifit3.campaigns.pin import WpsCampaign
+from wifit4.ui import focus_model as fm
+from wifit4.campaigns.pmkid import PmkidHarvestAttack
+from wifit4.campaigns.deauth import DeauthCampaign
+from wifit4.campaigns.eviltwin import EvilTwinCampaign
+from wifit4.campaigns.wep import WepCampaign
+from wifit4.campaigns.pin import WpsCampaign
 
 
 def test_recovered_wps_psk_shows_in_status():

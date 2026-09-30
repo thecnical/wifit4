@@ -1,15 +1,15 @@
-# Baselining: wifit3 vs Linux
+# Baselining: wifit4 vs Linux
 
 Compare our userland driver against the Linux/Kali stack on the same card, back-to-back, so a
 difference is the driver or the RF, not the test tooling. Run on Kali. The grading that consumes
 these numbers is `docs/GRADING.md`.
 
 ## Scripts
-- `baseline_wifit3.py` bring up our driver, sweep the channels, write `wifit3-<chip>.json`.
+- `baseline_wifit4.py` bring up our driver, sweep the channels, write `wifit4-<chip>.json`.
 - `baseline_linux.py` airmon-ng/iw to monitor + lock channel, `tcpdump -w` per channel
   (`--capture`), or read existing pcaps (`--pcap`); write `linux-<chip>.json`.
 - `baseline_diff.py` the core both collectors import: both call `feed(ts, parsed, rssi, channel)`,
-  so grouping is identical. Writes the JSON rollup, and `--diff wifit3-<chip>.json linux-<chip>.json`
+  so grouping is identical. Writes the JSON rollup, and `--diff wifit4-<chip>.json linux-<chip>.json`
   prints the comparison.
 
 Both sides pass the raw 802.11 to the same `WlanFrameParser`; `baseline_linux.py` just skips the

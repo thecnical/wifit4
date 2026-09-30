@@ -3,8 +3,8 @@
 Full byte-for-byte replay (incl. the watchdog-filtered stream) lives in
 ``scripts/chips/rtl8188eus_dkms/verify_pcap.py``.
 """
-from wifit3.chips.rtl8188eus_dkms import efuse
-from wifit3.chips.rtl8188eus_dkms.constants import (
+from wifit4.chips.rtl8188eus_dkms import efuse
+from wifit4.chips.rtl8188eus_dkms.constants import (
     CMD_READ_EFUSE_MAP,
     REG_HMEBOX_E0,
     REG_SYS_CFG,

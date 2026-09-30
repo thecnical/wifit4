@@ -5,7 +5,7 @@ verify_initial_tune; these cover the NON-reference branches the gate can't exerc
 table selection (`_ccapar_by_rfe`), the RFE pinmux dispatch (`_rfe_pinmux` -> ifem/efem/4_11), and
 the switch_band SoML RxHP arm (`_switch_band_rxhp`) — asserted against the vendor phydm_hal_api8822b.c.
 """
-from wifit3.chips.rtl8822bu_dkms import chan
+from wifit4.chips.rtl8822bu_dkms import chan
 
 
 class _BB:

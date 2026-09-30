@@ -7,7 +7,7 @@ which the old message-only check missed.
 import pytest
 import usb.core
 
-from wifit3.chips.rtl8814au_dkms.transport import Rtl8814auTransport
+from wifit4.chips.rtl8814au_dkms.transport import Rtl8814auTransport
 
 
 class _RaisingDev:

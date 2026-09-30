@@ -1,6 +1,6 @@
 import struct
 
-from wifit3.chips.rtl8821au_dkms import rx
+from wifit4.chips.rtl8821au_dkms import rx
 
 
 def _desc(pkt_len: int, *, crc: int = 0, icv: int = 0, drvinfo_sz: int = 0,

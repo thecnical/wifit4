@@ -4,7 +4,7 @@ A self-contained bench for WEP work (a starting point to copy for korek/PTW expe
 
   * TRAFFIC GENERATOR (--generate SECS): fake-auth, then replay a forged encrypted ARP
     on a loop so the AP keeps rebroadcasting fresh IVs -- handy for feeding a running
-    wifit3 instance ON A SECOND CARD (one radio can't be claimed by two processes), or
+    wifit4 instance ON A SECOND CARD (one radio can't be claimed by two processes), or
     just to make a dead test router emit IVs without babysitting a phone's Wi-Fi UI.
 
   * DIAGNOSTIC (default): a staged one-shot -- passive RX, fake-auth, a short replay
@@ -37,10 +37,10 @@ sys.path.insert(0, str(_HERE.parent.parent / "src"))
 sys.path.insert(0, str(_HERE.parent))  # scripts/ for dev.py
 
 from dev import select_device
-from wifit3.device.manager import wlan_ifaces, wlan_close
-from wifit3.dot11.auth_assoc import auth_req, assoc_req
-from wifit3.dot11.wep.crypto import arp_request_plaintext, wep_encrypt
-from wifit3.dot11.packet import AuthPacket, AssocRespPacket, DeauthPacket
+from wifit4.device.manager import wlan_ifaces, wlan_close
+from wifit4.dot11.auth_assoc import auth_req, assoc_req
+from wifit4.dot11.wep.crypto import arp_request_plaintext, wep_encrypt
+from wifit4.dot11.packet import AuthPacket, AssocRespPacket, DeauthPacket
 
 BROADCAST = b"\xff" * 6
 

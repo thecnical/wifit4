@@ -14,14 +14,14 @@ import pytest
 import usb.core
 from textual.widgets import Label
 
-import wifit3.device.manager as manager
-from wifit3.chips.driver import DeviceID
-from wifit3.chips.rt2800usb.driver import RT2800USBDriver
-from wifit3.chips.rtl8187.driver import RTL8187Driver
-from wifit3.device.manager import DeviceManager, Status
-from wifit3.errors import BringUpError
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.splash import SplashView
+import wifit4.device.manager as manager
+from wifit4.chips.driver import DeviceID
+from wifit4.chips.rt2800usb.driver import RT2800USBDriver
+from wifit4.chips.rtl8187.driver import RTL8187Driver
+from wifit4.device.manager import DeviceManager, Status
+from wifit4.errors import BringUpError
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.splash import SplashView
 
 
 @pytest.mark.asyncio

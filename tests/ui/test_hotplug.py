@@ -4,13 +4,13 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-import wifit3.device.manager as manager
-from wifit3.chips.driver import DeviceID
-from wifit3.errors import WifiteDeviceLostError
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.error_modals import RecoverableErrorModal
-from wifit3.ui.screens.new_device import NewDeviceDialog
-from wifit3.ui.screens.splash import SplashView
+import wifit4.device.manager as manager
+from wifit4.chips.driver import DeviceID
+from wifit4.errors import WifiteDeviceLostError
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.error_modals import RecoverableErrorModal
+from wifit4.ui.screens.new_device import NewDeviceDialog
+from wifit4.ui.screens.splash import SplashView
 
 
 class _FakeIface:

@@ -11,15 +11,15 @@ already produces.
 
 ---
 
-## 1. Why wifit3 touches the OS at all
+## 1. Why wifit4 touches the OS at all
 
-wifit3 drives the card from userland and replays a recorded cold-boot byte sequence against it. The
+wifit4 drives the card from userland and replays a recorded cold-boot byte sequence against it. The
 moment a Wi-Fi card enumerates, the Linux kernel binds its driver and uploads firmware, which changes
 the card's state away from the cold boot the port expects. A device-access rule alone does not stop
-that: it only changes who can open the device node. So wifit3 needs two things on Linux, together:
+that: it only changes who can open the device node. So wifit4 needs two things on Linux, together:
 
 1. **Stop the kernel driver from binding** (so the card stays in its cold, un-tainted state).
-2. **Grant the user access to the raw USB node** (so wifit3 can open it without `sudo`).
+2. **Grant the user access to the raw USB node** (so wifit4 can open it without `sudo`).
 
 These map to the two mechanisms below.
 
@@ -63,23 +63,23 @@ in that family, not just one. **modprobe is per-kernel-module, and a module cove
 - The kernel block is applied **per module**, and one module spans many VID:PIDs.
 
 If the two are keyed differently, a card can end up blocked from the kernel (so it stays cold) yet
-without a userland access rule (so wifit3 still cannot open it). That half-state is the bug.
+without a userland access rule (so wifit4 still cannot open it). That half-state is the bug.
 
 ---
 
 ## 3. Current model (as built)
 
-Code: `src/wifit3/setup/linux.py`, `src/wifit3/setup/__init__.py`.
+Code: `src/wifit4/setup/linux.py`, `src/wifit4/setup/__init__.py`.
 
-**The opt-in unit is one wifit3 driver.** `SetupTarget` (`setup/__init__.py:13`) is built by
+**The opt-in unit is one wifit4 driver.** `SetupTarget` (`setup/__init__.py:13`) is built by
 `target_for_vidpid` (`setup/__init__.py:28`) from a single driver class: `key` is the registry name
 (e.g. `"rt5372"`), `ids` is that one driver's `SUPPORTED_IDS`.
 
 **Each target writes one file pair, named by the driver key** (`setup/linux.py:72`, `:77`):
 
-- `/etc/udev/rules.d/60-wifit3-<key>.rules` : one `SUBSYSTEM=="usb"...` line per VID:PID in
+- `/etc/udev/rules.d/60-wifit4-<key>.rules` : one `SUBSYSTEM=="usb"...` line per VID:PID in
   `target.ids` (`emit_udev_text`, `setup/linux.py:199`).
-- `/etc/modprobe.d/wifit3-<key>.conf` : `blacklist`/`install` for the modules discovered for the card
+- `/etc/modprobe.d/wifit4-<key>.conf` : `blacklist`/`install` for the modules discovered for the card
   (`emit_blacklist_text`, `setup/linux.py:214`).
 
 **The blacklisted module list is discovered live** at install time from the plugged-in card:
@@ -93,7 +93,7 @@ static list that rots.
 (`setup/linux.py:505`) `rm`s them.
 
 **Uninstall already reference-counts shared modules.** Because several driver keys can each blacklist
-the same module, `plan_uninstall` (`setup/linux.py:416`) scans wifit3's own `*.conf` files, finds the
+the same module, `plan_uninstall` (`setup/linux.py:416`) scans wifit4's own `*.conf` files, finds the
 **sibling** targets that share a module (`SiblingConf`, `setup/linux.py:337`), and the splash offers a
 "narrow" (this key only) or "wide" (this key plus siblings) removal. A narrow removal that leaves the
 module still blocked by a sibling reports which chipset is still blocking it (`_residual_blocked`,
@@ -103,25 +103,25 @@ module still blocked by a sibling reports which chipset is still blocking it (`_
 
 ## 4. The problem: the file grain is finer than the block grain
 
-Files are keyed per **wifit3 driver**. The kernel block is per **module**, and one module backs
-several wifit3 drivers. So installing one card grants udev access to only that driver's VID:PIDs while
+Files are keyed per **wifit4 driver**. The kernel block is per **module**, and one module backs
+several wifit4 drivers. So installing one card grants udev access to only that driver's VID:PIDs while
 blocking the kernel for the entire module family.
 
 ### Walkthrough (the Ralink `rt2800usb` family)
 
-`rt3070`, `rt5370`, `rt5372`, `rt5572`, ... are separate wifit3 drivers, each its own `SetupTarget`,
+`rt3070`, `rt5370`, `rt5372`, `rt5572`, ... are separate wifit4 drivers, each its own `SetupTarget`,
 but on most kernels they are all bound by the single module `rt2800usb`.
 
-1. Install an `rt5372` card. This writes `60-wifit3-rt5372.rules` (rt5372's VID:PIDs) and
-   `wifit3-rt5372.conf` (`blacklist rt2800usb`).
+1. Install an `rt5372` card. This writes `60-wifit4-rt5372.rules` (rt5372's VID:PIDs) and
+   `wifit4-rt5372.conf` (`blacklist rt2800usb`).
 2. `rt2800usb` is now blocked for the **whole family**. Good: those cards stay cold.
 3. Plug in a *different* card, an `rt3070`. Its kernel driver is blocked (the blacklist is
    module-wide), so it stays cold. But there is **no udev rule for the rt3070 VID:PID** (only rt5372's
-   was written). wifit3 cannot open it.
+   was written). wifit4 cannot open it.
 4. Installing the rt3070 then writes a *second* conf that also blacklists `rt2800usb` (redundant),
    plus rt3070's own udev rule.
 
-The result is the half-state from 2c: a family member the kernel has released but wifit3 still cannot
+The result is the half-state from 2c: a family member the kernel has released but wifit4 still cannot
 open, plus redundant, overlapping blacklist files. The uninstall siblings machinery (section 3) is a
 patch over the removal side of exactly this, and it is why removing one card can fan out to removing
 several. That fan-out is not wrong, but it is surprising, and nothing on the **install** side closes
@@ -131,8 +131,8 @@ the access hole in the first place.
 
 ## 5. The staleness problem: buckets grow between releases
 
-Even a per-module rewrite (section 6) has to handle version drift. Suppose wifit3 v1 wrote
-`60-wifit3-rt2800usb.rules` listing the VID:PIDs it supported then. wifit3 v2 adds support for a new
+Even a per-module rewrite (section 6) has to handle version drift. Suppose wifit4 v1 wrote
+`60-wifit4-rt2800usb.rules` listing the VID:PIDs it supported then. wifit4 v2 adds support for a new
 card in the same family. On a machine that installed under v1:
 
 - The blacklist already covers the new card (it is module-wide).
@@ -146,11 +146,11 @@ rewrite when they are stale.
 
 ## 6. Target model: one file pair per kernel module
 
-Key the files by the **kernel module**, not the wifit3 driver:
+Key the files by the **kernel module**, not the wifit4 driver:
 
-- `/etc/udev/rules.d/60-wifit3-<module>.rules` : a `SUBSYSTEM=="usb"...` line for **every**
-  wifit3-supported VID:PID whose driver is bound by `<module>`.
-- `/etc/modprobe.d/wifit3-<module>.conf` : `blacklist`/`install` for `<module>` (and any sibling
+- `/etc/udev/rules.d/60-wifit4-<module>.rules` : a `SUBSYSTEM=="usb"...` line for **every**
+  wifit4-supported VID:PID whose driver is bound by `<module>`.
+- `/etc/modprobe.d/wifit4-<module>.conf` : `blacklist`/`install` for `<module>` (and any sibling
   modules it drags in).
 
 **Install** = overwrite the module's pair with the full current family set (idempotent). **Uninstall**
@@ -198,10 +198,10 @@ fix, not a silent hazard, because install is an idempotent full rewrite.
 
 ### 6c. Staleness handling
 
-Stamp each generated file with a small header: the wifit3 version (or a content hash) and the exact
+Stamp each generated file with a small header: the wifit4 version (or a content hash) and the exact
 VID:PID set it covers. At bring-up, when a card in a handled module's family fails to open:
 
-- If no wifit3 file exists for its module: offer a fresh install (section 6 write).
+- If no wifit4 file exists for its module: offer a fresh install (section 6 write).
 - If a file exists but does **not** list this card's VID:PID (or the stamp is older than the current
   bucket): the rules are **stale**. Offer "update," which is the same idempotent rewrite with the
   current full family set. One elevation.
@@ -242,8 +242,8 @@ members needing setup collapse to one file write.
 
 ## 9. Migration
 
-Users upgrading from the current per-driver files (`60-wifit3-rt5372.rules`, ...) will have stale,
-finer-grained files. The install/update path should also remove any old per-driver wifit3 files it is
+Users upgrading from the current per-driver files (`60-wifit4-rt5372.rules`, ...) will have stale,
+finer-grained files. The install/update path should also remove any old per-driver wifit4 files it is
 superseding when it writes the per-module file, so a machine ends up with exactly one file pair per
 module. This can be a one-time reconciliation inside the same elevation.
 
@@ -258,9 +258,9 @@ module. This can be a one-time reconciliation inside the same elevation.
 3. Where the static "driver -> module" map lives and how it is kept correct across kernel/DKMS
    variance (the section 6b risk). A test that every driver either declares a module or is covered by
    live discovery would catch omissions.
-4. Do we ever need to blacklist a module we do not have a driver for (a family member wifit3 does not
+4. Do we ever need to blacklist a module we do not have a driver for (a family member wifit4 does not
    support but that shares the module)? If so the udev grant cannot cover it, and that card is blocked
-   with no wifit3 use. Probably acceptable, but worth stating in the confirm copy.
+   with no wifit4 use. Probably acceptable, but worth stating in the confirm copy.
 
 ---
 

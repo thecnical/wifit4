@@ -32,7 +32,7 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))   # rtw88_pcap_replay (op extractor + replay)
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8812au_dkms import chan, efuse, txpower
+from wifit4.chips.rtl8812au_dkms import chan, efuse, txpower
 
 REG_CCK_CHECK = 0x0454
 _IW_LINE = re.compile(r"^\[(\d+\.\d+)\] Executing:.*set channel (\d+)")

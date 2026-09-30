@@ -32,8 +32,8 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8822bu_dkms import chan, chipid, efuse, txpower, usbphy
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.chips.rtl8822bu_dkms import chan, chipid, efuse, txpower, usbphy
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl88x2bu"
 RF_A_0x18_WRITE = 0x0C90        # SIPI RF-write: value = (addr<<20)|data; addr 0x18 => RF18 (channel)

@@ -2,7 +2,7 @@
 the shared RxReaderThread. (Thread/loop hand-off: tests/chips/test_rx_reader.py.)"""
 from unittest.mock import MagicMock
 
-import wifit3.chips.rt2800usb.driver as drv
+import wifit4.chips.rt2800usb.driver as drv
 
 
 def _rx(has_fcs_error=False, mpdu=b"mpdu", rssi=-40):

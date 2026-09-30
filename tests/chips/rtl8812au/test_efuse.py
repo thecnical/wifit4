@@ -6,7 +6,7 @@ of the read path lives in scripts/chips/rtl8812au/test_hw_rtl8812au.py --phase e
 
 from __future__ import annotations
 
-from wifit3.chips.rtl8812au.efuse import (
+from wifit4.chips.rtl8812au.efuse import (
     _classify_amplifier,
     _resolve_rfe_option,
     parse_logical_efuse_map,

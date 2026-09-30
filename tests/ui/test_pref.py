@@ -4,9 +4,9 @@ import pytest
 from textual.app import App
 from textual.widgets import Button
 
-from wifit3.persist.config import Config, ConfigError
-from wifit3.persist.vault import Vault
-from wifit3.ui.pref import PreferencesModal
+from wifit4.persist.config import Config, ConfigError
+from wifit4.persist.vault import Vault
+from wifit4.ui.pref import PreferencesModal
 
 
 class _Host(App):

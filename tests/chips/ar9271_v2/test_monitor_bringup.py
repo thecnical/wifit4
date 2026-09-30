@@ -1,9 +1,9 @@
 """M7: monitor-mode bring-up — promiscuous configure_filter + WMI VAP/NODE create."""
 import struct
 
-from wifit3.chips.ar9271_v2 import hw, rx
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI, HTC_M_MONITOR
+from wifit4.chips.ar9271_v2 import hw, rx
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI, HTC_M_MONITOR
 
 MAC = bytes.fromhex("c01c304f78b0")
 

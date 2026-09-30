@@ -2,8 +2,8 @@
 the eject function and the bus enumeration are injected."""
 import struct
 
-from wifit3.device import zerocd
-from wifit3.device.zerocd import ZeroCdEjector, _start_stop_unit_cbw
+from wifit4.device import zerocd
+from wifit4.device.zerocd import ZeroCdEjector, _start_stop_unit_cbw
 
 _STUB = (0x0BDA, 0x1A2B)
 _OTHER = (0x1234, 0x5678)

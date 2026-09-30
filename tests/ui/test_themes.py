@@ -4,19 +4,19 @@ from rich.text import Text
 from textual.theme import Theme
 from textual.widgets import Static
 
-from wifit3.ui.ansi_art import (
+from wifit4.ui.ansi_art import (
     THEME_BARS_PRIMARY_KEY, THEME_BARS_SECONDARY_KEY,
     THEME_TEXT_PRIMARY_KEY, THEME_TEXT_SECONDARY_KEY,
     recolor_logo
 )
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.themes import custom_themes
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.themes import custom_themes
 
 
 def test_register_app_themes_keeps_textual_themes_available():
     app = WifiteApp()
 
-    assert "wifit3-green-dark" in app.available_themes
+    assert "wifit4-green-dark" in app.available_themes
     assert "textual-dark" in app.available_themes
     assert "textual-light" in app.available_themes
 

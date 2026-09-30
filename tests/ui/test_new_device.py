@@ -3,7 +3,7 @@ import pytest
 from textual.app import App
 from textual.widgets import Button
 
-from wifit3.ui.screens.new_device import NewDeviceDialog
+from wifit4.ui.screens.new_device import NewDeviceDialog
 
 
 class _Host(App):

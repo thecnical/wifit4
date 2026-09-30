@@ -23,15 +23,15 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu.chan import set_channel_2g_20mhz, set_channel_5g_20mhz
-from wifit3.chips.rtl8822bu.constants import REG_SYS_CFG1, USB_IDS_8822BU
-from wifit3.chips.rtl8822bu.dynamic import DIG_IGI_MASK, REG_DIG_PATH
-from wifit3.chips.rtl8822bu.firmware import download_firmware, download_firmware_validate, load_firmware_blob
-from wifit3.chips.rtl8822bu.mac import cut_mask_from_sys_cfg1, is_chip_warm, mac_init_for_rx, mac_power_on
-from wifit3.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
-from wifit3.chips.rtl8822bu.rx import RX_PKT_DESC_SZ, parse_rx_pkt_desc, probe_endpoints, read_rx_burst
-from wifit3.chips.rtl8822bu.transport import RTL8822BUTransport
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8822bu.chan import set_channel_2g_20mhz, set_channel_5g_20mhz
+from wifit4.chips.rtl8822bu.constants import REG_SYS_CFG1, USB_IDS_8822BU
+from wifit4.chips.rtl8822bu.dynamic import DIG_IGI_MASK, REG_DIG_PATH
+from wifit4.chips.rtl8822bu.firmware import download_firmware, download_firmware_validate, load_firmware_blob
+from wifit4.chips.rtl8822bu.mac import cut_mask_from_sys_cfg1, is_chip_warm, mac_init_for_rx, mac_power_on
+from wifit4.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
+from wifit4.chips.rtl8822bu.rx import RX_PKT_DESC_SZ, parse_rx_pkt_desc, probe_endpoints, read_rx_burst
+from wifit4.chips.rtl8822bu.transport import RTL8822BUTransport
+from wifit4.dot11.parser import WlanFrameParser
 
 IGI_LIST = [0x1C, 0x20, 0x24, 0x2A, 0x30, 0x3A, 0x4A, 0x60, 0x7F]
 DWELL_S = 2.5

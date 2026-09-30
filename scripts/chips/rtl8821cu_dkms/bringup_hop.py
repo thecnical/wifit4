@@ -1,4 +1,4 @@
-"""Faithful RX-health harness: drive the driver the way ``uv run wifit3`` does — connect, then
+"""Faithful RX-health harness: drive the driver the way ``uv run wifit4`` does — connect, then
 CONTINUOUSLY hop across BOTH bands (repeated 5<->2.4 GHz transitions) — and classify each launch
 good/dead by delivered frames, split per band. The ch1-parked loops (bringup_cointoss /
 bringup_timing) never band-switch, so they miss the 5->2.4 GHz revival the real app gets and
@@ -22,10 +22,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8821cu_dkms import bringup, efuse, watchdog
-from wifit3.chips.rtl8821cu_dkms import dm as dm_mod
-from wifit3.chips.rtl8821cu_dkms.driver import CHANNELS_2G, CHANNELS_5G, Rtl8821cuDkmsDriver
-from wifit3.chips.rx_reader import RxReaderThread
+from wifit4.chips.rtl8821cu_dkms import bringup, efuse, watchdog
+from wifit4.chips.rtl8821cu_dkms import dm as dm_mod
+from wifit4.chips.rtl8821cu_dkms.driver import CHANNELS_2G, CHANNELS_5G, Rtl8821cuDkmsDriver
+from wifit4.chips.rx_reader import RxReaderThread
 
 # Interleave the bands so the hop forces a 2.4<->5 GHz band switch on almost every step — the
 # repeated transition the real app does over time, compressed. (chan.set_channel only runs the

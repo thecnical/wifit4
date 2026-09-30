@@ -8,11 +8,11 @@ import pytest
 from textual import events
 from textual.widgets import SelectionList
 
-from wifit3.chips.driver import DeviceID
-from wifit3.device.manager import BringupResult
-from wifit3.setup.base import SetupResult
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.splash import SplashView
+from wifit4.chips.driver import DeviceID
+from wifit4.device.manager import BringupResult
+from wifit4.setup.base import SetupResult
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.splash import SplashView
 
 
 def _fake_iface():

@@ -2,7 +2,7 @@
 
 Captures (or reads) a fixed-channel monitor pcap per channel, parses it with
 OUR parser, and feeds the shared aggregator, so it groups identically to the
-wifit3 side. No tshark: we read the pcap by hand, strip the radiotap header
+wifit4 side. No tshark: we read the pcap by hand, strip the radiotap header
 (RSSI lives there), honor the FCS flag, and hand the 802.11 frame to
 ``WlanFrameParser`` (the radiotap parse is byte-validated against tshark on a
 real tcpdump capture).
@@ -16,7 +16,7 @@ Parse mode (read pcaps you already have, one per channel)::
 
     python baseline_linux.py --chip rt5370 --pcap 1=cap-ch1.pcap 6=cap-ch6.pcap
 
-Writes ``linux-<chip>.json`` and, if ``wifit3-<chip>.json`` exists alongside,
+Writes ``linux-<chip>.json`` and, if ``wifit4-<chip>.json`` exists alongside,
 prints the diff.
 """
 from __future__ import annotations
@@ -38,7 +38,7 @@ from shared import Health, add_reference_args, load_reference_aps, ref_bssids, r
 from dev import pick_kernel_iface
 from baseline_diff import diff
 
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.dot11.parser import WlanFrameParser
 
 # radiotap main-namespace field (size, align) by present-bit index, up to the
 # antenna-signal field (bit 5), all we need to locate RSSI + the FCS flag.
@@ -127,7 +127,7 @@ def parse_monitor_iface(iw_text: str, base_iface: str) -> str | None:
 def setup_monitor(base_iface: str) -> str:
     """Bring ``base_iface`` up in monitor mode with the SAME airmon-ng dance the
     capture pipeline uses [SRC] scripts/capture.py:634,679, so the kernel driver
-    is in the identical RX config the cold-boot capture recorded and wifit3
+    is in the identical RX config the cold-boot capture recorded and wifit4
     reproduces. Without ``check kill`` NetworkManager/wpa_supplicant keep scanning
     and pollute the kernel's RX, biasing the A/B. Returns the monitor iface name."""
     print(f"[*] airmon-ng check kill + start {base_iface} (matching capture.py)", file=sys.stderr)
@@ -222,12 +222,12 @@ def main() -> int:
 
     out = _HERE / f"linux-{args.chip}.json"
     health.to_json(out)
-    wifit3 = _HERE / f"wifit3-{args.chip}.json"
-    if wifit3.exists():
-        diff(wifit3, out, ref_bssids=ref_bssids(refs) or None)
+    wifit4 = _HERE / f"wifit4-{args.chip}.json"
+    if wifit4.exists():
+        diff(wifit4, out, ref_bssids=ref_bssids(refs) or None)
     else:
-        print(f"[*] no {wifit3.name} yet - run baseline_wifit3.py, then "
-              f"`python baseline_diff.py --diff {wifit3.name} {out.name}`", file=sys.stderr)
+        print(f"[*] no {wifit4.name} yet - run baseline_wifit4.py, then "
+              f"`python baseline_diff.py --diff {wifit4.name} {out.name}`", file=sys.stderr)
     return 0
 
 

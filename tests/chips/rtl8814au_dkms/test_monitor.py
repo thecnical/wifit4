@@ -4,7 +4,7 @@ The targeted byte-for-byte check vs the cold-boot capture lives in
 `scripts/chips/rtl8814au_dkms/verify_pcap.py` (verify_monitor_block); this pins the
 monitor RCR value and the accept-all RX filter maps.
 """
-from wifit3.chips.rtl8814au_dkms import monitor
+from wifit4.chips.rtl8814au_dkms import monitor
 
 
 class Rec:

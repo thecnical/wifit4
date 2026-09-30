@@ -23,7 +23,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 SRC = REPO / "driver_captures/captures_rtl8821au/driver-source"
 PHYDM = SRC / "hal/phydm/rtl8812a"
-OUTDIR = REPO / "src/wifit3/chips/rtl8812au_dkms"
+OUTDIR = REPO / "src/wifit4/chips/rtl8812au_dkms"
 
 # (src file, C array, out module, python var) — flat u32 stream tables resolved by the
 # phy_cond walker. The MAC table is included here (unlike the 8821's flat pairs, the

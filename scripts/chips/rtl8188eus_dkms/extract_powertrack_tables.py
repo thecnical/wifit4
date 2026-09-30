@@ -33,7 +33,7 @@ SRC_C = HALRF / "halrf_powertracking_ce.c"
 SRC_H = HALRF / "halrf_powertracking_ce.h"
 HWIMG = (REPO / "driver_captures" / "captures_8188eu" / "driver-source"
          / "hal" / "phydm" / "rtl8188e" / "halhwimg8188e_rf.c")
-OUT = (REPO / "src" / "wifit3" / "chips" / "rtl8188eus_dkms" / "powertrack_tbl.py")
+OUT = (REPO / "src" / "wifit4" / "chips" / "rtl8188eus_dkms" / "powertrack_tbl.py")
 
 # The 8 HWImg TxPowerTrack_USB 1-D u8[30] delta-swing tables, in
 # output-symbol -> C-array-name order. These are the runtime ch1-13 tables.

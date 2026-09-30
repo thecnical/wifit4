@@ -7,8 +7,8 @@ base (``record_ack`` / ``enable_rx_acks`` / ``acks_seen``)."""
 import struct
 from unittest.mock import MagicMock
 
-import wifit3.chips.rtl8822bu.driver as drv
-from wifit3.chips.rtl8822bu.driver import RTL8822BUDriver
+import wifit4.chips.rtl8822bu.driver as drv
+from wifit4.chips.rtl8822bu.driver import RTL8822BUDriver
 
 
 def _ack_buf(ra: bytes) -> bytes:

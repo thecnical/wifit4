@@ -4,7 +4,7 @@ The captured ALFA AWUS036ACH (rfe_type=3, C-cut) is byte-diffed by
 `scripts/chips/rtl8812au_dkms/verify_pcap.py`; these pin the OTHER runtime-EFUSE / cut branches
 that only a non-reference 8812AU card walks (they have no capture to diff against).
 """
-from wifit3.chips.rtl8812au_dkms import chan
+from wifit4.chips.rtl8812au_dkms import chan
 
 
 class Rec:

@@ -4,9 +4,9 @@ The 2001:3329 PG bytes are inlined below; nothing here reads a capture or a dump
 """
 import pytest
 
-from wifit3.chips.rtl8822cu.constants import PG_TXPWR_INVALID_DIFF
-from wifit3.chips.rtl8822cu.efuse import EfuseInfo
-from wifit3.chips.rtl8822cu.txpower import (
+from wifit4.chips.rtl8822cu.constants import PG_TXPWR_INVALID_DIFF
+from wifit4.chips.rtl8822cu.efuse import EfuseInfo
+from wifit4.chips.rtl8822cu.txpower import (
     BAND_MAX,
     BAND_ON_2_4G,
     BAND_ON_5G,

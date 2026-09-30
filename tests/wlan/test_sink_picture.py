@@ -2,7 +2,7 @@
 client attribution (to_ds / group MACs), transition-AP PMKID classification, WPA3/PMF flags,
 decloak method stickiness, and the WEP guards."""
 
-from wifit3.wlan.sink import WlanSink
+from wifit4.wlan.sink import WlanSink
 
 from tests.frames import pkt
 
@@ -87,7 +87,7 @@ def test_group_mac_destination_is_not_a_client():
 
 
 def test_transition_pmkid_only_classified_via_assoc():
-    from wifit3.crack import handshake as wpa
+    from wifit4.crack import handshake as wpa
     for client_akm, expect_crackable in ((0x02, True), (0x08, False)):
         s = WlanSink()
         b, client = "aa:bb:cc:dd:ee:ff", "12:22:33:44:55:66"

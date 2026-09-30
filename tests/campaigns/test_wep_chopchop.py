@@ -16,12 +16,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from wifit3.campaigns.wep.chopchop import (
+from wifit4.campaigns.wep.chopchop import (
     WepChopChop,
     _SENTINEL,
 )
-from wifit3.dot11.mac import header_len
-from wifit3.dot11.wep.crypto import (
+from wifit4.dot11.mac import header_len
+from wifit4.dot11.wep.crypto import (
     CRC32_RESIDUE,
     arp_request_plaintext,
     chop_last_byte_and_fixup,
@@ -290,7 +290,7 @@ async def test_loop_picks_seed_from_store_and_chops_end_to_end():
 
 
 def test_treelog_connectors():
-    from wifit3.campaigns import treelog
+    from wifit4.campaigns import treelog
     assert treelog.branch("x") == " [dim]├─►[/dim] x"
     ok = treelog.leaf_ok("x")
     assert ok.startswith(" [dim]└─[/dim]") and "✓" in ok and ok.endswith(" x")

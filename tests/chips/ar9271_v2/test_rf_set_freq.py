@@ -1,9 +1,9 @@
 """M2e-4: rf_set_freq — single-chip 2.4 GHz synthesizer (CHANSEL_2G + AR_PHY_SYNTH_CONTROL)."""
 import struct
 
-from wifit3.chips.ar9271_v2 import chan as chanmod, hw, phy, reg as R
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import chan as chanmod, hw, phy, reg as R
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 
 class FakeDev:

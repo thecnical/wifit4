@@ -43,8 +43,8 @@ MAC_CSR0 = 0x1000          # silicon id + revision; the first vendor op of the p
 
 _IMPORT_ERR = None
 try:
-    from wifit3.chips.rt5370.transport import RT5370Transport
-    from wifit3.chips.rt5370 import (
+    from wifit4.chips.rt5370.transport import RT5370Transport
+    from wifit4.chips.rt5370 import (
         bbp, chan, constants as C, eeprom, firmware, mac, monitor, rfcsr)
 except ImportError as e:  # driver not scaffolded yet
     _IMPORT_ERR = e

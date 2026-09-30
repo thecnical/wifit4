@@ -28,16 +28,16 @@ sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
 
-from wifit3.chips.rtl8822bu.chan import set_channel_2g_20mhz
-from wifit3.chips.rtl8822bu.constants import REG_SYS_CFG1
-from wifit3.chips.rtl8822bu.firmware import (
+from wifit4.chips.rtl8822bu.chan import set_channel_2g_20mhz
+from wifit4.chips.rtl8822bu.constants import REG_SYS_CFG1
+from wifit4.chips.rtl8822bu.firmware import (
     download_firmware, download_firmware_validate, load_firmware_blob,
 )
-from wifit3.chips.rtl8822bu.mac import (
+from wifit4.chips.rtl8822bu.mac import (
     cut_mask_from_sys_cfg1, mac_init_for_rx, mac_power_on,
 )
-from wifit3.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
-from wifit3.chips.rtl8822bu.transport import RTL8822BUTransport
+from wifit4.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
+from wifit4.chips.rtl8822bu.transport import RTL8822BUTransport
 
 CHANNEL = 1
 DEFAULT_CAP = REPO / "driver_captures" / "captures_rtw88_8822bu" / "capture-1.pcap"

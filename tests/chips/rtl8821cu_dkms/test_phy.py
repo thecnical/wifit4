@@ -7,7 +7,7 @@ non-reference burns. [SRC] hal/phydm/rtl8821c/phydm_hal_api8821c.c:328.
 """
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821cu_dkms import phy
+from wifit4.chips.rtl8821cu_dkms import phy
 
 _DPDT = phy.REG_DPDT_CTRL     # 0x0CB4
 

@@ -5,7 +5,7 @@ gain rows) and that the EDCCA pwdb search terminates on a clear band. The full
 byte-for-byte replay (incl. capture-2's data-dependent 279-op loop) lives in
 ``scripts/chips/rtl8188eus_dkms/verify_pcap.py``.
 """
-from wifit3.chips.rtl8188eus_dkms import dm
+from wifit4.chips.rtl8188eus_dkms import dm
 
 
 class RegTx:

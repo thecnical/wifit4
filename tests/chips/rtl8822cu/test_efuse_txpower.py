@@ -3,9 +3,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-import wifit3.chips.rtl8822cu.constants as constants_mod
-import wifit3.chips.rtl8822cu.efuse as efuse_mod
-from wifit3.chips.rtl8822cu.constants import (
+import wifit4.chips.rtl8822cu.constants as constants_mod
+import wifit4.chips.rtl8822cu.efuse as efuse_mod
+from wifit4.chips.rtl8822cu.constants import (
     DIS_DPD_RATE_ALL,
     DIS_DPD_RATE_NONE,
     EEPROM_DEFAULT_CRYSTAL_CAP_110_8822C,
@@ -17,7 +17,7 @@ from wifit3.chips.rtl8822cu.constants import (
     TXPWR_PG_WITH_PWR_IDX,
     TXPWR_PG_WITH_TSSI_OFFSET,
 )
-from wifit3.chips.rtl8822cu.efuse import (
+from wifit4.chips.rtl8822cu.efuse import (
     EfuseInfo,
     RfPath,
     hal_rfpath_init,
@@ -70,7 +70,7 @@ def test_tpt_mode_nibble_selects_the_pg_mode(byte, mode):
 
 @pytest.mark.parametrize("byte", [0x80, 0xF0, 0xFF])
 def test_out_of_range_tpt_mode_assumes_pwr_idx_and_logs(byte, caplog):
-    """wifit3 never aborts bring up on EFUSE contents: an unburned 0xC8 (0xFF -> 15) keeps the
+    """wifit4 never aborts bring up on EFUSE contents: an unburned 0xC8 (0xFF -> 15) keeps the
     adapter for RX, resolving to PWR_IDX [SRC rtl8822c_ops.c:273-274, hal_com_phycfg.h:36-38]."""
     with caplog.at_level("ERROR"):
         assert _efuse({0xC8: byte}).txpwr_pg_mode == TXPWR_PG_WITH_PWR_IDX
@@ -194,7 +194,7 @@ def test_an_unread_report_leaves_the_paths_unlimited():
 @pytest.mark.parametrize("antenna_opt", [0x11, 0x13])
 def test_an_efuse_bitmap_that_misses_the_reported_antenna_falls_back(antenna_opt, caplog):
     """Both C exits abort the probe: 0x22 & 0x11 is an empty AND (hal_intf.c:354-358); 0x22 & 0x13
-    is 0x02, which survives that and fails the TX/RX count screen (:364-368). wifit3 keeps the
+    is 0x02, which survives that and fails the TX/RX count screen (:364-368). wifit4 keeps the
     adapter for RX with the pre AND state, so the 1 antenna report survives and max_tx_cnt stays 1;
     falling back to 0x33 / 2 would read the 2T diff bytes on a one TX path part."""
     with caplog.at_level("ERROR"):

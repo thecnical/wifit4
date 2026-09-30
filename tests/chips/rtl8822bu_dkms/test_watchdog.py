@@ -4,7 +4,7 @@ The DIG is stateful (the IGI accumulates across ticks) and its capture window in
 spur sweep's igi_toggle, so it isn't cleanly pcap-sliceable; these assert the monitor IGI math against
 the verbatim source extraction (phydm_dig.c). `fa_cnt_statistics_ac` itself is replay-verified offline.
 """
-from wifit3.chips.rtl8822bu_dkms.dm_watchdog import (
+from wifit4.chips.rtl8822bu_dkms.dm_watchdog import (
     CCK_PD_LV_0,
     CCK_PD_LV_1,
     DigState,

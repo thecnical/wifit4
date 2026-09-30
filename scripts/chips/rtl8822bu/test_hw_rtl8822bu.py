@@ -26,44 +26,44 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu.chan import (
+from wifit4.chips.rtl8822bu.chan import (
     CHANNELS_5G_NON_DFS,
     set_channel_2g_20mhz,
     set_channel_5g_20mhz,
 )
-from wifit3.chips.rtl8822bu.constants import (
+from wifit4.chips.rtl8822bu.constants import (
     REG_CR,
     REG_MCUFW_CTRL,
     REG_SYS_CFG1,
     USB_IDS_8822BU,
 )
-from wifit3.chips.rtl8822bu.firmware import (
+from wifit4.chips.rtl8822bu.firmware import (
     download_firmware,
     download_firmware_validate,
     load_firmware_blob,
 )
-from wifit3.chips.rtl8822bu.mac import (
+from wifit4.chips.rtl8822bu.mac import (
     cut_mask_from_sys_cfg1,
     init_priority_queue_8822b,
     is_chip_warm,
     mac_init_for_rx,
     mac_power_on,
 )
-from wifit3.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
-from wifit3.chips.rtl8822bu.rx import (
+from wifit4.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
+from wifit4.chips.rtl8822bu.rx import (
     iter_bulk_frames,
     probe_endpoints,
     read_rx_burst,
 )
-from wifit3.chips.rtl8822bu.transport import RTL8822BUTransport
-from wifit3.chips.rtl8822bu.tx import (
+from wifit4.chips.rtl8822bu.transport import RTL8822BUTransport
+from wifit4.chips.rtl8822bu.tx import (
     TX_DESC_QSEL_MGMT,
     build_deauth_frame,
     build_tx_desc_mgmt,
     pick_bulk_out_ep,
     write_bulk,
 )
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.dot11.parser import WlanFrameParser
 
 
 def setup_logging(debug: bool) -> None:
@@ -251,7 +251,7 @@ def phase_mac_init(transport: RTL8822BUTransport) -> None:
     except IOError as e:
         fail(f"mac_init_for_rx failed: {e}")
     dt_ms = (_t.perf_counter() - t0) * 1000
-    from wifit3.chips.rtl8822bu.constants import REG_CR as _REG_CR
+    from wifit4.chips.rtl8822bu.constants import REG_CR as _REG_CR
     cr = transport.read32(_REG_CR)
     print(f"  REG_CR = 0x{cr:08x}  (look for bits 0,1,2,3,4,5,6,7 = MAC_TRX_ENABLE)")
     ok(f"mac_init done in {dt_ms:.0f} ms")
@@ -405,7 +405,7 @@ def phase_5g(transport: RTL8822BUTransport, dev) -> None:
 
 def phase_warm(dev, transport: RTL8822BUTransport) -> None:
     """Verify warm-reattach: chip should be DETECTED as warm and skip bring-up."""
-    from wifit3.chips.rtl8822bu.mac import is_chip_warm as _is_warm
+    from wifit4.chips.rtl8822bu.mac import is_chip_warm as _is_warm
     step("Warm-state probe (chip should report warm after a prior run)")
     is_warm = _is_warm(transport)
     print(f"  is_chip_warm() = {is_warm}")

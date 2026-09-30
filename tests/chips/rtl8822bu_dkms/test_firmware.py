@@ -4,7 +4,7 @@ The shipped blob is the morrownr ``array_mp_8822b_fw_nic`` (v30.20, 161240 B); t
 full byte-for-byte download verification lives in the pcap gate
 (``scripts/chips/rtl8822bu_dkms/verify_pcap.py``) once the iDDMA download is wired.
 """
-from wifit3.chips.rtl8822bu_dkms import firmware
+from wifit4.chips.rtl8822bu_dkms import firmware
 
 
 def test_blob_loads_with_expected_size():

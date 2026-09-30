@@ -4,11 +4,11 @@ Locks that (a) the reference card's internal-PA/LNA driver words reproduce the m
 defaults so the pcap walk is byte-identical, and (b) an external-LNA/PA burn actually
 reaches board-gated branches in the init tables (the generalization is live, not dead).
 """
-from wifit3.chips.rtl8188eus_dkms import phy_cond
-from wifit3.chips.rtl8188eus_dkms.bb_agc_tab_tbl import AGC_TAB
-from wifit3.chips.rtl8188eus_dkms.bb_phy_reg_tbl import PHY_REG
-from wifit3.chips.rtl8188eus_dkms.mac_reg_tbl import MAC_REG
-from wifit3.chips.rtl8188eus_dkms.rf_radio_a_tbl import RADIO_A
+from wifit4.chips.rtl8188eus_dkms import phy_cond
+from wifit4.chips.rtl8188eus_dkms.bb_agc_tab_tbl import AGC_TAB
+from wifit4.chips.rtl8188eus_dkms.bb_phy_reg_tbl import PHY_REG
+from wifit4.chips.rtl8188eus_dkms.mac_reg_tbl import MAC_REG
+from wifit4.chips.rtl8188eus_dkms.rf_radio_a_tbl import RADIO_A
 
 
 def _walk(table, dw=None):

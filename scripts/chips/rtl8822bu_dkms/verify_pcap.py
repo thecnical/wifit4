@@ -22,9 +22,9 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8822bu_dkms import bringup, mac, rx
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8822bu_dkms import bringup, mac, rx
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.dot11.parser import WlanFrameParser
 
 DEFAULT_CAP = REPO / "driver_captures" / "captures_rtl88x2bu" / "capture-1.pcap"
 

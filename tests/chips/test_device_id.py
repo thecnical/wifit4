@@ -1,5 +1,5 @@
 """DeviceID structured fields: description shim."""
-from wifit3.models import DeviceID
+from wifit4.models import DeviceID
 
 
 def test_description_composes_vendor_and_product():

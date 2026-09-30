@@ -15,7 +15,7 @@ phydm chips need. Every op the card emitted has exactly one honest fate:
 
 We do not run airmon-ng / airodump-ng / iw / aireplay-ng against our port; the chip only
 sees register writes, so the *vendor-driver* writes those tools trigger are ours to
-reproduce. wifit3 itself is the trigger: ``connect()`` stands in for airmon (monitor entry),
+reproduce. wifit4 itself is the trigger: ``connect()`` stands in for airmon (monitor entry),
 the channel hopper for airodump/iw (per-hop ``set_channel``), and the 2 s ``dig`` task for
 ``rtw_dynamic_chk_wk_hdl`` (the sreset poll + phydm watchdog). So the operational dispatch
 runs those same real handlers at the cursor — monitor RX-BAR/opmode, channel tunes, and the
@@ -35,12 +35,12 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8188eus_dkms import (
+from wifit4.chips.rtl8188eus_dkms import (
     bb, chan, dig, dm, efuse, firmware, mac, monitor, powertrack, pwrseq, rf, sreset,
     txpower,
 )
-from wifit3.chips.rtl8188eus_dkms import constants as C
-from wifit3.chips.rtl8188eus_dkms.constants import DEFAULT_INIT_CHANNEL
+from wifit4.chips.rtl8188eus_dkms import constants as C
+from wifit4.chips.rtl8188eus_dkms.constants import DEFAULT_INIT_CHANNEL
 
 DEFAULT_CAP = REPO / "driver_captures" / "captures_8188eu" / "capture-1.pcap"
 

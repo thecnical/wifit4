@@ -1,4 +1,4 @@
-from wifit3.chips.rtl8821au_dkms import rf
+from wifit4.chips.rtl8821au_dkms import rf
 
 
 class _FakeRegs:

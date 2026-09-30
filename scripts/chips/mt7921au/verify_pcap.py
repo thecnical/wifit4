@@ -40,16 +40,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 
-import wifit3.chips.mt7921au as mt_pkg
-from wifit3.chips.mt7921au import init as mt_init
-from wifit3.chips.mt7921au import mcu as mt_mcu
-from wifit3.chips.mt7921au import mac as mt_mac
-from wifit3.chips.mt7921au import tx as mt_tx
-from wifit3.chips.mt7921au.constants import (
+import wifit4.chips.mt7921au as mt_pkg
+from wifit4.chips.mt7921au import init as mt_init
+from wifit4.chips.mt7921au import mcu as mt_mcu
+from wifit4.chips.mt7921au import mac as mt_mac
+from wifit4.chips.mt7921au import tx as mt_tx
+from wifit4.chips.mt7921au.constants import (
     MT_MIB_SDR9, MT_MIB_SDR3, MT_SDIO_TXD_SIZE, MT_TXD3_REM_TX_COUNT, MT_TXD3_NO_ACK,
 )
-from wifit3.chips.mt7921au.firmware import MT7921AUFirmwareLoader
-from wifit3.chips.mt7921au.transport import MT7921AUTransport
+from wifit4.chips.mt7921au.firmware import MT7921AUFirmwareLoader
+from wifit4.chips.mt7921au.transport import MT7921AUTransport
 
 DEFAULT_CAP = "driver_captures/captures_mt7921u_pau0f-no-adapter-scatter/capture-3.pcap"
 PREFETCH0 = 0x7C024600        # first WFDMA-init register touched - start of CHECK 1 window

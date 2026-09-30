@@ -5,19 +5,19 @@ from unittest.mock import MagicMock
 import pytest
 import usb.core
 
-import wifit3.chips.rtl8822cu.driver as drv
-from wifit3.chips.rtl8822cu.chipid import ChipInfo
-from wifit3.chips.rtl8822cu.constants import (
+import wifit4.chips.rtl8822cu.driver as drv
+from wifit4.chips.rtl8822cu.chipid import ChipInfo
+from wifit4.chips.rtl8822cu.constants import (
     DIS_DPD_RATE_ALL,
     HALMAC_RF_1T1R,
     HALMAC_RF_2T2R,
 )
-from wifit3.chips.rtl8822cu.driver import RTL8822CUDriver
-from wifit3.chips.rtl8822cu.efuse import EfuseInfo
-from wifit3.chips.rtl8822cu.firmware import MacHiddenRpt
-from wifit3.chips.rtl8822cu.mac import set_mac_addr
-from wifit3.chips.driver import FakeMacSupport
-from wifit3.wlan.interface import WlanInterface
+from wifit4.chips.rtl8822cu.driver import RTL8822CUDriver
+from wifit4.chips.rtl8822cu.efuse import EfuseInfo
+from wifit4.chips.rtl8822cu.firmware import MacHiddenRpt
+from wifit4.chips.rtl8822cu.mac import set_mac_addr
+from wifit4.chips.driver import FakeMacSupport
+from wifit4.wlan.interface import WlanInterface
 
 
 def _ack_buf(ra: bytes) -> bytes:

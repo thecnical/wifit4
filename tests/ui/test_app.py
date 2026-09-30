@@ -1,8 +1,8 @@
 import pytest
 
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.splash import SplashView
-from wifit3.ui.screens.scanner import ScannerView
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.splash import SplashView
+from wifit4.ui.screens.scanner import ScannerView
 from textual.widgets import RichLog, DataTable
 
 
@@ -14,7 +14,7 @@ async def test_app_layout_and_boot():
     app = WifiteApp()
     async with app.run_test() as pilot:
         # Check Title
-        assert pilot.app.title.startswith("wifit3")
+        assert pilot.app.title.startswith("wifit4")
         
         # Verify we start on the Splash screen
         assert isinstance(pilot.app.screen, SplashView)

@@ -7,8 +7,8 @@ arming live on the ``Driver`` base (``record_ack`` / ``enable_rx_acks`` / ``acks
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtl8821au_dkms import tx
-from wifit3.chips.rtl8821au_dkms.driver import Rtl8821auDkmsDriver
+from wifit4.chips.rtl8821au_dkms import tx
+from wifit4.chips.rtl8821au_dkms.driver import Rtl8821auDkmsDriver
 
 
 def _ack_buf(ra: bytes) -> bytes:

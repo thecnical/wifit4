@@ -1,8 +1,8 @@
 """Global test fixtures."""
 import pytest
 
-from wifit3.campaigns.campaign import Campaign
-from wifit3.persist.config import Config
+from wifit4.campaigns.campaign import Campaign
+from wifit4.persist.config import Config
 
 
 @pytest.fixture(autouse=True)

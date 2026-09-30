@@ -38,14 +38,14 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.mt76x0u.constants import (
+from wifit4.chips.mt76x0u.constants import (
     MT_MAC_CSR0,
     MT_MCU_COM_REG0,
     MT_MCU_COM_REG0_FW_READY,
     USB_IDS_MT76X0U,
 )
-from wifit3.chips.mt76x0u.driver import MT76x0UDriver
-from wifit3.chips.driver import DeviceID
+from wifit4.chips.mt76x0u.driver import MT76x0UDriver
+from wifit4.chips.driver import DeviceID
 
 
 def setup_logging(debug: bool) -> None:
@@ -189,7 +189,7 @@ async def phase_set_ch6(driver: MT76x0UDriver) -> None:
     ok(f"BBP(AGC, 0) = 0x{agc_0:08x} (R0_BW=1 BW_20, R0_CTRL_CHAN=0)")
 
     # M4a.2: PLL readbacks for ch 6 should match FREQUENCY_PLAN entry exactly.
-    from wifit3.chips.mt76x0u.initvals_freq import find_freq_item
+    from wifit4.chips.mt76x0u.initvals_freq import find_freq_item
     expected = find_freq_item(6, False)
     if "rf_b0_r29" in s:
         expected_r29 = expected.pll_n & 0xFF      # 0xA2 for ch 6
@@ -398,7 +398,7 @@ async def phase_tx_smoke(driver: MT76x0UDriver) -> None:
     We use a deauth-style frame (26 bytes) because it's the simplest
     well-defined mgmt frame the chip will route through the MAC TX engine.
     """
-    from wifit3.chips.mt76x0u.tx import build_deauth_frame
+    from wifit4.chips.mt76x0u.tx import build_deauth_frame
 
     step("M6a — TX path smoke (10 × deauth on ch 6)")
 
@@ -448,8 +448,8 @@ async def phase_rx_inventory(driver: MT76x0UDriver, channel: int,
     For each packet prints: rxinfo flags, ftype/subtype, mpdu_len, rate,
     rssi[0], first 32 bytes of the 802.11 frame, decoded BSSID for mgmt.
     """
-    from wifit3.chips.mt76x0u.rx import decode_rx_inventory
-    from wifit3.chips.mt76x0u.constants import EP_IN_PKT_RX
+    from wifit4.chips.mt76x0u.rx import decode_rx_inventory
+    from wifit4.chips.mt76x0u.constants import EP_IN_PKT_RX
 
     step(f"rx_inventory — camp on ch {channel} for {seconds}s, dump all bulk-IN")
 
@@ -701,7 +701,7 @@ async def phase_eeprom(driver: MT76x0UDriver) -> None:
 
     # Verify mac_setaddr writeback: read MT_MAC_ADDR_DW0 and confirm the
     # low 4 MAC bytes round-trip.
-    from wifit3.chips.mt76x0u.constants import MT_MAC_ADDR_DW0
+    from wifit4.chips.mt76x0u.constants import MT_MAC_ADDR_DW0
     mac_dw0 = driver.transport.read32(MT_MAC_ADDR_DW0)
     expected_dw0 = int.from_bytes(e.mac_bytes[:4], "little")
     if mac_dw0 != expected_dw0:

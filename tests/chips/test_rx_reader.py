@@ -6,8 +6,8 @@ import asyncio
 import pytest
 import usb.core
 
-from wifit3.chips import rx_reader
-from wifit3.chips.rx_reader import RxReaderThread
+from wifit4.chips import rx_reader
+from wifit4.chips.rx_reader import RxReaderThread
 
 
 def _usb_error(*, errno=None, backend=None):

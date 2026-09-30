@@ -8,8 +8,8 @@ Coverage targets:
   - `adjust_vga_gain` false-CCA driven step logic
   - `update_channel_gain` state machine — gain_change branch + adjust-only branch
 """
-from wifit3.chips.mt76x2u import constants as C
-from wifit3.chips.mt76x2u import phy
+from wifit4.chips.mt76x2u import constants as C
+from wifit4.chips.mt76x2u import phy
 
 
 def _empty_rate_power() -> dict:

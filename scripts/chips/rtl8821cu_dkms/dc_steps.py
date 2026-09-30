@@ -25,8 +25,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8821cu_dkms import dm as dm_mod
-from wifit3.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
+from wifit4.chips.rtl8821cu_dkms import dm as dm_mod
+from wifit4.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
 
 CH = 36
 ARMS = ("full", "skip_all", "no_lna", "no_3wire", "no_ck320")

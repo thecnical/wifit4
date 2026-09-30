@@ -1,8 +1,8 @@
 """Tests for native PixieWPS offline recovery."""
 
-from wifit3.campaigns.wps import pins
-from wifit3.campaigns.wps.pixie import PixieBundle, PixieMode, recover_pin
-from wifit3.dot11.wsc import crypto as wc
+from wifit4.campaigns.wps import pins
+from wifit4.campaigns.wps.pixie import PixieBundle, PixieMode, recover_pin
+from wifit4.dot11.wsc import crypto as wc
 
 
 AUTHKEY = bytes.fromhex("11" * wc.AUTHKEY_LEN)

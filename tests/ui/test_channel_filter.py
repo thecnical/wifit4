@@ -6,7 +6,7 @@ import pytest
 from textual.app import App
 from textual.widgets import Button, SelectionList
 
-from wifit3.ui.screens.channel_filter import ChannelFilterDialog
+from wifit4.ui.screens.channel_filter import ChannelFilterDialog
 
 # More channels than fit any small dialog, so the list must scroll and the
 # buttons must not be pushed out.

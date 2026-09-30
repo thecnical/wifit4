@@ -5,9 +5,9 @@ the stateful RfRegChnlVal threading through set_channel, the RX dispatch, the (n
 inject_frame, and the manager registration + env-var ordering. asyncio_mode=auto runs the
 async tests without a decorator.
 """
-from wifit3.chips.rtl8188eus_dkms import SUPPORTED_IDS, chan, driver as drv_mod
-from wifit3.chips.rtl8188eus_dkms.constants import PID, VID
-from wifit3.chips.rtl8188eus_dkms.driver import Rtl8188eusDkmsDriver
+from wifit4.chips.rtl8188eus_dkms import SUPPORTED_IDS, chan, driver as drv_mod
+from wifit4.chips.rtl8188eus_dkms.constants import PID, VID
+from wifit4.chips.rtl8188eus_dkms.driver import Rtl8188eusDkmsDriver
 
 
 class _FakeTransport:
@@ -80,16 +80,16 @@ async def test_inject_frame_rejects_too_short():
 
 
 def test_manager_registration_and_env_order(monkeypatch):
-    from wifit3.chips.rtl8188eus.driver import RTL8188EUSDriver
-    from wifit3.device import manager
+    from wifit4.chips.rtl8188eus.driver import RTL8188EUSDriver
+    from wifit4.device import manager
 
     def selected():
         manager.supported_ids.cache_clear()   # bust the cached map so the env var is re-read
         return manager.driver_for(0x2357, 0x010C)[0]
 
-    monkeypatch.delenv("WIFIT3_RTL8188", raising=False)
+    monkeypatch.delenv("wifit4_RTL8188", raising=False)
     assert selected() is Rtl8188eusDkmsDriver     # default: vendor/DKMS port for 2357:010c (stress-stable)
 
-    monkeypatch.setenv("WIFIT3_RTL8188", "mainline")
+    monkeypatch.setenv("wifit4_RTL8188", "mainline")
     assert selected() is RTL8188EUSDriver          # opt back to mainline via env
     manager.supported_ids.cache_clear()            # leave the cache clean

@@ -35,9 +35,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rt5372 import constants as C
-from wifit3.chips.rt5372.driver import RT5372Driver
-from wifit3.chips.rt5372.rx import _ieee80211_hdrlen, agc_to_rssi, probe_endpoints, read_rx_burst
+from wifit4.chips.rt5372 import constants as C
+from wifit4.chips.rt5372.driver import RT5372Driver
+from wifit4.chips.rt5372.rx import _ieee80211_hdrlen, agc_to_rssi, probe_endpoints, read_rx_burst
 
 
 def iter_all(buf, ev, lna):

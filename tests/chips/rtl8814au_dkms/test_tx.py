@@ -5,7 +5,7 @@ capture), so these tests pin the SET_TX_DESC field bit positions against the ven
 macros, the shared XOR checksum, and the layout it shares with the byte-verified M1
 firmware-download descriptor.
 """
-from wifit3.chips.rtl8814au_dkms import firmware, tx
+from wifit4.chips.rtl8814au_dkms import firmware, tx
 
 
 def _field(desc, byte_off, bit_start, bit_len):

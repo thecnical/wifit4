@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Usage question / how do I…?
-    url: https://github.com/derv82/wifit3/discussions/categories/q-a
+    url: https://github.com/derv82/wifit4/discussions/categories/q-a
     about: >-
       Not sure how to run a scan, capture a handshake, or drive an attack? Ask in Q&A Discussions —
       please don't open a bug report for usage questions.

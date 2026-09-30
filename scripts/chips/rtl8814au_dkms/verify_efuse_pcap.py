@@ -25,7 +25,7 @@ sys.path.insert(0, str(REPO / "scripts" / "chips" / "rtl8814au_dkms"))    # veri
 import rtw88_pcap_replay as rp
 import verify_pcap as vp
 
-from wifit3.chips.rtl8814au_dkms import efuse
+from wifit4.chips.rtl8814au_dkms import efuse
 
 # Expected decoded params (same physical card across all three boots).
 EXP_RFE_TYPE = 1

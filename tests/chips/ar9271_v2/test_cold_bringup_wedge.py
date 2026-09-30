@@ -6,9 +6,9 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 import usb.core
 
-from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
-from wifit3.device.manager import DeviceManager
-from wifit3.errors import BringUpError
+from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
+from wifit4.device.manager import DeviceManager
+from wifit4.errors import BringUpError
 
 
 def _renders_cleanly(e: BringUpError) -> bool:
@@ -32,9 +32,9 @@ def _driver(mocker, original) -> tuple[AR9271V2Driver, MagicMock]:
     mocker.patch.object(driver, "_claim")
     mocker.patch.object(driver, "_await_reenumeration",
                         AsyncMock(return_value=SimpleNamespace(bus=1, address=8, port_numbers=(1,))))
-    mocker.patch("wifit3.chips.ar9271_v2.driver.usb.util.dispose_resources")
+    mocker.patch("wifit4.chips.ar9271_v2.driver.usb.util.dispose_resources")
     reader = MagicMock(start=MagicMock(), stop=AsyncMock())
-    mocker.patch("wifit3.chips.ar9271_v2.driver.RxReaderThread", return_value=reader)
+    mocker.patch("wifit4.chips.ar9271_v2.driver.RxReaderThread", return_value=reader)
     return driver, reader
 
 
@@ -42,7 +42,7 @@ def _driver(mocker, original) -> tuple[AR9271V2Driver, MagicMock]:
 async def test_firmware_download_timeout_becomes_a_clean_replug_error(mocker, caplog):
     original = SimpleNamespace(bus=1, address=7, port_numbers=(1,))
     driver, reader = _driver(mocker, original)
-    mocker.patch("wifit3.chips.ar9271_v2.driver.firmware.download",
+    mocker.patch("wifit4.chips.ar9271_v2.driver.firmware.download",
                  side_effect=usb.core.USBError("Operation timed out"))
     loop = mocker.MagicMock()
     loop.run_in_executor = _run_in_executor
@@ -61,8 +61,8 @@ async def test_firmware_download_timeout_becomes_a_clean_replug_error(mocker, ca
 async def test_cold_bringup_timeout_becomes_a_clean_replug_error_and_tears_down(mocker, caplog):
     original = SimpleNamespace(bus=1, address=7, port_numbers=(1,))
     driver, reader = _driver(mocker, original)
-    mocker.patch("wifit3.chips.ar9271_v2.driver.firmware.download")
-    mocker.patch("wifit3.chips.ar9271_v2.driver.bringup.cold_bringup",
+    mocker.patch("wifit4.chips.ar9271_v2.driver.firmware.download")
+    mocker.patch("wifit4.chips.ar9271_v2.driver.bringup.cold_bringup",
                  side_effect=usb.core.USBError("Operation timed out"))
     loop = mocker.MagicMock()
     loop.run_in_executor = _run_in_executor
@@ -84,7 +84,7 @@ async def test_warm_reattach_failure_becomes_a_clean_replug_error(mocker, caplog
     driver, reader = _driver(mocker, original)
     mocker.patch.object(driver, "_is_chip_warm", return_value=True)
     mocker.patch.object(driver, "_clear_pipe_halts")
-    mocker.patch("wifit3.chips.ar9271_v2.driver.bringup.warm_reattach",
+    mocker.patch("wifit4.chips.ar9271_v2.driver.bringup.warm_reattach",
                  side_effect=RuntimeError("WMI not responding"))
     loop = mocker.MagicMock()
     loop.run_in_executor = _run_in_executor
@@ -105,7 +105,7 @@ async def test_post_boot_handshake_double_failure_becomes_a_clean_replug_error(m
     driver._reader = None
     mocker.patch.object(driver, "_teardown_cold_attempt", AsyncMock())
 
-    from wifit3.chips.ar9271_v2 import htc
+    from wifit4.chips.ar9271_v2 import htc
 
     async def _always_mis_framed(*_a, **_k):
         raise htc.HTCReadyError(b"\x00" * 8)
@@ -119,8 +119,8 @@ async def test_post_boot_handshake_double_failure_becomes_a_clean_replug_error(m
 
 
 def test_claim_exhausted_retries_becomes_a_clean_replug_error(mocker):
-    mocker.patch("wifit3.chips.ar9271_v2.driver.time.sleep")     # skip the real ~6s of retries
-    mocker.patch("wifit3.chips.ar9271_v2.driver.usb.util.claim_interface",
+    mocker.patch("wifit4.chips.ar9271_v2.driver.time.sleep")     # skip the real ~6s of retries
+    mocker.patch("wifit4.chips.ar9271_v2.driver.usb.util.claim_interface",
                  side_effect=usb.core.USBError("Access denied"))
     original = SimpleNamespace(bus=1, address=7, port_numbers=(1,))
     driver = AR9271V2Driver(original)

@@ -31,10 +31,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
+from wifit4.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
 
 if TYPE_CHECKING:
-    from wifit3.dot11.packet import Packet
+    from wifit4.dot11.packet import Packet
 
 
 class BeaconTally:

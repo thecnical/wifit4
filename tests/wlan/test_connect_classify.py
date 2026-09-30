@@ -7,8 +7,8 @@ classifier walks the cause/context chain rather than the top exception. A genuin
 import usb.core
 import pytest
 
-from wifit3.errors import BringUpError, BringUpPermissionsError, is_permission_error
-from wifit3.wlan.interface import WlanInterface
+from wifit4.errors import BringUpError, BringUpPermissionsError, is_permission_error
+from wifit4.wlan.interface import WlanInterface
 
 
 class _Driver:

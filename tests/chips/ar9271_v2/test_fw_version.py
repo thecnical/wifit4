@@ -1,8 +1,8 @@
 """The ported ath9k_init_firmware_version major/minor screen (bringup._require_supported_fw)."""
 import pytest
 
-from wifit3.chips.ar9271_v2 import bringup, constants as C
-from wifit3.errors import BringUpError
+from wifit4.chips.ar9271_v2 import bringup, constants as C
+from wifit4.errors import BringUpError
 
 
 def test_accepts_shipped_and_minimum():

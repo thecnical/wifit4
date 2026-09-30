@@ -5,7 +5,7 @@ import asyncio
 
 import usb.core
 
-from wifit3.wlan.interface import WlanInterface
+from wifit4.wlan.interface import WlanInterface
 
 
 def test_on_device_lost_latches_and_fans_once(mocker):

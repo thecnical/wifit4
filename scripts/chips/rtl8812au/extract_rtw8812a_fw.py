@@ -18,7 +18,7 @@ sets BIT_ROM_PGE (bits 18:16) with the new page number. We detect them by
 watching wValue restart at 0x1000.
 
 Output: writes the concatenated body to
-src/wifit3/chips/rtl8812au/assets/rtw8812a_fw.bin (creating dirs as needed).
+src/wifit4/chips/rtl8812au/assets/rtw8812a_fw.bin (creating dirs as needed).
 Also prints SHA-256 so the user can byte-verify against linux-firmware.
 """
 
@@ -97,7 +97,7 @@ def main() -> int:
     )
     p.add_argument(
         "--output",
-        default="src/wifit3/chips/rtl8812au/assets/rtw8812a_fw.bin",
+        default="src/wifit4/chips/rtl8812au/assets/rtw8812a_fw.bin",
         type=Path,
     )
     p.add_argument("--no-write", action="store_true", help="just print stats")

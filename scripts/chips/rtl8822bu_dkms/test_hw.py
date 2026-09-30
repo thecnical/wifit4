@@ -28,11 +28,11 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu_dkms import (
+from wifit4.chips.rtl8822bu_dkms import (
     SUPPORTED_IDS, bb, bringup, chan, chipid, dm_watchdog, mac, rx, sipi, txpower,
 )
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.dot11.parser import WlanFrameParser
 
 CHANNELS_2G = list(range(1, 14))
 
@@ -323,7 +323,7 @@ def main() -> int:
     try:
         usb.util.claim_interface(dev, 0)
     except usb.core.USBError as e:
-        return _fail(f"claim_interface(0): {e}  (a running wifit3 may hold the card)")
+        return _fail(f"claim_interface(0): {e}  (a running wifit4 may hold the card)")
 
     t = Rtl8822buTransport(dev)
     try:

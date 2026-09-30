@@ -1,6 +1,6 @@
 """scan: an 802.11 diff detector. Dedup the beacon spam, print only what is new or changed.
 
-Brings up one wifit3 USB interface, tunes to a channel, and taps the raw RX stream. Each frame is
+Brings up one wifit4 USB interface, tunes to a channel, and taps the raw RX stream. Each frame is
 parsed by frame.Frame; a Tracker accumulates the decoded IEs per (source, frame type) and emits a
 record only on first sight or when an IE was added or changed. An identical repeat frame emits
 nothing: that is the dedup.
@@ -30,11 +30,11 @@ sys.path.insert(0, str(_HERE))         # scripts/id/ for frame.py
 
 from dev import select_device
 from frame import Frame, IE, fmt
-from wifit3.campaigns.auth_assoc import Association, WlanTransport, random_client_mac
-from wifit3.device.manager import wlan_ifaces, wlan_close
-from wifit3.dot11 import str_to_mac
-from wifit3.dot11.wsc import messages as M
-from wifit3.dot11.wsc.assoc_ie import WPS_REQ_REGISTRAR, wps_assoc_ie
+from wifit4.campaigns.auth_assoc import Association, WlanTransport, random_client_mac
+from wifit4.device.manager import wlan_ifaces, wlan_close
+from wifit4.dot11 import str_to_mac
+from wifit4.dot11.wsc import messages as M
+from wifit4.dot11.wsc.assoc_ie import WPS_REQ_REGISTRAR, wps_assoc_ie
 
 
 @dataclass

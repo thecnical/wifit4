@@ -1,7 +1,7 @@
 import re
 from types import SimpleNamespace
 
-from wifit3.ui.screens.focus_v2.eviltwin_modal import (
+from wifit4.ui.screens.focus_v2.eviltwin_modal import (
     EvilTwinInputModal, _plus_one, _random_bssid, _CYCLES,
 )
 

@@ -4,7 +4,7 @@ phy_SetRFEReg8821 turns off RF PA/LNA (0xCB0[15:12]/[7:4]=7) then either bypasse
 2.4 GHz external LNA (reference, ext_lna_2g=0 -> pinmux b'111) or turns it on
 (ext_lna_2g=1 -> 0xCB4 BIT20 + pinmux b'010). Pins both branches to their register images.
 """
-from wifit3.chips.rtl8821au_dkms import chan
+from wifit4.chips.rtl8821au_dkms import chan
 
 
 class FakeT:

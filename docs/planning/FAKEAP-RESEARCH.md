@@ -2,10 +2,10 @@
 
 # EvilTwin in the wild: how six major tools implement it
 
-Purpose: ground wifit3's EvilTwin design in how established open-source tools actually
+Purpose: ground wifit4's EvilTwin design in how established open-source tools actually
 do it. Six tool families were read at the source level (bash, C, Python, and vendor
 docs), each answering the same eight questions. This records what they do and where
-wifit3 diverges, so the campaign rewrite (see `EVILTWIN.md`) rests on field practice
+wifit4 diverges, so the campaign rewrite (see `EVILTWIN.md`) rests on field practice
 instead of assumptions.
 
 Sources read: Fluxion, airgeddon, wifiphisher, aircrack-ng (airbase-ng + aireplay-ng),
@@ -14,8 +14,8 @@ Pineapple (PineAP) with its KARMA/Jasager ancestry.
 
 ## The one-line answer
 
-wifit3's *capture* mechanic (forge M1, grab the victim's M2, crack offline) is
-field-standard: it is exactly what hostapd-mana does. wifit3's *eviction* mechanic
+wifit4's *capture* mechanic (forge M1, grab the victim's M2, crack offline) is
+field-standard: it is exactly what hostapd-mana does. wifit4's *eviction* mechanic
 (Deauth + offensive CSA beacons + a decoy channel) is used by none of them. Zero of the
 six weaponize CSA. None sit the twin on a decoy channel. None reuse the exact target
 BSSID. That divergence is where the doubts are well-founded.
@@ -31,7 +31,7 @@ BSSID. That divergence is where the doubts are well-founded.
 | wifite2 (kimocoder) | push | own iface MAC | same | deauth-only (aireplay) | open + hostapd portal | typed PSK validated by wpa_supplicant |
 | hostapd-mana / eaphammer | pull (KARMA/MANA) | own/placeholder (`--bssid` opt) | own (`-c` opt) | none (mana suppresses disconnect) | WPA2 / EAP | EAPOL M2 half-handshake (`WPA*02*`) + EAP creds/GTC downgrade |
 | WiFi Pineapple / PineAP | pull (KARMA) | own/random | own single channel | none (deauth = separate module) | open (Evil WPA opt) | portal MITM; Evil WPA full/PMKID handshake |
-| **wifit3 today** | **push** | **same or distinct** | **DECOY (different)** | **deauth + CSA beacons -> decoy** | **WPA2 (WPA3 downgrade)** | **forge M1 -> capture victim M2** |
+| **wifit4 today** | **push** | **same or distinct** | **DECOY (different)** | **deauth + CSA beacons -> decoy** | **WPA2 (WPA3 downgrade)** | **forge M1 -> capture victim M2** |
 
 ## Two schools
 
@@ -43,20 +43,20 @@ not clone one AP and do not deauth. Answer the client's own probe requests ("yes
 that SSID") and let it associate voluntarily. hostapd-mana even *suppresses* disconnects
 (`mana/wpa.c:114`) to keep a lured client attached.
 
-wifit3 is a push tool, but a variant nobody else runs.
+wifit4 is a push tool, but a variant nobody else runs.
 
-## Seven findings that bear on wifit3
+## Seven findings that bear on wifit4
 
 1. **CSA: nobody uses it to punt.** Grep-verified zero in Fluxion, wifiphisher,
    airgeddon; absent from the aircrack-ng suite; and present in hostapd only as the
    legitimate `hostapd_cli chan_switch` self-move (DFS/retune), never wired into an
    evil-twin punt in mana or eaphammer. PineAP has no reason for it (probe-response).
-   wifit3's offensive-CSA punt has no analog in any shipped tool.
+   wifit4's offensive-CSA punt has no analog in any shipped tool.
 
 2. **Channel: everybody is same-channel (push) or own-single-channel (pull).** No tool
    sits the twin on a decoy channel while punting from the target channel. Push tools
    put the twin on the *target's* channel; pull tools sit on their own channel and let
-   the client's own scan find them. wifit3's decoy channel is unique.
+   the client's own scan find them. wifit4's decoy channel is unique.
 
 3. **BSSID: nobody uses the exact target BSSID.** Fluxion (`fluxion.sh:1905`) and
    airgeddon (`generate_fake_bssid()`, `airgeddon.sh:11776`) bump a single nibble;
@@ -69,14 +69,14 @@ wifit3 is a push tool, but a variant nobody else runs.
    a web portal. They never make the client auto-join a WPA2 twin. A deauthed, frustrated
    user manually taps the open network and types the password into a page. This sidesteps
    the "iOS refuses to silently downgrade a remembered WPA3/WPA2 network" wall recorded in
-   `EVILTWIN.md`: it is why the portal tools win on iOS where wifit3 does not.
+   `EVILTWIN.md`: it is why the portal tools win on iOS where wifit4 does not.
 
 5. **Capture: two mechanisms.** (a) Portal-typed-PSK validated against a real handshake
    with aircrack/cowpatty (Fluxion `authenticator.php`, airgeddon `check.htm`,
    wifiphisher `-hC`, wifite2). (b) EAPOL M2 half-handshake logged for offline crack
    (hostapd-mana `mana/wpa.c:27`, eaphammer `capture_wpa_handshakes=1`, PineAP Evil WPA).
-   wifit3 is squarely school (b), and mana does the identical thing (accept any client,
-   log the M2 as a hashcat artifact). So wifit3's capture is validated; only the eviction
+   wifit4 is squarely school (b), and mana does the identical thing (accept any client,
+   log the M2 as a hashcat artifact). So wifit4's capture is validated; only the eviction
    diverges.
 
 6. **Deauth cadence: continuous, not periodic.** Every push tool deauths open-endedly
@@ -84,7 +84,7 @@ wifit3 is a push tool, but a variant nobody else runs.
    aireplay baseline (`aireplay-ng.c` `do_attack_deauth`): 128 frames per round, 2ms
    apart, deauthing *both* directions (client->AP and AP->client), reason code 7.
    wifite2 (derv82) is the lone periodic exception: `-0 1` per target every
-   `wpa_deauth_timeout=15s`. wifit3's 30s bounded punt is milder than the field norm.
+   `wpa_deauth_timeout=15s`. wifit4's 30s bounded punt is milder than the field norm.
 
 7. **iOS resistance is the shared enemy, and the portal design is the shared answer.**
    The KARMA lineage (`hostapd.conf:9-16` mana_loud comment; PineAP docs) explicitly
@@ -191,9 +191,9 @@ wifit3 is a push tool, but a variant nobody else runs.
 - CSA: not used; there is nothing to switch, because the victim was never pried off a
   real AP.
 
-## Implications for wifit3
+## Implications for wifit4
 
-The research splits wifit3's design into a sound half and a doubtful half.
+The research splits wifit4's design into a sound half and a doubtful half.
 
 **Sound (keep):** the WPA2 EAPOL capture. Accepting any associating client and logging
 its M2 for an offline crack is exactly hostapd-mana's mechanic. No change needed.
@@ -217,15 +217,15 @@ combination no shipped tool uses. Specifically:
 
 - **B. Adopt the proven clone-and-portal design.** Open twin + captive portal on the
   same channel with an off-by-one BSSID, continuous deauth, and validate the typed PSK
-  against a handshake wifit3 already captures. This is the Fluxion/airgeddon architecture
+  against a handshake wifit4 already captures. This is the Fluxion/airgeddon architecture
   and the only one shown to work against iOS in the field, because it needs no auto-join.
-  Larger build (portal + DHCP + DNS + web server), but it reuses wifit3's existing
+  Larger build (portal + DHCP + DNS + web server), but it reuses wifit4's existing
   handshake capture as the validator.
 
 **Modal knobs, reconsidered against the findings:** the "EvilTwin Channel" dropdown and
 the CSA punt checkbox both encode the two mechanics with no field precedent. If direction
 A or B is taken, channel collapses to "same as target" and CSA drops (or becomes an
 experimental toggle). Deauth should default to continuous rather than a fixed cycle; the
-30s value stays useful only as a wifit3-measured capture-rate optimum for the current
+30s value stays useful only as a wifit4-measured capture-rate optimum for the current
 design, not as a field norm. The BSSID control is better as a principled off-by-one than
 a full randomize, so the twin looks like the target while never colliding.

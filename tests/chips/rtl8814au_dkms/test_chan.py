@@ -5,7 +5,7 @@ The full byte-for-byte check vs the cold-boot capture is
 """
 import pytest
 
-from wifit3.chips.rtl8814au_dkms import chan
+from wifit4.chips.rtl8814au_dkms import chan
 
 
 class Rec:

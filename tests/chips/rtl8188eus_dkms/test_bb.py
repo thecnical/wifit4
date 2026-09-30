@@ -4,9 +4,9 @@ Full byte-for-byte replay lives in ``scripts/chips/rtl8188eus_dkms/verify_pcap.p
 this locks the prologue, the crystal-cap mask math, and that PHY_REG/AGC rows are
 full-32-bit writes.
 """
-from wifit3.chips.rtl8188eus_dkms import bb
-from wifit3.chips.rtl8188eus_dkms.constants import REG_AFE_XTAL_CTRL
-from wifit3.chips.rtl8188eus_dkms.efuse import BoardOptions
+from wifit4.chips.rtl8188eus_dkms import bb
+from wifit4.chips.rtl8188eus_dkms.constants import REG_AFE_XTAL_CTRL
+from wifit4.chips.rtl8188eus_dkms.efuse import BoardOptions
 
 
 class Tx:

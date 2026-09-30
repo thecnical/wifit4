@@ -1,6 +1,6 @@
 """Splash interface-list labels: left margin, dedupe counter, brand tail, chipset alignment."""
-from wifit3.chips.driver import DeviceID
-from wifit3.ui.screens.splash import device_list_labels
+from wifit4.chips.driver import DeviceID
+from wifit4.ui.screens.splash import device_list_labels
 
 
 def test_lone_chipset_has_a_left_margin_and_no_index():

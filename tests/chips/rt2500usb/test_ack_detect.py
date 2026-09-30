@@ -7,8 +7,8 @@ documented no-op and arming the tally is a pure software flag owned by the base.
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.rt2500usb.constants import DEFAULT_RSSI_OFFSET
-from wifit3.chips.rt2500usb.driver import RT2500USBDriver
+from wifit4.chips.rt2500usb.constants import DEFAULT_RSSI_OFFSET
+from wifit4.chips.rt2500usb.driver import RT2500USBDriver
 
 
 def _ack_buf(ra: bytes) -> bytes:

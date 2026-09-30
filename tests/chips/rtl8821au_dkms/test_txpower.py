@@ -4,8 +4,8 @@ Pins the PG power-index formula (base + 1TX diff, by-rate/limit disabled), the 2
 channel-group mapping, and the full txagc register sweep against the cold-boot wire —
 ch1 gives CCK 0x31 / OFDM 0x2d / HT-VHT 0x2b and the 0xc54 training word 0x131921.
 """
-from wifit3.chips.rtl8821au_dkms import txpower
-from wifit3.chips.rtl8821au_dkms.efuse import PathTxPwr
+from wifit4.chips.rtl8821au_dkms import txpower
+from wifit4.chips.rtl8821au_dkms.efuse import PathTxPwr
 
 # Decoded path-A PG block from the cold-boot efuse (verify_efuse_pcap). Plain power
 # indices / signed diffs — no card identity.

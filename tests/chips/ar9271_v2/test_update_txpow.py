@@ -5,9 +5,9 @@ they match the reset-time apply_txpower; only the six per-rate registers change.
 """
 import struct
 
-from wifit3.chips.ar9271_v2 import chan as chanmod, hw, phy_power, reg as R
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import chan as chanmod, hw, phy_power, reg as R
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 # A minimal but valid 4k EEPROM image: real bring-up fills hw.eeprom from the device. The
 # per-rate clamp to 0 holds for any image because new_pwr is 0, so an all-zero map suffices

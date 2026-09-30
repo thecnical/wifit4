@@ -1,9 +1,9 @@
 """M2e-6: init_interrupt_masks, ani_cache_ini_regs (reads), init_qos."""
 import struct
 
-from wifit3.chips.ar9271_v2 import hw, reg as R
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import hw, reg as R
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 
 class FakeDev:

@@ -4,7 +4,7 @@ Drives StreamMerger with explicit timestamps (no clock, no hardware): novel vs c
 inside/outside the window, the FC+addr+seq key (retry bit and seq step must NOT merge), the
 coverage tallies (both / first / only), and dynamic add/remove of sources for hotplug."""
 
-from wifit3.wlan.dedupe import StreamMerger
+from wifit4.wlan.dedupe import StreamMerger
 
 
 def _frame(*, fc=b"\x80\x00", dur=b"\x00\x00", a1=b"\x11" * 6, a2=b"\x22" * 6,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ``src/wifit3/campaigns/wps/wps_pindb.py`` from airgeddon and fulvius PIN lists.
+"""Generate ``src/wifit4/campaigns/wps/wps_pindb.py`` from airgeddon and fulvius PIN lists.
 
 Combines:
 - airgeddon's known_pins.db (https://github.com/v1s1t0r1sh3r3/airgeddon)
@@ -20,13 +20,13 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
-from wifit3.dot11.wsc.crypto import pin_checksum
+from wifit4.dot11.wsc.crypto import pin_checksum
 
 _AIRGEDDON_URL = "https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/known_pins.db"
 _FULVIUS_URL = "https://raw.githubusercontent.com/fulvius31/Default-WPS-PINs/main/pins.csv"
 
 OUT_FILE = (Path(__file__).resolve().parents[2]
-            / "src" / "wifit3" / "campaigns" / "wps" / "wps_pindb.py")
+            / "src" / "wifit4" / "campaigns" / "wps" / "wps_pindb.py")
 
 # Recognized algorithm names in fulvius dataset
 ALGO_NAME_MAP = {

@@ -6,9 +6,9 @@ import pytest
 import usb.core
 from textual.widgets import Button, Label, ListItem, ListView
 
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.error_modals import FatalErrorModal, RecoverableErrorModal
-from wifit3.ui.screens.splash import SplashView
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.error_modals import FatalErrorModal, RecoverableErrorModal
+from wifit4.ui.screens.splash import SplashView
 
 
 def _raise_no_backend(*args, **kwargs):

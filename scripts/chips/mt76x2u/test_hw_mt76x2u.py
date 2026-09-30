@@ -26,14 +26,14 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.mt76x2u.constants import (
+from wifit4.chips.mt76x2u.constants import (
     MT_MCU_COM_REG0,
     MT76XX_REV_E3,
     USB_IDS_MT76X2U,
 )
-from wifit3.chips.mt76x2u.driver import MT76x2UDriver
-from wifit3.chips.driver import DeviceID
-from wifit3.dot11.packet import Packet
+from wifit4.chips.mt76x2u.driver import MT76x2UDriver
+from wifit4.chips.driver import DeviceID
+from wifit4.dot11.packet import Packet
 
 
 def setup_logging(debug: bool) -> None:
@@ -324,7 +324,7 @@ async def phase_deauth(driver: MT76x2UDriver, target: str,
 
     # Broadcast deauth: target = ff:ff:ff:ff:ff:ff (all clients), BSSID = AP.
     bcast = b"\xff" * 6
-    from wifit3.chips.mt76x2u.tx import build_deauth, assemble_tx_frame
+    from wifit4.chips.mt76x2u.tx import build_deauth, assemble_tx_frame
     frame = build_deauth(bcast, bssid_bytes, reason=7, from_ap=True)
     blob = assemble_tx_frame(frame, ack=False)
     print(f"  Deauth on-wire: TXINFO+TXWI+frame+pad = {len(blob)} bytes")

@@ -9,7 +9,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from wifit3.chips.rtl8821cu_dkms import chan
+from wifit4.chips.rtl8821cu_dkms import chan
 
 _RF18_RD = 0x2860        # read_rf(0x18) = 0x2800 + (0x18<<2)
 _RFB8_RD = 0x2AE0        # read_rf(0xb8) = 0x2800 + (0xb8<<2)

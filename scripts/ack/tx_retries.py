@@ -30,9 +30,9 @@ except Exception:                                                 # noqa: BLE001
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "src"))
 
-from wifit3.device.manager import wlan_ifaces
-from wifit3.dot11 import build_deauth
-from wifit3.chips.driver import FakeMacSupport
+from wifit4.device.manager import wlan_ifaces
+from wifit4.dot11 import build_deauth
+from wifit4.chips.driver import FakeMacSupport
 
 FAKE_SRC = "02:11:22:33:44:55"        # fake unicast client MAC we inject as (Addr2); the AP's ACK
                                       # returns to it, so it must be unicast.

@@ -7,7 +7,7 @@ USB-replay verification lives in ``scripts/chips/rtl8814au_dkms/verify_m1_pcap.p
 """
 from importlib import resources
 
-from wifit3.chips.rtl8814au_dkms import firmware
+from wifit4.chips.rtl8814au_dkms import firmware
 
 # (length, bmc, txdesc[0:40]) — captured FW packets idx 0, 1, and 45.
 _GOLDEN = [
@@ -18,7 +18,7 @@ _GOLDEN = [
 
 
 def _blob() -> bytes:
-    return (resources.files("wifit3.chips.rtl8814au_dkms") / "assets" / "rtl8814au_fw.bin").read_bytes()
+    return (resources.files("wifit4.chips.rtl8814au_dkms") / "assets" / "rtl8814au_fw.bin").read_bytes()
 
 
 def test_txdesc_matches_capture():

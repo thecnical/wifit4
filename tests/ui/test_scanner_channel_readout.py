@@ -6,7 +6,7 @@ import pytest
 import pytest_asyncio
 from textual.app import App, ComposeResult
 
-from wifit3.ui.screens.scanner import _ChannelReadout, _ScannerHeader
+from wifit4.ui.screens.scanner import _ChannelReadout, _ScannerHeader
 
 
 def _array(*channels):

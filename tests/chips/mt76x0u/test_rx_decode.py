@@ -3,7 +3,7 @@ that keeps EAPOL key_data intact: remove the L2 pad BEFORE trimming to MPDU_LEN
 (mirrors mt76x02_remove_hdr_pad → pskb_trim), so the body tail isn't clipped."""
 import struct
 
-import wifit3.chips.mt76x0u.rx as rx
+import wifit4.chips.mt76x0u.rx as rx
 
 
 def _packet(frame_region: bytes, *, mpdu_len: int, rxinfo: int = 0,

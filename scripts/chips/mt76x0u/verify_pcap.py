@@ -15,7 +15,7 @@ Checks, mirroring the mt7921au / mt76x2u templates:
               does chip_onoff reset + ILM/DLM bulk upload + IVB trigger + FW_READY poll.
   CHECK C   — post-FW init (continues the cursor): init_usb_dma + waits + reset_csr_bbp +
               Q_SELECT + init_mac_registers + init_bbp + table clears + EFUSE + mac_setaddr +
-              phy_init. (mcu_init_smoke_test is a wifit3 diagnostic absent from the kernel
+              phy_init. (mcu_init_smoke_test is a wifit4 diagnostic absent from the kernel
               wire and is omitted.)
   CHECK D   — TX inject (2.4 GHz): every aireplay TX frame on EP 0x07 (AC_VO), rebuilt via
               tx.build_inject_packet and asserted byte-for-byte.
@@ -40,11 +40,11 @@ sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import mt76usb_pcap_replay as rp
 
-from wifit3.chips.mt76x0u import tx as mt_tx
-from wifit3.chips.mt76x0u.constants import Q_SELECT
-from wifit3.chips.mt76x0u.eeprom import read_efuse_full
-from wifit3.chips.mt76x0u.firmware import FirmwareUploader
-from wifit3.chips.mt76x0u.mac import (
+from wifit4.chips.mt76x0u import tx as mt_tx
+from wifit4.chips.mt76x0u.constants import Q_SELECT
+from wifit4.chips.mt76x0u.eeprom import read_efuse_full
+from wifit4.chips.mt76x0u.firmware import FirmwareUploader
+from wifit4.chips.mt76x0u.mac import (
     clear_shared_keys,
     clear_wcids,
     init_mac_registers,
@@ -52,12 +52,12 @@ from wifit3.chips.mt76x0u.mac import (
     wait_for_txrx_idle,
     wait_for_wpdma,
 )
-from wifit3.chips.mt76x0u.mcu import MCUChannel
-from wifit3.chips.mt76x0u.phy import init_bbp, phy_init
-from wifit3.chips.mt76x0u.transport import MT76x0UTransport
+from wifit4.chips.mt76x0u.mcu import MCUChannel
+from wifit4.chips.mt76x0u.phy import init_bbp, phy_init
+from wifit4.chips.mt76x0u.transport import MT76x0UTransport
 
 DEFAULT_CAP = "driver_captures/captures_mt76x0u_2/capture-1.pcap"
-ASSETS = REPO / "src" / "wifit3" / "chips" / "mt76x0u" / "assets"
+ASSETS = REPO / "src" / "wifit4" / "chips" / "mt76x0u" / "assets"
 
 _TXWI_LEN = 20
 _DMA_INFO_LEN = 4
@@ -175,7 +175,7 @@ def check_tx(data: dict) -> str:
         if ep != mt_tx.EP_OUT_AC_VO:
             ep_div += 1
             if first_ep is None:
-                first_ep = (f"fc0=0x{frame[0]:02x} wire ep=0x{ep:02x}, wifit3 "
+                first_ep = (f"fc0=0x{frame[0]:02x} wire ep=0x{ep:02x}, wifit4 "
                             f"inject_80211_frame would send on EP 0x{mt_tx.EP_OUT_AC_VO:02x}")
             continue
         if built == wire:

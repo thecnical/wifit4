@@ -8,8 +8,8 @@ ACK before it reaches the callback). The tally and arming live on the ``Driver``
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtw88_8814au.constants import TX_PKT_DESC_SZ
-from wifit3.chips.rtw88_8814au.driver import RTL8814AUDriver
+from wifit4.chips.rtw88_8814au.constants import TX_PKT_DESC_SZ
+from wifit4.chips.rtw88_8814au.driver import RTL8814AUDriver
 
 
 def _ack_buf(ra: bytes) -> bytes:

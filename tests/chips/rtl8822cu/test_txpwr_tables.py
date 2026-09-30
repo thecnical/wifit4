@@ -7,13 +7,13 @@ is evidence, not a tautology.
 """
 import pytest
 
-from wifit3.chips.rtl8822cu.constants import (
+from wifit4.chips.rtl8822cu.constants import (
     DIS_DPD_RATE_ALL,
     DIS_DPD_RATE_NONE,
     HAL_SPEC_TXGI_MAX,
     HAL_SPEC_TXGI_PDBM,
 )
-from wifit3.chips.rtl8822cu.txpwr_tables import (
+from wifit4.chips.rtl8822cu.txpwr_tables import (
     ARRAY_MP_8822C_PHY_REG_PG,
     BAND_ON_2_4G,
     BAND_ON_5G,

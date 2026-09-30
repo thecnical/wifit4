@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-import wifit3.setup.windows as win
-from wifit3.models import DeviceID
-from wifit3.setup.base import SetupResult
+import wifit4.setup.windows as win
+from wifit4.models import DeviceID
+from wifit4.setup.base import SetupResult
 
 _DEV = DeviceID(0x0BDA, 0x8813, "RTL8814AU (Alfa AWUS1900)")
 

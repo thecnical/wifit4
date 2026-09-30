@@ -26,7 +26,7 @@ RULES (do not violate — this is the whole point of the gate):
 
 We do not run airmon-ng / airodump-ng / iw / aireplay-ng against the port; the chip only sees
 register writes, so the *kernel-driver* writes those tools trigger are ours to reproduce.
-wifit3 is the trigger: connect() stands in for the probe + airmon monitor entry, the channel
+wifit4 is the trigger: connect() stands in for the probe + airmon monitor entry, the channel
 hopper for airodump/iw (per-hop set_channel), and the periodic link tuner for rt2x00link's
 ~1 Hz BBP66 AGC work.
 
@@ -53,8 +53,8 @@ MAC_CSR0 = 0x1000          # silicon id + revision; the first vendor op of the p
 # milestone in _walk_init starts reproducing wire and the frontier advances.
 _IMPORT_ERR = None
 try:
-    from wifit3.chips.rt3070.transport import RT3070Transport
-    from wifit3.chips.rt3070 import (
+    from wifit4.chips.rt3070.transport import RT3070Transport
+    from wifit4.chips.rt3070 import (
         bbp, chan, constants as C, eeprom, firmware, mac, monitor, rfcsr)
 except ImportError as e:  # driver not scaffolded yet
     _IMPORT_ERR = e

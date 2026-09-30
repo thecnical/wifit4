@@ -6,10 +6,10 @@ captures the control writes.
 """
 from __future__ import annotations
 
-from wifit3.chips.rt3070 import chan, constants as C
-from wifit3.chips.rt3070.eeprom import parse_eeprom, resolve_rf_chip
-from wifit3.chips.rt3070.state import DrvData
-from wifit3.chips.rt3070.transport import RT3070Transport
+from wifit4.chips.rt3070 import chan, constants as C
+from wifit4.chips.rt3070.eeprom import parse_eeprom, resolve_rf_chip
+from wifit4.chips.rt3070.state import DrvData
+from wifit4.chips.rt3070.transport import RT3070Transport
 
 
 class RecordingDev:
@@ -70,7 +70,7 @@ def test_resolve_unported_rf_is_flagged_not_fatal():
 def test_resolve_blank_eeprom_default_rf2820_not_ported():
     """A blank NIC_CONF0 (0xffff) is fixed up to RF2820 by validate_eeprom; RF2820 is not in
     the rf3xxx set, so it's flagged untested but still runs on the silicon default."""
-    from wifit3.chips.rt3070.eeprom import validate_eeprom
+    from wifit4.chips.rt3070.eeprom import validate_eeprom
     buf = bytearray(_eeprom())
     buf[C.EEPROM_NIC_CONF0 * 2:C.EEPROM_NIC_CONF0 * 2 + 2] = (0xFFFF).to_bytes(2, "little")
     rf = resolve_rf_chip(parse_eeprom(validate_eeprom(bytes(buf))))

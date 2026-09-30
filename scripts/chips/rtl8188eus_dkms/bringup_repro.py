@@ -22,8 +22,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from wifit3.errors import BringUpError
-from wifit3.device.manager import wlan_iface, devices
+from wifit4.errors import BringUpError
+from wifit4.device.manager import wlan_iface, devices
 
 _CHIPSET = "RTL8188EUS"
 
@@ -63,7 +63,7 @@ async def main() -> int:
     args = p.parse_args()
 
     if args.reset_settle is not None:
-        from wifit3.chips.rtl8188eus_dkms import firmware
+        from wifit4.chips.rtl8188eus_dkms import firmware
         firmware._POST_RESET_SETTLE_S = args.reset_settle
         print(f"[*] post-reset settle overridden to {args.reset_settle}s")
 

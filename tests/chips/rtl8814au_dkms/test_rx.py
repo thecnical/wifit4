@@ -5,7 +5,7 @@ environment-dependent), so these synthetic-buffer tests pin the rx_pkt_desc fiel
 extraction, the recvbuf2recvframe aggregation walk (FCS strip, C2H skip, crc/icv
 skip-and-continue), and the PHY-status RSSI decode.
 """
-from wifit3.chips.rtl8814au_dkms import rx
+from wifit4.chips.rtl8814au_dkms import rx
 
 
 def _desc(pkt_len, drvinfo_sz=0, shift_sz=0, crc=0, icv=0, physt=0, rpt_sel=0,

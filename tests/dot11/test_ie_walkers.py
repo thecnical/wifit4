@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.dot11.ie import iter_information_elements
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.dot11.wsc.messages import ATTR_MANUFACTURER, ATTR_MODEL_NAME, iter_wsc_tlvs, parse_tlvs
+from wifit4.dot11.ie import iter_information_elements
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.dot11.wsc.messages import ATTR_MANUFACTURER, ATTR_MODEL_NAME, iter_wsc_tlvs, parse_tlvs
 
 
 def test_iter_information_elements_walks_elements_and_yields_raw():

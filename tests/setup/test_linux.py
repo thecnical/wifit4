@@ -1,4 +1,4 @@
-"""Unit tests for the pure + classification helpers in wifit3.setup.linux.
+"""Unit tests for the pure + classification helpers in wifit4.setup.linux.
 
 The live path (graphical pkexec → files written → kernel module unloaded → replug → cold card)
 can't be exercised without a real Linux box + hardware, so it's left to the Kali smoke. The
@@ -16,10 +16,10 @@ from pathlib import Path
 
 import pytest
 
-import wifit3.setup.linux as lin
-from wifit3.setup import SetupTarget
-from wifit3.setup.base import SetupResult
-from wifit3.setup.linux import (
+import wifit4.setup.linux as lin
+from wifit4.setup import SetupTarget
+from wifit4.setup.base import SetupResult
+from wifit4.setup.linux import (
     _choose_escalation_method,
     blacklist_path,
     discover_kernel_modules,
@@ -156,10 +156,10 @@ def test_discover_falls_back_to_hint_when_card_absent(tmp_path, monkeypatch):
 # --- file naming + text emitters ---------------------------------------------------------------
 
 def test_paths_are_per_chipset_with_sort_safe_prefixes():
-    assert rule_path("ar9271") == "/etc/udev/rules.d/60-wifit3-ar9271.rules"
-    assert blacklist_path("ar9271") == "/etc/modprobe.d/wifit3-ar9271.conf"
+    assert rule_path("ar9271") == "/etc/udev/rules.d/60-wifit4-ar9271.rules"
+    assert blacklist_path("ar9271") == "/etc/modprobe.d/wifit4-ar9271.conf"
     # key is sanitized before it lands in a privileged path.
-    assert blacklist_path("../evil") == "/etc/modprobe.d/wifit3----evil.conf"
+    assert blacklist_path("../evil") == "/etc/modprobe.d/wifit4----evil.conf"
 
 
 def test_emit_udev_text_is_per_chipset_grouped_and_inline_comment_free():
@@ -217,8 +217,8 @@ def test_remove_cmd_shell_quotes_paths_with_spaces(monkeypatch):
     monkeypatch.setattr(lin, "RULE_DIR", "/etc/My Rules")
     monkeypatch.setattr(lin, "BLACKLIST_DIR", "/etc/My Blocklist")
     cmd = lin._remove_cmd(["ar9271"], "/dev/bus/usb/003/053")
-    assert "'/etc/My Rules/60-wifit3-ar9271.rules'" in cmd
-    assert "'/etc/My Blocklist/wifit3-ar9271.conf'" in cmd
+    assert "'/etc/My Rules/60-wifit4-ar9271.rules'" in cmd
+    assert "'/etc/My Blocklist/wifit4-ar9271.conf'" in cmd
 
 
 def test_install_cmd_shell_quotes_staged_path_with_spaces():
@@ -268,8 +268,8 @@ def test_install_rule_success_stages_pair_and_elevates(monkeypatch, tmp_path):
     seen = {}
     def _run(cmd, method):                                # staged files still exist until the finally
         seen["cmd"] = cmd
-        seen["rule"] = next(tmp_path.glob("*wifit3-ar9271.rules")).read_text()
-        seen["conf"] = next(tmp_path.glob("*wifit3-ar9271.conf")).read_text()
+        seen["rule"] = next(tmp_path.glob("*wifit4-ar9271.rules")).read_text()
+        seen["conf"] = next(tmp_path.glob("*wifit4-ar9271.conf")).read_text()
         return 0
     monkeypatch.setattr(lin, "run_privileged", _run)
     r = install_rule(_target(), node="/dev/bus/usb/003/053")
@@ -278,9 +278,9 @@ def test_install_rule_success_stages_pair_and_elevates(monkeypatch, tmp_path):
     assert r.detail == blacklist_path("ar9271")
     assert seen["rule"].count('SUBSYSTEM=="usb"') == 1    # per-chipset, not the fleet
     assert "blacklist ath9k_htc" in seen["conf"]
-    assert "60-wifit3-ar9271.rules" in seen["cmd"] and "wifit3-ar9271.conf" in seen["cmd"]
+    assert "60-wifit4-ar9271.rules" in seen["cmd"] and "wifit4-ar9271.conf" in seen["cmd"]
     assert "chgrp sudo /dev/bus/usb/003/053" in seen["cmd"]
-    assert not list(tmp_path.glob("*wifit3-ar9271.*"))    # staged pair cleaned up after install
+    assert not list(tmp_path.glob("*wifit4-ar9271.*"))    # staged pair cleaned up after install
 
 
 def test_install_rule_root_writes_blacklist_without_elevation(monkeypatch, tmp_path):
@@ -294,9 +294,9 @@ def test_install_rule_root_writes_blacklist_without_elevation(monkeypatch, tmp_p
     monkeypatch.setattr(lin, "run_privileged", lambda c, m: elevated.append(c) or 0)
     r = install_rule(_target())
     assert r.ok and not elevated                          # root never elevates
-    assert "wifit3-ar9271.conf" in seen["cmd"]            # blacklist still written as root
+    assert "wifit4-ar9271.conf" in seen["cmd"]            # blacklist still written as root
     assert ".rules" not in seen["cmd"]                    # but no access rule (root opens directly)
-    assert not list(tmp_path.glob("*wifit3-ar9271.rules"))
+    assert not list(tmp_path.glob("*wifit4-ar9271.rules"))
 
 
 def test_install_rule_fails_when_in_no_admin_group(monkeypatch, tmp_path):
@@ -359,7 +359,7 @@ def test_remove_rule_success_tells_user_to_replug(monkeypatch, tmp_path):
     monkeypatch.setattr(lin, "run_privileged", lambda cmd, method: seen.update(cmd=cmd) or 0)
     r = remove_rule(_target(), node="/dev/bus/usb/003/053")
     assert r.ok and "replug" in r.message.lower()
-    assert "60-wifit3-ar9271.rules" in seen["cmd"] and "wifit3-ar9271.conf" in seen["cmd"]
+    assert "60-wifit4-ar9271.rules" in seen["cmd"] and "wifit4-ar9271.conf" in seen["cmd"]
     assert "chown root:root /dev/bus/usb/003/053" in seen["cmd"]
 
 
@@ -383,9 +383,9 @@ def test_remove_rule_non_linux_raises(monkeypatch):
 # --- shared-module reference counting (plan_uninstall + narrow/wide remove) ---------------------
 
 def _write_blacklist(key, desc, *modules):
-    """Write a wifit3 blacklist conf the way emit_blacklist_text would (header + blacklist lines),
+    """Write a wifit4 blacklist conf the way emit_blacklist_text would (header + blacklist lines),
     so modules_in_conf / _desc_from_conf read it back. Needs BLACKLIST_DIR pointed at tmp."""
-    lines = [f"# wifit3 hands {desc} ({key}) to userland.", ""]
+    lines = [f"# wifit4 hands {desc} ({key}) to userland.", ""]
     for m in modules:
         lines += [f"blacklist {m}", f"install {m} /bin/true"]
     Path(blacklist_path(key)).write_text("\n".join(lines) + "\n")
@@ -453,7 +453,7 @@ def test_remove_rule_narrow_leaves_sibling_blocked(monkeypatch, tmp_path):
     r = remove_rule(_target(key="rt5372"), node="/dev/bus/usb/003/053")
     assert r.ok
     assert "rt2800usb" in r.message and "blocked" in r.message.lower()   # names the residual module
-    assert "60-wifit3-rt5372.rules" in seen["cmd"] and "wifit3-rt2800usb.conf" not in seen["cmd"]
+    assert "60-wifit4-rt5372.rules" in seen["cmd"] and "wifit4-rt2800usb.conf" not in seen["cmd"]
 
 
 def test_remove_rule_wide_clears_the_family(monkeypatch, tmp_path):
@@ -465,7 +465,7 @@ def test_remove_rule_wide_clears_the_family(monkeypatch, tmp_path):
     r = remove_rule(_target(key="rt5372"), node="/dev/bus/usb/003/053",
                     also_keys=("rt2800usb",))
     assert r.ok and "replug" in r.message.lower() and "blocked" not in r.message.lower()
-    assert "wifit3-rt5372.conf" in seen["cmd"] and "wifit3-rt2800usb.conf" in seen["cmd"]
+    assert "wifit4-rt5372.conf" in seen["cmd"] and "wifit4-rt2800usb.conf" in seen["cmd"]
 
 
 def test_linux_setup_result_defaults():

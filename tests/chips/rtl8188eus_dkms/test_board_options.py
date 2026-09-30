@@ -11,13 +11,13 @@ for C branches that genuinely cannot be driven through the Python seam (no such 
 """
 import pytest
 
-from wifit3.chips.rtl8188eus_dkms import bb, efuse, mac, phy_cond, rf
-from wifit3.chips.rtl8188eus_dkms.bb_agc_tab_tbl import AGC_TAB
-from wifit3.chips.rtl8188eus_dkms.bb_phy_reg_tbl import PHY_REG
-from wifit3.chips.rtl8188eus_dkms.constants import REG_AFE_XTAL_CTRL, RF_LSSI_WRITE_A
-from wifit3.chips.rtl8188eus_dkms.efuse import BoardOptions
-from wifit3.chips.rtl8188eus_dkms.mac_reg_tbl import MAC_REG
-from wifit3.chips.rtl8188eus_dkms.rf_radio_a_tbl import RADIO_A
+from wifit4.chips.rtl8188eus_dkms import bb, efuse, mac, phy_cond, rf
+from wifit4.chips.rtl8188eus_dkms.bb_agc_tab_tbl import AGC_TAB
+from wifit4.chips.rtl8188eus_dkms.bb_phy_reg_tbl import PHY_REG
+from wifit4.chips.rtl8188eus_dkms.constants import REG_AFE_XTAL_CTRL, RF_LSSI_WRITE_A
+from wifit4.chips.rtl8188eus_dkms.efuse import BoardOptions
+from wifit4.chips.rtl8188eus_dkms.mac_reg_tbl import MAC_REG
+from wifit4.chips.rtl8188eus_dkms.rf_radio_a_tbl import RADIO_A
 
 
 # --------------------------------------------------------------------------- helpers / mocks

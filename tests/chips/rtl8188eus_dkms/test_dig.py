@@ -6,7 +6,7 @@ isolate on its own: the 11N FA-counter sum, the no-link IGI step (+2/+1/-2 by fa
 FA>1000 -> 0x83, FA<500 -> 0x40) with write-on-change + moving-average reset. The carried
 DM state is threaded explicitly. Runtime RX benefit is validated by the beacon-watch A/B.
 """
-from wifit3.chips.rtl8188eus_dkms import dig
+from wifit4.chips.rtl8188eus_dkms import dig
 
 
 class RegTx:
@@ -60,7 +60,7 @@ def test_seed_state_from_carried_values():
 
 
 def test_watchdog_tick_clamps_and_writes_igi(mocker):
-    mocker.patch("wifit3.chips.rtl8188eus_dkms.powertrack.thermal_tick")  # DIG test, not TX
+    mocker.patch("wifit4.chips.rtl8188eus_dkms.powertrack.thermal_tick")  # DIG test, not TX
     # Low FA -> IGI steps down from the carried value; clamps at 0x1c (sensitive floor).
     st = dig.WatchdogState(cur_ig_value=0x1D, cur_cck_cca_thres=0x40)
     t = RegTx({0x0C50: 0x1D})                      # all FA regs 0 -> cnt_all=0 < fa_th[0]
@@ -75,7 +75,7 @@ def test_watchdog_tick_clamps_and_writes_igi(mocker):
 
 
 def test_watchdog_tick_no_igi_write_when_unchanged(mocker):
-    mocker.patch("wifit3.chips.rtl8188eus_dkms.powertrack.thermal_tick")
+    mocker.patch("wifit4.chips.rtl8188eus_dkms.powertrack.thermal_tick")
     st = dig.WatchdogState(cur_ig_value=0x20, cur_cck_cca_thres=0x40)
     t = RegTx({0x0C50: 0x20, 0x0CF0: 3000})        # in-band FA -> IGI unchanged
     dig.watchdog_tick(t, st, None)

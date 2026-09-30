@@ -22,9 +22,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8821cu_dkms import dm as dm_mod
-from wifit3.chips.rtl8821cu_dkms.bb import set_bb_reg
-from wifit3.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
+from wifit4.chips.rtl8821cu_dkms import dm as dm_mod
+from wifit4.chips.rtl8821cu_dkms.bb import set_bb_reg
+from wifit4.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
 
 CH = 36
 MODES = ("normal", "skip_dc")    # skip_dc: no-op _dc_cancellation entirely

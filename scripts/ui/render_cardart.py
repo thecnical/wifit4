@@ -1,6 +1,6 @@
 """Rasterize the ``.ans`` card art to transparent-background PNGs.
 
-Each ``src/wifit3/ui/assets/cards/*.ans`` is a small grid (<=20x10) of terminal
+Each ``src/wifit4/ui/assets/cards/*.ans`` is a small grid (<=20x10) of terminal
 cells: truecolor SGR (``38;2;r;g;b`` fg / ``48;2;r;g;b`` bg) plus the block glyphs
 space / full / half (upper/lower/left/right) / shade (light/medium/dark). We render
 each cell's block geometry to pixels, flood-fill the pure-black canvas to transparent
@@ -24,7 +24,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_CARDS_DIR = os.path.join(_ROOT, "src", "wifit3", "ui", "assets", "cards")
+_CARDS_DIR = os.path.join(_ROOT, "src", "wifit4", "ui", "assets", "cards")
 _OUT_DIR = os.path.join(_ROOT, "assets", "cardart")
 
 _SGR = re.compile(r"\x1b\[([0-9;]*)m")

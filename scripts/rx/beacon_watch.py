@@ -39,7 +39,7 @@ sys.path.insert(0, str(_HERE.parent))  # scripts/ for dev.py
 
 from dev import select_device
 
-from wifit3.device.manager import wlan_ifaces, wlan_close
+from wifit4.device.manager import wlan_ifaces, wlan_close
 
 _BAR_MAX = 40  # cap the bar so a busy second can't wrap the terminal
 
@@ -251,7 +251,7 @@ if __name__ == "__main__":
         # The per-frame [RXFRAME] trace floods at DEBUG (hundreds/s). Pin it to INFO so
         # the DIG/DM watchdog + power-track trace stays readable; everything else stays
         # at DEBUG.
-        logging.getLogger("wifit3.wlan.interface").setLevel(logging.INFO)
+        logging.getLogger("wifit4.wlan.interface").setLevel(logging.INFO)
     try:
         if _args.pcap:
             _rc = run_pcap(_args)

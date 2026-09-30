@@ -1,7 +1,7 @@
 """Extract rtw8821a init tables from kernel C source to Python data files.
 
 Source: driver_sources/rtw88-source-v6.18/rtw8821a_table.c
-Output: src/wifit3/chips/rtl8821au/assets/{mac,agc,bb,rf_a}_tbl.py
+Output: src/wifit4/chips/rtl8821au/assets/{mac,agc,bb,rf_a}_tbl.py
 
 The four tables (`rtw8821a_mac`, `rtw8821a_agc`, `rtw8821a_bb`, `rtw8821a_rf_a`)
 are arrays of u32 in C. Conceptually each table is a sequence of 8-byte
@@ -24,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 SRC = ROOT / "driver_sources/rtw88-source-v6.18/rtw8821a_table.c"
-OUT_DIR = ROOT / "src/wifit3/chips/rtl8821au/assets"
+OUT_DIR = ROOT / "src/wifit4/chips/rtl8821au/assets"
 
 TABLES = ("mac", "agc", "bb", "rf_a")
 

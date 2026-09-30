@@ -225,8 +225,8 @@ def main() -> int:
                    help="Stop scanning after this frame (default: 777 — "
                         "end of cold-boot window per pcap_slicer)")
     p.add_argument("--out-dir", type=Path,
-                   default=Path("src/wifit3/chips/mt76x0u/assets"),
-                   help="Output dir (default: src/wifit3/chips/mt76x0u/assets/)")
+                   default=Path("src/wifit4/chips/mt76x0u/assets"),
+                   help="Output dir (default: src/wifit4/chips/mt76x0u/assets/)")
     p.add_argument("--verify-fw", type=Path, default=None,
                    help="linux-firmware mt7610u.bin to byte-verify against "
                         "(extracted body = IVB + ILM + DLM, reference is "

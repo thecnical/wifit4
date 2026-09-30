@@ -5,8 +5,8 @@ the M4a management descriptor, prepends it to the frame, derives the BMC bit fro
 addr1, and rejects frames too short to address. asyncio_mode=auto runs the async
 tests without a decorator.
 """
-from wifit3.chips.rtl8814au_dkms import tx
-from wifit3.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
+from wifit4.chips.rtl8814au_dkms import tx
+from wifit4.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
 
 
 class _FakeTransport:

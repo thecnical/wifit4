@@ -6,8 +6,8 @@ detector synthesises from the None→SSID transition it witnesses.
 """
 from __future__ import annotations
 
-from wifit3.models import AccessPoint, HandshakeMessage, Handshake
-from wifit3.ui.capture_events import CaptureEventDetector, CaptureKind
+from wifit4.models import AccessPoint, HandshakeMessage, Handshake
+from wifit4.ui.capture_events import CaptureEventDetector, CaptureKind
 
 
 def _ef(msg, rc, nonce, ts):

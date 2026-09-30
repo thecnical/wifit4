@@ -6,14 +6,14 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock
 
-from wifit3.campaigns.decloak import (
+from wifit4.campaigns.decloak import (
     SIBLING_SUFFIXES,
     DecloakAttack,
     build_candidates,
 )
-from wifit3.models import AccessPoint
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.dot11.probe import probe_req
+from wifit4.models import AccessPoint
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.dot11.probe import probe_req
 
 
 def test_build_candidates_empty_base_returns_empty():

@@ -4,7 +4,7 @@ RxReaderThread. _rx_dispatch decodes a bulk buffer (iter_bulk_frames) → parses
 tests/chips/test_rx_reader.py.)"""
 from unittest.mock import MagicMock
 
-import wifit3.chips.rtl8821au.driver as drv
+import wifit4.chips.rtl8821au.driver as drv
 
 
 def test_rx_dispatch_decodes_parses_and_fires_callback(monkeypatch):

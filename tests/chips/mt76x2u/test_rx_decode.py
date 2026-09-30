@@ -3,7 +3,7 @@ removal, and MPDU_LEN trim. Guards the order-of-operations that keeps EAPOL
 key_data intact (remove pad BEFORE trimming to MPDU_LEN — see rx.decode_urb)."""
 import struct
 
-import wifit3.chips.mt76x2u.rx as rx
+import wifit4.chips.mt76x2u.rx as rx
 
 _RXINFO_L2PAD = 1 << 14
 _RXINFO_CRCERR = 1 << 8

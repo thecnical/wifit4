@@ -25,12 +25,12 @@ except Exception:                                                 # noqa: BLE001
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "src"))
 
-from wifit3.device.manager import wlan_ifaces
-from wifit3.chips.driver import FakeMacSupport
-from wifit3.campaigns.auth_assoc import Association, random_client_mac, str_to_mac
-from wifit3.dot11.eapol import eapol_key, set_mic, data_header, LLC_SNAP_EAPOL
-from wifit3.dot11.ie import GENERIC_RSN_IE
-from wifit3.crack import wpa_psk
+from wifit4.device.manager import wlan_ifaces
+from wifit4.chips.driver import FakeMacSupport
+from wifit4.campaigns.auth_assoc import Association, random_client_mac, str_to_mac
+from wifit4.dot11.eapol import eapol_key, set_mic, data_header, LLC_SNAP_EAPOL
+from wifit4.dot11.ie import GENERIC_RSN_IE
+from wifit4.crack import wpa_psk
 
 _M2_KEY_INFO = 0x010A          # Pairwise + Key MIC + key descriptor version 2
 _ELEMID_CSA = 0x25

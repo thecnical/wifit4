@@ -2,7 +2,7 @@
 
 After frame 965 (IVB trigger), the next bulk-OUT URBs on EP 0x08 are
 function_select(Q_SELECT,1) + set_radio_state(true). Print their TXINFO
-+ payload for cross-checking against our wifit3 port.
++ payload for cross-checking against our wifit4 port.
 """
 from __future__ import annotations
 import struct

@@ -4,7 +4,7 @@ The watchdog adapts live and is not pcap-diffable; these tests pin the FA->IGI s
 logic, the no-link clamp [0x1c, 0x2a], the cnt_all = OFDM-FA (+CCK-FA) read, and the
 write-to-all-4-paths-only-when-changed behaviour.
 """
-from wifit3.chips.rtl8814au_dkms import dig, watchdog
+from wifit4.chips.rtl8814au_dkms import dig, watchdog
 
 
 class Rec:

@@ -45,5 +45,5 @@ jobs:
           branch: auto/refresh-vendor-table
           delete-branch: true
           add-paths: |
-            src/wifit3/id/vendors.py
+            src/wifit4/id/vendors.py
           labels: automated

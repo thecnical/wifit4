@@ -10,8 +10,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from wifit3.chips.mt76x2u import constants as C
-from wifit3.chips.mt76x2u.mcu import McuChannel
+from wifit4.chips.mt76x2u import constants as C
+from wifit4.chips.mt76x2u.mcu import McuChannel
 
 
 def _stale_response(seq: int = 4, evt: int = 0) -> bytes:

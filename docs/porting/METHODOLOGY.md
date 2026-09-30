@@ -80,7 +80,7 @@ The `Driver` ABC your `driver.py` must subclass is in CLAUDE.md → "Adding a Ne
 runtime methods + `SUPPORTED_CHANNELS`). Two registration rules the ABC does not enforce:
 
 - **`chips/<name>/__init__.py` declares the VID:PIDs**, not the driver class. It sets
-  `SUPPORTED_IDS = [DeviceID(...), ...]` (`from wifit3.models.device_id import DeviceID`) and a
+  `SUPPORTED_IDS = [DeviceID(...), ...]` (`from wifit4.models.device_id import DeviceID`) and a
   `def import_driver(): from .driver import <Class>; return <Class>`. It must NOT import `driver.py`
   at module top: discovery reads the light `__init__` and imports the heavy driver only on a VID:PID
   match. Copy the shape from `chips/rtl8812au/__init__.py`.
@@ -222,7 +222,7 @@ the reference AP first, and flip the default only once the new port ties or beat
   new card. Tally commit authorship of the kernel path (and the vendor repo); beware kernel file
   renames (GitHub's `?path=` filter doesn't follow them, so scrape the pre-reorg path too). Drop
   tree-wide mechanical committers; keep the real builders.
-- **Licensing** — wifit3 is GPL-2.0-only (a derivative of GPLv2 drivers). Any firmware blob in
+- **Licensing** — wifit4 is GPL-2.0-only (a derivative of GPLv2 drivers). Any firmware blob in
   `chips/<chip>/assets/` is not GPL: record its provenance + redistribution terms from
   linux-firmware's WHENCE and byte-verify the blob (see docs/FIRMWARE.md).
 

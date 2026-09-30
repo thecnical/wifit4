@@ -9,11 +9,11 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.chips.rtl8812au.rx import (
+from wifit4.chips.rtl8812au.rx import (
     _rtw8812a_cck_rx_pwr,
     parse_jaguar_phy_status_rssi,
 )
-from wifit3.chips.rtw88_base.rx_common import RxPktStat
+from wifit4.chips.rtw88_base.rx_common import RxPktStat
 
 
 def _make_phy_status(w0: int = 0, w1: int = 0) -> bytes:

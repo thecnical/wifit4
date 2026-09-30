@@ -1,9 +1,9 @@
 """M2c-5: the LED GPIO output config (OE_OUT driver, MUX3 mux, inverted set) for pin 15."""
 import struct
 
-from wifit3.chips.ar9271_v2 import gpio, hw
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import gpio, hw
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 
 class FakeDev:

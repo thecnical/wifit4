@@ -1,4 +1,4 @@
-"""capture_our_hops.py -- start tshark USB capture, run wifit3 doing channel
+"""capture_our_hops.py -- start tshark USB capture, run wifit4 doing channel
 hops, stop tshark. Output: a .pcap of OUR driver's wire traffic, capturable
 side-by-side with the kernel's `driver_captures/captures_mt76x0u/capture-2.pcap`.
 
@@ -41,14 +41,14 @@ _STAMP = datetime.now().strftime("%Y%m%d-%H%M%S")
 _OUT_DIR = Path(__file__).parent / "captures_ours"
 _OUT_DIR.mkdir(exist_ok=True)
 _WIRE_LOG_PATH = _OUT_DIR / f"ours-{_STAMP}.wire.txt"
-os.environ["WIFIT3_WIRE_LOG_FILE"] = str(_WIRE_LOG_PATH)
+os.environ["wifit4_WIRE_LOG_FILE"] = str(_WIRE_LOG_PATH)
 
 import libusb_package
 import usb.core
 
-from wifit3.chips.mt76x0u.constants import USB_IDS_MT76X0U
-from wifit3.chips.mt76x0u.driver import MT76x0UDriver
-from wifit3.chips.driver import DeviceID
+from wifit4.chips.mt76x0u.constants import USB_IDS_MT76X0U
+from wifit4.chips.mt76x0u.driver import MT76x0UDriver
+from wifit4.chips.driver import DeviceID
 
 
 def find_device():

@@ -1,10 +1,10 @@
 """Hashcat ``-m 22000`` hashline formatter tests."""
 
-from wifit3.crack.hc22000_format import (
+from wifit4.crack.hc22000_format import (
     eapol_hashlines,
     pmkid_hashline,
 )
-from wifit3.models import HandshakeMessage, Handshake
+from wifit4.models import HandshakeMessage, Handshake
 
 
 # ---- Test fixtures --------------------------------------------------------------

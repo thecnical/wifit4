@@ -17,7 +17,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 PHYDM = (REPO / "driver_captures" / "captures_8188eu" / "driver-source"
          / "hal" / "phydm" / "rtl8188e")
-OUT_DIR = REPO / "src" / "wifit3" / "chips" / "rtl8188eus_dkms"
+OUT_DIR = REPO / "src" / "wifit4" / "chips" / "rtl8188eus_dkms"
 
 _U32 = re.compile(r"0x[0-9A-Fa-f]+")
 

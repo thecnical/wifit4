@@ -1,9 +1,9 @@
 """M2c-4: the channel model + compute_pll_control + init_pll wire output."""
 import struct
 
-from wifit3.chips.ar9271_v2 import chan as chanmod, hw, phy, reg as R
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import chan as chanmod, hw, phy, reg as R
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 
 class FakeDev:

@@ -6,9 +6,9 @@ cold-boot reset (channel 1, 20 MHz) for this card's 4k EEPROM. The EEPROM image 
 """
 import struct
 
-from wifit3.chips.ar9271_v2 import chan as chanmod, hw, phy_power, reg as R
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
-from wifit3.chips.ar9271_v2.wmi import WMI
+from wifit4.chips.ar9271_v2 import chan as chanmod, hw, phy_power, reg as R
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2.wmi import WMI
 
 # 376-byte map4k image (capture-1), little-endian struct ar5416_eeprom_4k.
 EEPROM = bytes.fromhex(

@@ -29,7 +29,7 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8812au_dkms import (
+from wifit4.chips.rtl8812au_dkms import (
     bb, chan, dig, efuse, firmware, mac, monitor, rf, txpower,
 )
 
@@ -89,7 +89,7 @@ def run(cap: str | None = None) -> int:
         mac.hal_init_misc_post(t)               # the capture's own recorded PSD reads -- not stripped
         miles.append(("M5 init-dm", t.i))
         # morrownr/airmon's RX-START tail: monitor opmode + nl80211 set-channel (the channel
-        # re-tune + TX-power are wifit3's own functions re-run). Reproduced byte-for-byte.
+        # re-tune + TX-power are wifit4's own functions re-run). Reproduced byte-for-byte.
         monitor.set_monitor_mode(t, CHANNEL, p)
         miles.append(("M5 monitor", t.i))
     except rp.Divergence as e:

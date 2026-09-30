@@ -3,12 +3,12 @@ self-cold in userland opt out. Exercised through target_for_vidpid (the exact ca
 uses) with each driver's own first VID:PID so the test never hardcodes brittle id literals."""
 import importlib
 
-from wifit3.setup import target_for_vidpid
-from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
-from wifit3.chips.mt76x0u.driver import MT76x0UDriver
-from wifit3.chips.mt76x2u.driver import MT76x2UDriver
-from wifit3.chips.mt7921au.driver import MT7921AUDriver
-from wifit3.chips.rt5372.driver import RT5372Driver
+from wifit4.setup import target_for_vidpid
+from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
+from wifit4.chips.mt76x0u.driver import MT76x0UDriver
+from wifit4.chips.mt76x2u.driver import MT76x2UDriver
+from wifit4.chips.mt7921au.driver import MT7921AUDriver
+from wifit4.chips.rt5372.driver import RT5372Driver
 
 
 def _first_id(cls):

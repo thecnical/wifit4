@@ -2,7 +2,7 @@
 import asyncio
 from types import SimpleNamespace
 
-from wifit3.wlan.sink import WlanSink
+from wifit4.wlan.sink import WlanSink
 
 
 async def test_next_frame_resolves_on_first_match():

@@ -7,7 +7,7 @@ opens RXFLTMAP1 bit13 (the 8188e otherwise leaves RXFLTMAP default). Frames are 
 monkeypatched iter_bulk_frames, matching the local rx_dispatch tests."""
 from unittest.mock import MagicMock
 
-import wifit3.chips.rtl8188eus.driver as drv
+import wifit4.chips.rtl8188eus.driver as drv
 
 
 def _ack_mpdu(ra: bytes) -> bytes:

@@ -22,9 +22,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rt3070 import constants as C
-from wifit3.chips.rt3070.driver import RT3070Driver
-from wifit3.chips.rt3070.transport import RT3070Transport
+from wifit4.chips.rt3070 import constants as C
+from wifit4.chips.rt3070.driver import RT3070Driver
+from wifit4.chips.rt3070.transport import RT3070Transport
 
 ROUNDS = 40
 

@@ -3,11 +3,11 @@ exercised headless with a fake app / setup / prompter and a stubbed wlan_iface; 
 collaborator is WlanArray (the card really gets attached)."""
 from dataclasses import replace
 
-import wifit3.device.manager as manager
-from wifit3.chips.driver import DeviceID
-from wifit3.device.manager import DeviceManager, Status
-from wifit3.errors import BringUpError, BringUpPermissionsError
-from wifit3.setup.base import SetupResult
+import wifit4.device.manager as manager
+from wifit4.chips.driver import DeviceID
+from wifit4.device.manager import DeviceManager, Status
+from wifit4.errors import BringUpError, BringUpPermissionsError
+from wifit4.setup.base import SetupResult
 
 _DEV = DeviceID(0x0BDA, 0x8813, "RTL8814AU (Alfa AWUS1900)")
 

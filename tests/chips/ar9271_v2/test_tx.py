@@ -6,8 +6,8 @@ the TX slot (find_first_zero_bit), freed on the WMI_TXSTATUS completion. [SRC] h
 import struct
 from types import SimpleNamespace
 
-from wifit3.chips.ar9271_v2 import constants as C, tx
-from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
+from wifit4.chips.ar9271_v2 import constants as C, tx
+from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
 
 # 24-byte stubs (no IEs): ProbeReq (mgmt), Null (data), RTS (control).
 PROBE = bytes.fromhex("4000" "0000" "ffffffffffff" "001122334455" "ffffffffffff" "0000")

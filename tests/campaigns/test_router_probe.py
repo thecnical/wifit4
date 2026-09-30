@@ -1,9 +1,9 @@
 import asyncio
 from unittest.mock import MagicMock
 
-from wifit3.campaigns.probe import BaseApProbe, ProbeResult, probe_ap
-from wifit3.campaigns.probe.wps_m1 import WpsM1Probe, _trigger_m1
-from wifit3.models import AccessPoint, IdKey, IdSource
+from wifit4.campaigns.probe import BaseApProbe, ProbeResult, probe_ap
+from wifit4.campaigns.probe.wps_m1 import WpsM1Probe, _trigger_m1
+from wifit4.models import AccessPoint, IdKey, IdSource
 
 
 async def test_probe_ap_runs_applicable_probes():

@@ -2,8 +2,8 @@ import copy
 
 import pytest
 
-import wifit3.persist.config as cfg
-from wifit3.persist.config import Config, ConfigError
+import wifit4.persist.config as cfg
+from wifit4.persist.config import Config, ConfigError
 
 _DEFAULTS = {n: getattr(Config, n)
              for n in (

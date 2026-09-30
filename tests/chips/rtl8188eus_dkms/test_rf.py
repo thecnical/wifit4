@@ -3,8 +3,8 @@
 Full byte-for-byte replay lives in ``scripts/chips/rtl8188eus_dkms/verify_pcap.py``;
 this locks the LSSI write encoding and the RFENV setup ordering.
 """
-from wifit3.chips.rtl8188eus_dkms import rf
-from wifit3.chips.rtl8188eus_dkms.constants import RF_LSSI_WRITE_A
+from wifit4.chips.rtl8188eus_dkms import rf
+from wifit4.chips.rtl8188eus_dkms.constants import RF_LSSI_WRITE_A
 
 
 class Tx:

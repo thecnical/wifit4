@@ -3,7 +3,7 @@
 Golden anchors are from the vendor source `array_mp_8814a_mac_reg`; the full
 byte-for-byte check vs the capture is `scripts/chips/rtl8814au_dkms/verify_pcap.py`.
 """
-from wifit3.chips.rtl8814au_dkms import mac
+from wifit4.chips.rtl8814au_dkms import mac
 
 
 def test_mac_table_shape():

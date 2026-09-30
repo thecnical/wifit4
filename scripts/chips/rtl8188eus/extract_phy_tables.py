@@ -8,7 +8,7 @@ Reads:
     driver_sources/rtl8xxxu-source-v6.18/8188e.c
 
 Writes:
-    src/wifit3/chips/rtl8188eus/phy_tables.py
+    src/wifit4/chips/rtl8188eus/phy_tables.py
 
 Tables extracted (sentinels stripped):
     rtl8188eu_phy_init_table  (192 × {u16 addr, u32 val})  → PHY_INIT_TABLE_8188E
@@ -21,7 +21,7 @@ import re
 from pathlib import Path
 
 SRC = Path("driver_sources/rtl8xxxu-source-v6.18/8188e.c")
-OUT = Path("src/wifit3/chips/rtl8188eus/phy_tables.py")
+OUT = Path("src/wifit4/chips/rtl8188eus/phy_tables.py")
 
 
 def extract(src: str, table_name: str, sentinel_addr: int) -> list[tuple[int, int]]:

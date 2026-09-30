@@ -4,13 +4,13 @@ software seq-stamp + global retry routing. No hardware — synthetic frames + a 
 import struct
 from unittest.mock import AsyncMock, MagicMock
 
-from wifit3.chips.mt76x2u.constants import (
+from wifit4.chips.mt76x2u.constants import (
     MT_RX_FILTR_CFG,
     MT_RX_FILTR_CFG_ACK,
     MT_TX_RETRY_CFG,
 )
-from wifit3.chips.mt76x2u.driver import MT76x2UDriver
-from wifit3.chips.mt76x2u.tx import _TXWI_ACK_CTL_REQ
+from wifit4.chips.mt76x2u.driver import MT76x2UDriver
+from wifit4.chips.mt76x2u.tx import _TXWI_ACK_CTL_REQ
 
 _RXFILT_BASE = 0x00015B97   # monitor RX filter with the ACK-admit bit already clear
 
@@ -105,7 +105,7 @@ async def test_inject_requests_ack_and_sends_once():
 
 
 async def test_mac_reset_default_keeps_captured_retry(monkeypatch):
-    from wifit3.chips.mt76x2u import mac as mac_mod
+    from wifit4.chips.mt76x2u import mac as mac_mod
     monkeypatch.setattr(mac_mod, "_mac_fixup_xtal", lambda t: None)
     transport = MagicMock()
     transport.read32 = MagicMock(return_value=0)

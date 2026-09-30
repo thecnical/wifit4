@@ -8,9 +8,9 @@ descriptor is identical. These lock the per-field TXWI layout against a silent r
 """
 import struct
 
-from wifit3.chips.mt7925au import tx
-from wifit3.chips.mt7925au.constants import MT792x_WTBL_RESERVED
-from wifit3.chips.mt7925au.driver import MT7925AUDriver
+from wifit4.chips.mt7925au import tx
+from wifit4.chips.mt7925au.constants import MT792x_WTBL_RESERVED
+from wifit4.chips.mt7925au.driver import MT7925AUDriver
 
 # A directed deauth (fc=0x00c0, reason 7), 26 bytes, seq_ctrl = 0. Synthetic unicast MACs.
 DEAUTH_MPDU = bytes.fromhex(

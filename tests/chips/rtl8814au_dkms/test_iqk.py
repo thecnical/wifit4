@@ -7,7 +7,7 @@ so the port is provably DRIVEN BY THE WIRE READS, not a fixed transcript: the LO
 the LOK DAC fill computed from ``0x1bfc``, and the ``while (fail)`` retry bounded by the
 ``0x1b08`` fail bit.
 """
-from wifit3.chips.rtl8814au_dkms import iqk, watchdog
+from wifit4.chips.rtl8814au_dkms import iqk, watchdog
 
 _TXK_TRIG_PATH0 = 0xF8000311   # 0xf8000001 | (band_width 0 + 3)<<8 | (1<<(4+0))
 _FAIL_BIT = 1 << 26            # R_0x1b08 BIT(26) — IQK fail

@@ -1,5 +1,5 @@
 [project]
-name = "wifit3"
+name = "wifit4"
 dynamic = ["version"]
 description = "Wireless Auditor TUI"
 readme = "README.md"
@@ -14,17 +14,42 @@ dependencies = [
     "textual",
 ]
 
+[project.optional-dependencies]
+# Install all next-gen features: pip install "wifit4[full]"
+full = [
+    "httpx>=0.27.0",          # cloud crack webhook + swarm HTTP
+    "fastapi>=0.111.0",       # mesh daemon REST API
+    "uvicorn>=0.29.0",        # mesh daemon ASGI server
+    "pycryptodome>=3.20.0",   # MSCHAPv2 DES-ECB key derivation
+    "typesafe-sdk>=0.7.0",   # Jev AI decision engine (TypeSafe AI)
+]
+enterprise = [
+    "pycryptodome>=3.20.0",
+]
+mesh = [
+    "fastapi>=0.111.0",
+    "uvicorn>=0.29.0",
+    "httpx>=0.27.0",
+]
+crack = [
+    "httpx>=0.27.0",
+]
+jev = [
+    "typesafe-sdk>=0.7.0",    # Jev System One model — typed AI decisions
+    "httpx>=0.27.0",          # raw API fallback when SDK unavailable
+]
+
 [project.scripts]
-wifit3 = "wifit3.__main__:main"
+wifit4 = "wifit4.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-# Version lives in src/wifit3/__init__.py (__version__); hatchling reads it at build time so
+# Version lives in src/wifit4/__init__.py (__version__); hatchling reads it at build time so
 # there is one source of truth. The release workflow's tag-gate reads the same literal.
 [tool.hatch.version]
-path = "src/wifit3/__init__.py"
+path = "src/wifit4/__init__.py"
 
 [dependency-groups]
 dev = [
@@ -36,6 +61,8 @@ dev = [
     "pytest-mock",
     "ruff",
     "textual-dev",
+    "maturin>=1.7.0",         # Rust/PyO3 build tool for wifit4_core
+    "httpx>=0.27.0",
 ]
 
 [tool.ruff]

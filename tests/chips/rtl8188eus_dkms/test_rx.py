@@ -4,7 +4,7 @@ Locks the 24-byte RX-desc field positions, the aggregation walk (skip-and-contin
 _RND4), FCS stripping, and the CCK/OFDM RSSI decode. End-to-end RX is hardware-validated
 by a live beacon count (no pcap gate — RX is environment-dependent).
 """
-from wifit3.chips.rtl8188eus_dkms import rx
+from wifit4.chips.rtl8188eus_dkms import rx
 
 
 def _desc(pkt_len, drvinfo_sz=0, shift_sz=0, physt=0, crc=0, icv=0, rpt=0, rate=4):

@@ -1,7 +1,7 @@
 """Spec tests for the 802.11v BTM Request + Neighbor Report builders (IEEE 802.11-2020)."""
 import pytest
 
-from wifit3.dot11.btm import (
+from wifit4.dot11.btm import (
     build_btm_request, neighbor_report_ie,
     BTM_PREFERRED_CANDIDATE_LIST, BTM_ABRIDGED, BTM_DISASSOC_IMMINENT,
 )

@@ -23,7 +23,7 @@ VENDOR_FW_C = (
     REPO / "driver_captures" / "captures_rtl8814au" / "driver-source"
     / "hal" / "rtl8814a" / "hal8814a_fw.c"
 )
-OUT = REPO / "src" / "wifit3" / "chips" / "rtl8814au_dkms" / "assets" / "rtl8814au_fw.bin"
+OUT = REPO / "src" / "wifit4" / "chips" / "rtl8814au_dkms" / "assets" / "rtl8814au_fw.bin"
 
 ARRAY_NAME = "array_mp_8814a_fw_nic"
 EXPECTED_LEN = 68320

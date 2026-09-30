@@ -1,5 +1,5 @@
 """Channel helpers: scan-hop ordering and per-band label/range compression."""
-from wifit3.wlan.channels import (
+from wifit4.wlan.channels import (
     _compress_runs,
     band_label,
     band_ranges,

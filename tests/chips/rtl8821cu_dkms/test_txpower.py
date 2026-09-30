@@ -6,7 +6,7 @@ via the vendor's multi-source fallback; the final TXAGC index is clamped to [0, 
 """
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8821cu_dkms import txpower
+from wifit4.chips.rtl8821cu_dkms import txpower
 
 _WLG, _BTG = 1, 0
 

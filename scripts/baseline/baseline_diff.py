@@ -1,10 +1,10 @@
 """Compare two baseline rollups (our driver vs Linux) and print a plain-sentence report.
 
-A pure function of the two JSON rollups written by baseline_wifit3.py / baseline_linux.py (shared.py
-says what a rollup is), so it is recomputed on demand and never stored. baseline_wifit3.py calls
+A pure function of the two JSON rollups written by baseline_wifit4.py / baseline_linux.py (shared.py
+says what a rollup is), so it is recomputed on demand and never stored. baseline_wifit4.py calls
 diff() automatically after collecting; run it by hand to re-compare existing rollups:
 
-    python baseline_diff.py --diff wifit3-rt5370.json linux-rt5370.json
+    python baseline_diff.py --diff wifit4-rt5370.json linux-rt5370.json
 """
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ def _best_channel_persec(rollup: dict, bssid: str) -> tuple[dict, int]:
 
 
 def _rate_matched(w: dict, lin: dict, bssid: str) -> tuple[float, float, int]:
-    """Beacon rate for ``bssid`` in each rollup (``w``=wifit3, ``lin``=linux) over their common
+    """Beacon rate for ``bssid`` in each rollup (``w``=wifit4, ``lin``=linux) over their common
     window (the shorter dwell span, so a span difference doesn't skew it). Returns (wrate, lrate, window)."""
     wps, wspan = _best_channel_persec(w, bssid)
     lps, lspan = _best_channel_persec(lin, bssid)
@@ -102,12 +102,12 @@ def _rate_matched(w: dict, lin: dict, bssid: str) -> tuple[float, float, int]:
     return wsum / window, lsum / window, window
 
 
-def diff(wifit3_path: str | Path, linux_path: str | Path,
+def diff(wifit4_path: str | Path, linux_path: str | Path,
          ref_bssids: list[str] | None = None) -> None:
-    w, lin = load(wifit3_path), load(linux_path)
+    w, lin = load(wifit4_path), load(linux_path)
     chip = w.get("chip", "?")
-    peers = _peers(Path(wifit3_path), "wifit3")
-    out = [f"\nwifit3 vs linux   {chip}\n"]
+    peers = _peers(Path(wifit4_path), "wifit4")
+    out = [f"\nwifit4 vs linux   {chip}\n"]
     ref_bssids = [b.lower() for b in ref_bssids] if ref_bssids else None
 
     # Breadth, per band.
@@ -174,8 +174,8 @@ def diff(wifit3_path: str | Path, linux_path: str | Path,
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="Diff two baseline rollups (wifit3 vs linux).")
-    p.add_argument("--diff", nargs=2, metavar=("WIFIT3_JSON", "LINUX_JSON"), required=True)
+    p = argparse.ArgumentParser(description="Diff two baseline rollups (wifit4 vs linux).")
+    p.add_argument("--diff", nargs=2, metavar=("wifit4_JSON", "LINUX_JSON"), required=True)
     p.add_argument("--ref", nargs="+", metavar="BSSID", default=None,
                    help="Pin one or more reference BSSIDs for the beacon-rate line "
                         "(e.g. a fixed AP per band). Default: the single AP linux heard most.")

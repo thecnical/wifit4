@@ -37,7 +37,7 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rt2800usb.constants import (
+from wifit4.chips.rt2800usb.constants import (
     MAC_CSR0,
     PBF_SYS_CTRL,
     PBF_SYS_CTRL_READY,
@@ -48,10 +48,10 @@ from wifit3.chips.rt2800usb.constants import (
     WLAN_FUN_CTRL,
     WLAN_FUN_CTRL_WLAN_EN,
 )
-from wifit3.chips.rt2800usb.firmware import load_firmware, load_firmware_blob
-from wifit3.chips.rt2800usb.chan import set_channel as _set_channel
-from wifit3.chips.rt2800usb.eeprom import parse_eeprom, read_eeprom_efuse
-from wifit3.chips.rt2800usb.mac import (
+from wifit4.chips.rt2800usb.firmware import load_firmware, load_firmware_blob
+from wifit4.chips.rt2800usb.chan import set_channel as _set_channel
+from wifit4.chips.rt2800usb.eeprom import parse_eeprom, read_eeprom_efuse
+from wifit4.chips.rt2800usb.mac import (
     enable_radio,
     is_chip_warm,
     read_chip_id,
@@ -59,17 +59,17 @@ from wifit3.chips.rt2800usb.mac import (
     usb_init_registers,
     write_mac_address,
 )
-from wifit3.chips.rt2800usb.bbp import bbp_read, init_bbp, prepare_bbp
-from wifit3.chips.rt2800usb.reg_init import init_registers
-from wifit3.chips.rt2800usb.rfcsr import init_rfcsr, rfcsr_read
-from wifit3.chips.rt2800usb.rx import (
+from wifit4.chips.rt2800usb.bbp import bbp_read, init_bbp, prepare_bbp
+from wifit4.chips.rt2800usb.reg_init import init_registers
+from wifit4.chips.rt2800usb.rfcsr import init_rfcsr, rfcsr_read
+from wifit4.chips.rt2800usb.rx import (
     parse_rx_urb,
     probe_endpoints,
     read_rx_burst,
     rxwi_size_for_silicon,
 )
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.chips.rt2800usb.transport import RT2800USBTransport
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.chips.rt2800usb.transport import RT2800USBTransport
 
 
 def setup_logging(debug: bool) -> None:
@@ -260,7 +260,7 @@ def phase_macinit(transport: RT2800USBTransport) -> None:
     ok(f"init_registers completed in {dt * 1000:.0f} ms")
 
     step("Spot-check known-good values")
-    from wifit3.chips.rt2800usb.constants import (
+    from wifit4.chips.rt2800usb.constants import (
         AUTO_RSP_CFG, HT_BASIC_RATE, LEGACY_BASIC_RATE,
         PBF_MAX_PCNT, TX_SW_CFG0,
     )
@@ -616,8 +616,8 @@ def phase_diag(transport: RT2800USBTransport) -> None:
     Doesn't run any bring-up — assumes you've just run --phase rx (or
     rfinit) and want to see why RX isn't delivering.
     """
-    from wifit3.chips.rt2800usb.bbp import bbp_read
-    from wifit3.chips.rt2800usb.constants import (
+    from wifit4.chips.rt2800usb.bbp import bbp_read
+    from wifit4.chips.rt2800usb.constants import (
         MAC_CSR0, MAC_SYS_CTRL, PBF_SYS_CTRL, USB_DMA_CFG,
         WPDMA_GLO_CFG,
     )
@@ -654,7 +654,7 @@ def phase_diag(transport: RT2800USBTransport) -> None:
         (24, "RFCSR24 — RX filter cal value (bw20)"),
         (31, "RFCSR31 — RX_H20M cleared for BW20"),
     ]
-    from wifit3.chips.rt2800usb.rfcsr import rfcsr_read as _rfcsr_read
+    from wifit4.chips.rt2800usb.rfcsr import rfcsr_read as _rfcsr_read
     for word, desc in rfcsr_regs:
         val = _rfcsr_read(transport, word)
         print(f"  RFCSR[{word:3d}] = 0x{val:02x}  — {desc}")
@@ -680,7 +680,7 @@ def phase_diag(transport: RT2800USBTransport) -> None:
         print(f"  BBP[{word:3d}] = 0x{val:02x}  — {desc}")
 
     step("RX/TX packet counters — does the chip see frames at all?")
-    from wifit3.chips.rt2800usb.constants import (
+    from wifit4.chips.rt2800usb.constants import (
         RX_STA_CNT0, RX_STA_CNT1, RX_STA_CNT2,
         TX_STA_CNT0, TX_STA_CNT1,
     )
@@ -773,7 +773,7 @@ def phase_rx(
             has_cap_external_lna_a=ee.has_cap_external_lna_a,
         )
     elif chip.silicon_id == 0x5592:
-        from wifit3.chips.rt2800usb.chan import is_xtal_40mhz
+        from wifit4.chips.rt2800usb.chan import is_xtal_40mhz
         xtal_40 = is_xtal_40mhz(transport)
         print(f"  MAC_DEBUG_INDEX.XTAL → xtal_40mhz={xtal_40}")
         channel_kwargs.update(

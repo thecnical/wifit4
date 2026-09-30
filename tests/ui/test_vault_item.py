@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from wifit3.ui.screens.vault_item import relative_time
+from wifit4.ui.screens.vault_item import relative_time
 
 
 def test_relative_time_singular_minute():

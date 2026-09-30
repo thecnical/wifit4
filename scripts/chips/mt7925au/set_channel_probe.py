@@ -21,8 +21,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from wifit3.wlan.array import WlanArray
-from wifit3.device.manager import wlan_iface, devices
+from wifit4.wlan.array import WlanArray
+from wifit4.device.manager import wlan_iface, devices
 
 _CHIPSET = "MT7925AU"
 

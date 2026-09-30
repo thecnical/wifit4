@@ -12,7 +12,7 @@ Coverage:
     8821a EDCCA PSD search (frames 7659–8605, reads PSD 0xFA0) skipped — that block is
     verified live by the beacon count, not the differ.
   * M5 §3 monitor opmode entry, verified out-of-line (anchored on the monitor RCR),
-    since wifit3 enters monitor directly and skips airmon's STA→monitor dance.
+    since wifit4 enters monitor directly and skips airmon's STA→monitor dance.
 
 Run: uv run python scripts/chips/rtl8821au_dkms/verify_pcap.py [capture-1|2|3]
 """
@@ -26,7 +26,7 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8821au_dkms import bb, chan, dig, efuse, firmware, mac, monitor, rf, txpower
+from wifit4.chips.rtl8821au_dkms import bb, chan, dig, efuse, firmware, mac, monitor, rf, txpower
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl8821au"
 DEV_ADDR = {"capture-1": 39}      # lsusb devnum; capture-2/3 TBD
@@ -77,7 +77,7 @@ def _verify_m5_tail(pcap: Path, dev: int) -> tuple:
 def _verify_monitor_block(ops) -> tuple:
     """Out-of-line diff of the M5 §3 monitor opmode entry.
 
-    wifit3 enters monitor directly and skips airmon's STA→monitor dance, so this block
+    wifit4 enters monitor directly and skips airmon's STA→monitor dance, so this block
     is not contiguous with §1b on the wire. Anchor on the monitor RCR write
     (REG_RCR = 0x9000382F) and replay enter_monitor against the 10-op block: the 3 ops
     before it (Set_MSR read+write, RCR backup read), the write, and the 6 after it

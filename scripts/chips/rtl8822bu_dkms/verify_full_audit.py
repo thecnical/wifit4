@@ -31,9 +31,9 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8822bu_dkms import (bringup, chan, chipid, efuse, mac,
+from wifit4.chips.rtl8822bu_dkms import (bringup, chan, chipid, efuse, mac,
                                          txpower, usbphy)
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl88x2bu"
 _IW_LINE = re.compile(r"^\[(\d+\.\d+)\] Executing:.*set channel (\d+)")

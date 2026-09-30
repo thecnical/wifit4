@@ -173,8 +173,8 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("pcap", type=Path, help="Path to USB capture .pcap")
     p.add_argument("--out-dir", type=Path,
-                   default=Path("src/wifit3/chips/mt76x2u/assets"),
-                   help="Output dir (default: src/wifit3/chips/mt76x2u/assets/)")
+                   default=Path("src/wifit4/chips/mt76x2u/assets"),
+                   help="Output dir (default: src/wifit4/chips/mt76x2u/assets/)")
     p.add_argument("--verify-fw", type=Path, default=None,
                    help="linux-firmware mt7662.bin to byte-verify against (body only)")
     p.add_argument("--verify-rom", type=Path, default=None,

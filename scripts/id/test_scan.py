@@ -10,7 +10,7 @@ from scan import (   # noqa: E402
     Tracker, _harvest_m1, _ssid_for, format_record, format_wps_m1,
 )
 from test_frame import beacon, ie   # noqa: E402
-from wifit3.dot11.wsc import messages as M   # noqa: E402
+from wifit4.dot11.wsc import messages as M   # noqa: E402
 
 _RSN_PSK = bytes.fromhex("0100" "000fac04" "0100" "000fac04" "0100" "000fac02" "0c00")
 

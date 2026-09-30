@@ -16,7 +16,7 @@ sys.path.insert(0, str(_ROOT / "src"))
 sys.path.insert(0, str(_ROOT / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp  # noqa: E402
-from wifit3.chips.rtw88_base.rx_common import read_rx_burst  # noqa: E402
+from wifit4.chips.rtw88_base.rx_common import read_rx_burst  # noqa: E402
 
 
 # --- ReplayDevice.read FIFO: capture-order serving + empty-as-timeout -----------------

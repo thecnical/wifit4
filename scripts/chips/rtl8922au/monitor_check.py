@@ -11,7 +11,7 @@ import asyncio
 import struct
 
 import _amlib as L
-from wifit3.dot11 import build_deauth
+from wifit4.dot11 import build_deauth
 
 FORGED = bytes.fromhex("02acac000001")     # our armed SMA (to-us)
 FOREIGN_BSSID = bytes.fromhex("02dede000009")   # a foreign AP (addr1 of a toDS frame; NOT us)

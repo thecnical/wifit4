@@ -24,7 +24,7 @@ Build config pinned from ``include/autoconf.h`` (this driver's compile):
 """
 import pytest
 
-from wifit3.chips.rtl8812au_dkms.mac import (
+from wifit4.chips.rtl8812au_dkms.mac import (
     hal_init_misc_post,
     hal_init_misc_pre,
     mac_init_misc,

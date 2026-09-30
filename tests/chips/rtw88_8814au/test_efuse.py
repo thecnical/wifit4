@@ -7,7 +7,7 @@ scripts/chips/rtw88_8814au/test_hw_8814au.py --phase efuse.
 """
 from __future__ import annotations
 
-from wifit3.chips.rtw88_8814au.efuse import (
+from wifit4.chips.rtw88_8814au.efuse import (
     _parse_txpwr_path,
     _resolve_rfe_option,
     _s4,

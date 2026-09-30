@@ -5,7 +5,7 @@
 wrong PI/SI read register → garbage read-back → a corrupt RF read-modify-write,
 which leaves the PHY deaf on 2T2R parts (8812a) after a few channel hops.
 """
-from wifit3.chips.rtw88_base.rf_sipi import (
+from wifit4.chips.rtw88_base.rf_sipi import (
     REG_3WIRE_SWA,
     REG_3WIRE_SWB,
     REG_PI_READ_B,

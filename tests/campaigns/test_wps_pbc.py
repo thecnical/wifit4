@@ -4,11 +4,11 @@ from types import SimpleNamespace
 
 import pytest
 
-from wifit3.campaigns import pbc as pbc_mod
-from wifit3.campaigns.pbc import PbcWatcher, WpsPbcCapture
-from wifit3.campaigns.wps.registrar import AttemptOutcome, PinResult
-from wifit3.wlan.lease import Lease
-from wifit3.dot11 import mac_to_str, str_to_mac
+from wifit4.campaigns import pbc as pbc_mod
+from wifit4.campaigns.pbc import PbcWatcher, WpsPbcCapture
+from wifit4.campaigns.wps.registrar import AttemptOutcome, PinResult
+from wifit4.wlan.lease import Lease
+from wifit4.dot11 import mac_to_str, str_to_mac
 
 
 def _ap(bssid, active):

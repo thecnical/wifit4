@@ -47,12 +47,12 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu.chan import (
+from wifit4.chips.rtl8822bu.chan import (
     set_channel_2g_20mhz,
     set_channel_5g_20mhz,
 )
-from wifit3.chips.rtl8822bu.constants import REG_SYS_CFG1, USB_IDS_8822BU
-from wifit3.chips.rtl8822bu.dynamic import (
+from wifit4.chips.rtl8822bu.constants import REG_SYS_CFG1, USB_IDS_8822BU
+from wifit4.chips.rtl8822bu.dynamic import (
     BIT_CCK_EN,
     DIG_CVRG_MAX,
     DIG_CVRG_MIN,
@@ -62,19 +62,19 @@ from wifit3.chips.rtl8822bu.dynamic import (
     REG_FA_CCK,
     REG_FA_OFDM,
 )
-from wifit3.chips.rtl8822bu.firmware import (
+from wifit4.chips.rtl8822bu.firmware import (
     download_firmware,
     download_firmware_validate,
     load_firmware_blob,
 )
-from wifit3.chips.rtl8822bu.mac import (
+from wifit4.chips.rtl8822bu.mac import (
     cut_mask_from_sys_cfg1,
     is_chip_warm,
     mac_init_for_rx,
     mac_power_on,
 )
-from wifit3.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
-from wifit3.chips.rtl8822bu.transport import RTL8822BUTransport
+from wifit4.chips.rtl8822bu.phy import EfuseDefaults, phy_set_param
+from wifit4.chips.rtl8822bu.transport import RTL8822BUTransport
 
 # BB statistics counters (rtw8822b_false_alarm_statistics, rtw8822b.c:1041-1060).
 # Each crc32 reg packs ok in the low 16 bits, err in the high 16.

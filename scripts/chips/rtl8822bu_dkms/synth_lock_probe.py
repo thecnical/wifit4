@@ -21,10 +21,10 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8822bu_dkms import bringup, chan, mac, sipi, txpower
-from wifit3.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
-from wifit3.chips.rtl8822bu_dkms.rx import iter_frames
-from wifit3.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
+from wifit4.chips.rtl8822bu_dkms import bringup, chan, mac, sipi, txpower
+from wifit4.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
+from wifit4.chips.rtl8822bu_dkms.rx import iter_frames
+from wifit4.chips.rtl8822bu_dkms.transport import Rtl8822buTransport
 
 
 def stuck(t) -> int:

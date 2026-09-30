@@ -3,7 +3,7 @@
 Constructs the transport around the live device and reads key registers directly to
 assess: is the chip alive on USB? is RX/TX enabled? is WPDMA running or stalled? is the
 RX bulk-IN pipe producing? Pure control-transfer reads + one short bulk-IN read — safe
-(no 802.11 TX, no re-init). Close any other wifit3 instance first (it holds the handle).
+(no 802.11 TX, no re-init). Close any other wifit4 instance first (it holds the handle).
 
     uv run python scripts/chips/rt3070/probe_state.py
 """
@@ -18,8 +18,8 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rt3070 import constants as C
-from wifit3.chips.rt3070.transport import RT3070Transport
+from wifit4.chips.rt3070 import constants as C
+from wifit4.chips.rt3070.transport import RT3070Transport
 
 
 def _r(t, addr, name):

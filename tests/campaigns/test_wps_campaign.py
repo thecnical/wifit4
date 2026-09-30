@@ -7,12 +7,12 @@ switch, success/PSK capture, and .run resume, without a radio or fake enrollee.
 
 from types import SimpleNamespace
 
-from wifit3.campaigns.wps import known_pins, pins
-from wifit3.campaigns.pin import WpsCampaign, _state_path
-from wifit3.campaigns.wps.pixie import PixieBundle
-from wifit3.campaigns.wps.registrar import AttemptOutcome, PinResult
-from wifit3.dot11.wsc import crypto as wc
-from wifit3.dot11.wsc.crypto import pin_is_valid
+from wifit4.campaigns.wps import known_pins, pins
+from wifit4.campaigns.pin import WpsCampaign, _state_path
+from wifit4.campaigns.wps.pixie import PixieBundle
+from wifit4.campaigns.wps.registrar import AttemptOutcome, PinResult
+from wifit4.dot11.wsc import crypto as wc
+from wifit4.dot11.wsc.crypto import pin_is_valid
 
 
 def _target(bssid="02:00:00:00:00:ff", ssid="Net", ch=1):
@@ -49,7 +49,7 @@ def _iface():
     ns.unregister_own_mac = lambda _mac: None
 
     def _lease(channel=None, fake_mac=None, bssid=None, ack_tally=False, iface=None):
-        from wifit3.wlan.lease import Lease
+        from wifit4.wlan.lease import Lease
         return Lease(ns, iface or ns, channel=channel, fake_mac=fake_mac,
                      bssid=bssid, ack_tally=ack_tally)
     ns.lease = _lease
@@ -313,7 +313,7 @@ async def test_teardown_releases_lease_and_saves_state(tmp_path):
 
 
 def test_lock_backoff_grows_with_observation():
-    from wifit3.campaigns.wps.lock import LockTracker
+    from wifit4.campaigns.wps.lock import LockTracker
     lt = LockTracker(min_wait=30, max_wait=360, initial_wait=60)
     assert lt.backoff() == 60                 # no observations yet
     lt.begin_lock()
@@ -325,7 +325,7 @@ def test_lock_backoff_grows_with_observation():
 # ---- .run progress surfacing (load_run_state / run_progress_line) -----------
 
 def test_load_run_state_roundtrip_and_missing(tmp_path):
-    from wifit3.campaigns.pin import load_run_state
+    from wifit4.campaigns.pin import load_run_state
     assert load_run_state(str(tmp_path), "02:00:00:00:00:ff") is None   # nothing on disk
     _write_done_state(tmp_path, "12345670", "pw")
     st = load_run_state(str(tmp_path), "02:00:00:00:00:ff")
@@ -336,27 +336,27 @@ def test_load_run_state_roundtrip_and_missing(tmp_path):
 
 
 def test_run_progress_line_cracked_is_silent():
-    from wifit3.campaigns.pin import CampaignState, run_progress_line
+    from wifit4.campaigns.pin import CampaignState, run_progress_line
     # A cracked run is reported by the saved WPS PSK row, not by a progress line.
     assert run_progress_line(CampaignState(bssid="x", phase="done",
                                            found_pin="12345670")) is None
 
 
 def test_run_progress_line_first_half_uses_11k():
-    from wifit3.campaigns.pin import CampaignState, run_progress_line
+    from wifit4.campaigns.pin import CampaignState, run_progress_line
     line = run_progress_line(CampaignState(bssid="x", phase="first_half", tested=3200))
     assert "3,200" in line and "11k" in line
 
 
 def test_run_progress_line_second_half_uses_1k():
-    from wifit3.campaigns.pin import CampaignState, run_progress_line
+    from wifit4.campaigns.pin import CampaignState, run_progress_line
     line = run_progress_line(CampaignState(bssid="x", phase="second_half",
                                            first_half="1357", p2_index=970))
     assert "970" in line and "1k" in line and "1357" in line
 
 
 def test_run_progress_line_exhausted():
-    from wifit3.campaigns.pin import CampaignState, run_progress_line
+    from wifit4.campaigns.pin import CampaignState, run_progress_line
     line = run_progress_line(CampaignState(bssid="x", phase="failed", tested=11000))
     assert "exhausted" in line
 
@@ -398,7 +398,7 @@ def test_dead_first_half_skips_common_prefix_in_sweep(tmp_path):
 # ---- BSSID-derived default PINs (known_pins) --------------------------------
 
 def test_known_pins_for_generates_valid_candidates():
-    from wifit3.campaigns.wps.known_pins import known_pins_for
+    from wifit4.campaigns.wps.known_pins import known_pins_for
     # Computed from the BSSID at runtime; separator- and case-insensitive.
     a = known_pins_for("00:11:22:33:44:55")
     b = known_pins_for("001122334455")
@@ -409,7 +409,7 @@ def test_known_pins_for_generates_valid_candidates():
 
 
 def test_campaign_seeds_oui_pins_ahead_of_common(tmp_path):
-    from wifit3.campaigns.wps.known_pins import known_pins_for
+    from wifit4.campaigns.wps.known_pins import known_pins_for
     oui_pins = known_pins_for("00:18:e7:aa:bb:cc")
     assert oui_pins                                       # generated from the BSSID
     c = WpsCampaign(_iface(), _target(bssid="00:18:e7:aa:bb:cc"),
@@ -421,7 +421,7 @@ def test_campaign_seeds_oui_pins_ahead_of_common(tmp_path):
 
 
 def test_campaign_seeds_generated_pins_for_any_bssid(tmp_path):
-    from wifit3.campaigns.wps.known_pins import known_pins_for
+    from wifit4.campaigns.wps.known_pins import known_pins_for
     # No OUI is "unknown" now: the generators fire for every BSSID.
     bssid = "fe:dc:ba:98:76:54"
     c = WpsCampaign(_iface(), _target(bssid=bssid),
@@ -536,7 +536,7 @@ def test_lost_reply_retry_is_bounded(tmp_path):
 
 def test_wps_status_shows_fail_reason():
     import types
-    from wifit3.campaigns.pin import wps_status_markup
+    from wifit4.campaigns.pin import wps_status_markup
     camp = types.SimpleNamespace(
         state=types.SimpleNamespace(found_pin=None, tested=0, phase="common", first_half=None),
         status="failed",

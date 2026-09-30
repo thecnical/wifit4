@@ -1,11 +1,11 @@
 """Extract rtw_pwr_seq_cmd tables for 8822b from the kernel C source.
 
 Parses `driver_sources/rtw88-source-v6.18/rtw8822b.c` and emits Python tuples
-matching `wifit3.chips.rtw88_base.power_seq` conventions:
+matching `wifit4.chips.rtw88_base.power_seq` conventions:
 
     (offset, cut_mask, intf_mask, base, cmd, mask, value)
 
-Writes to `src/wifit3/chips/rtl8822bu/assets/pwr_seq.py`. Re-run whenever
+Writes to `src/wifit4/chips/rtl8822bu/assets/pwr_seq.py`. Re-run whenever
 the upstream kernel driver changes.
 """
 

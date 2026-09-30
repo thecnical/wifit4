@@ -1,7 +1,7 @@
 """mt76x0u_wire_dump.py -- emit a deterministic, diff-friendly text dump
 of every Driver<->Firmware USB transaction in a pcap.
 
-Output format is owned by `src/wifit3/chips/mt76x0u/wire_format.py` so that
+Output format is owned by `src/wifit4/chips/mt76x0u/wire_format.py` so that
 this script and the live `wire_log.py` produce byte-identical lines for
 equivalent USB transactions.
 
@@ -49,7 +49,7 @@ from pathlib import Path
 # Add project src/ to path so we can import the shared wire_format module.
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 
-from wifit3.chips.mt76x0u.wire_format import (
+from wifit4.chips.mt76x0u.wire_format import (
     fmt_fw_chunk,
     fmt_mcu_in,
     fmt_mcu_out,

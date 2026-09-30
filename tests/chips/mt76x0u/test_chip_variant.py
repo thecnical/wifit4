@@ -10,14 +10,14 @@ gate defaults to it and its wire is byte-identical. The two live discriminators:
   - no_2ghz (Archer T1U USB driver_info=1) gates:
       * eeprom decode: has_2ghz masked off         [SRC] mt76x0/eeprom.c:57-60
 """
-from wifit3.chips.mt76x0u.constants import (
+from wifit4.chips.mt76x0u.constants import (
     MT76X0_EEPROM_SIZE,
     MT_EE_NIC_CONF_0,
     MT_MCU_MEMMAP_RF,
     MT_RF,
 )
-from wifit3.chips.mt76x0u.eeprom import EEPROMCache, decode_chip_cap
-from wifit3.chips.mt76x0u.phy import (
+from wifit4.chips.mt76x0u.eeprom import EEPROMCache, decode_chip_cap
+from wifit4.chips.mt76x0u.phy import (
     _apply_rf_patch_override,
     phy_calibrate,
     rf_patch_reg_array,

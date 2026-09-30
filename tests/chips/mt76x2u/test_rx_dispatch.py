@@ -2,7 +2,7 @@
 to the shared RxReaderThread. (Thread/loop hand-off: tests/chips/test_rx_reader.py.)"""
 from unittest.mock import MagicMock
 
-import wifit3.chips.mt76x2u.rx as rx
+import wifit4.chips.mt76x2u.rx as rx
 
 
 def test_dispatch_decodes_and_fires_callback(monkeypatch):

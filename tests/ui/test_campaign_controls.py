@@ -2,8 +2,8 @@
 request_stop / stop / reap lifecycle that Focus drives campaigns through."""
 import pytest
 
-from wifit3.campaigns.campaign import Campaign
-from wifit3.ui.screens.focus_v2.campaign_controls import CampaignControls
+from wifit4.campaigns.campaign import Campaign
+from wifit4.ui.screens.focus_v2.campaign_controls import CampaignControls
 
 
 class _StubCampaign(Campaign):

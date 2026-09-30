@@ -7,8 +7,8 @@ from __future__ import annotations
 import struct
 from types import SimpleNamespace
 
-from wifit3.chips.rtw88_base.registers import DESC_RATE1M, DESC_RATE6M
-from wifit3.chips.rtw88_8814au.rx import _cck_rx_pwr, parse_phy_status_rssi_8814a
+from wifit4.chips.rtw88_base.registers import DESC_RATE1M, DESC_RATE6M
+from wifit4.chips.rtw88_8814au.rx import _cck_rx_pwr, parse_phy_status_rssi_8814a
 
 
 def _ofdm_buf(g_a, g_b, g_c, g_d):

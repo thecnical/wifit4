@@ -19,7 +19,7 @@ a force-mode write that RE-ENUMERATES the device to SuperSpeed; the current driv
 re-acquire the handle, so the FIRST connect() on a fresh USB-2 plug hangs. Re-run once (the
 card is now on USB 3) or use a USB-3 port. Verified working at SuperSpeed on the ASUS USB-BE93.
 
-Usage (card plugged in; kernel driver unbound or a wifit3 udev rule + replug):
+Usage (card plugged in; kernel driver unbound or a wifit4 udev rule + replug):
     uv run python scripts/chips/rtl8922au/test_hw.py [--debug]
 """
 import argparse
@@ -33,8 +33,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.rtl8922au.driver import RTL8922AUDriver
-from wifit3.chips.rtl8922au import mac
+from wifit4.chips.rtl8922au.driver import RTL8922AUDriver
+from wifit4.chips.rtl8922au import mac
 
 CONNECT_TIMEOUT = 90
 

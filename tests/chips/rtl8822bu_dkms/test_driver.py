@@ -7,7 +7,7 @@ ported, iFEM fallback) gets an explicit warning.
 import logging
 from types import SimpleNamespace
 
-from wifit3.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
+from wifit4.chips.rtl8822bu_dkms.driver import Rtl8822buDkmsDriver
 
 
 def _chip(rfe_type=3, chip_ver=3):
@@ -25,7 +25,7 @@ def _chip(rfe_type=3, chip_ver=3):
 
 def _log(info, e, caplog):
     drv = object.__new__(Rtl8822buDkmsDriver)     # skip __init__ (no USB device needed)
-    with caplog.at_level(logging.INFO, logger="wifit3.chips.rtl8822bu_dkms.driver"):
+    with caplog.at_level(logging.INFO, logger="wifit4.chips.rtl8822bu_dkms.driver"):
         drv._log_detected_config(info, e)
     return caplog.text
 
@@ -58,7 +58,7 @@ def test_non_reference_cut_is_tagged(caplog):
 
 def test_unported_rfe_pinmux_warns(caplog):
     info, e = _chip(rfe_type=15)                   # phydm_8822b_type15_rfe not ported
-    with caplog.at_level(logging.WARNING, logger="wifit3.chips.rtl8822bu_dkms.driver"):
+    with caplog.at_level(logging.WARNING, logger="wifit4.chips.rtl8822bu_dkms.driver"):
         _log(info, e, caplog)
     assert "not ported" in caplog.text and "iFEM fallback" in caplog.text
 

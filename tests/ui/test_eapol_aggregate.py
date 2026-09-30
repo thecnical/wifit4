@@ -3,8 +3,8 @@
 Pure + clock-injected, so no UI / no hardware: feed CaptureEvents + a fake
 ``now`` and assert on the rendered markup lines.
 """
-from wifit3.ui.capture_events import CaptureEvent, CaptureKind
-from wifit3.ui.eapol_aggregate import EapolAggregator
+from wifit4.ui.capture_events import CaptureEvent, CaptureKind
+from wifit4.ui.eapol_aggregate import EapolAggregator
 
 _BSSID = "11:22:33:44:55:66"
 _CLIENT = "aa:bb:cc:dd:ee:ff"

@@ -15,7 +15,7 @@ dynamic-check watchdog) AND the aireplay-ng bulk-OUT injections. Two capture set
 select with a ``new2/`` prefix). Both PASS 100% byte-for-byte.
 
 We do not run airmon/airodump/iw against our port; the chip only sees register writes, so
-the vendor-driver writes those tools trigger are ours to reproduce. wifit3 is the trigger:
+the vendor-driver writes those tools trigger are ours to reproduce. wifit4 is the trigger:
 the bring-up + airmon dance is the deterministic init walk; the operational phase dispatches
 each burst to the real handler at the cursor — a channel hop (set_channel_bw), a dynamic-check
 tick (the sreset poll + phydm watchdog), or a frame injection (update_txdesc + bulk-OUT) —
@@ -35,9 +35,9 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8814au_dkms import monitor, watchdog
-from wifit3.chips.rtl8814au_dkms import constants as C
-from wifit3.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
+from wifit4.chips.rtl8814au_dkms import monitor, watchdog
+from wifit4.chips.rtl8814au_dkms import constants as C
+from wifit4.chips.rtl8814au_dkms.driver import Rtl8814auDkmsDriver
 
 # Two capture sets. Select the 5 GHz one with a "new2/" prefix (e.g. "new2/capture-1");
 # a bare capture name defaults to the 2.4 GHz set.

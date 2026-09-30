@@ -26,10 +26,10 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8188eus_dkms import (
+from wifit4.chips.rtl8188eus_dkms import (
     bb, chan, dm, efuse, firmware, mac, pwrseq, rf, txpower,
 )
-from wifit3.chips.rtl8188eus_dkms.constants import DEFAULT_INIT_CHANNEL
+from wifit4.chips.rtl8188eus_dkms.constants import DEFAULT_INIT_CHANNEL
 
 REG_SYS_CFG = 0x00F0
 REG_RXFLTMAP1 = 0x06A2     # airmon monitor-prefix tail (last op before the channel set)

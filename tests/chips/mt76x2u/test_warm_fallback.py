@@ -12,8 +12,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from wifit3.chips.mt76x2u.driver import MT76x2UDriver
-from wifit3.chips.driver import DeviceID
+from wifit4.chips.mt76x2u.driver import MT76x2UDriver
+from wifit4.chips.driver import DeviceID
 
 
 def _make_driver_with_mock_transport(monkeypatch):
@@ -55,7 +55,7 @@ async def test_warm_path_mcu_load_cr_failure_triggers_cold_fallback(monkeypatch)
     monkeypatch.setattr(d, "_cold_init_chip", fake_cold_init)
     monkeypatch.setattr(d, "_init_mac_tables", fake_mac_tables)
 
-    import wifit3.chips.mt76x2u.driver as drv
+    import wifit4.chips.mt76x2u.driver as drv
     monkeypatch.setattr(drv, "mcu_load_cr", fake_mcu_load_cr)
 
     # Simulate the warm-path code path: warm=True, _init_mac_tables runs,
@@ -103,7 +103,7 @@ async def test_cold_path_mcu_load_cr_failure_stays_error(monkeypatch):
 
     monkeypatch.setattr(d, "_cold_init_chip", fake_cold_init)
 
-    import wifit3.chips.mt76x2u.driver as drv
+    import wifit4.chips.mt76x2u.driver as drv
     monkeypatch.setattr(drv, "mcu_load_cr", fake_mcu_load_cr)
 
     # Simulate the cold-path code path.

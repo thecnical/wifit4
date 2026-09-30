@@ -25,11 +25,11 @@ _SRC = Path(__file__).resolve().parent.parent.parent / "src"
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
-from wifit3.dot11.wsc.messages import (
+from wifit4.dot11.wsc.messages import (
     ATTR_DEV_NAME, ATTR_MANUFACTURER, ATTR_MODEL_NAME, ATTR_MODEL_NUMBER,
     ATTR_PRIMARY_DEV_TYPE, ATTR_SERIAL_NUMBER, parse_tlvs,
 )
-from wifit3.id import VENDOR_BY_OUI
+from wifit4.id import VENDOR_BY_OUI
 
 
 # ======================================================================================

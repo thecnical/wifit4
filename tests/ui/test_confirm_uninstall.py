@@ -7,7 +7,7 @@ with no rules of its own (blocked only by a sibling) offers *only* the wide remo
 from textual.app import App
 from textual.widgets import Button
 
-from wifit3.ui.screens.confirm_uninstall import ConfirmUninstallDialog
+from wifit4.ui.screens.confirm_uninstall import ConfirmUninstallDialog
 
 
 class _Host(App):

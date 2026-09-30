@@ -15,10 +15,10 @@ import asyncio
 import os
 import struct
 
-from wifit3.dot11.wsc import messages as M
-from wifit3.dot11.wsc import crypto as wc
-from wifit3.campaigns.wps.enrollee import WpsEnrollee
-from wifit3.campaigns.wps.registrar import PinResult
+from wifit4.dot11.wsc import messages as M
+from wifit4.dot11.wsc import crypto as wc
+from wifit4.campaigns.wps.enrollee import WpsEnrollee
+from wifit4.campaigns.wps.registrar import PinResult
 
 BSSID = bytes.fromhex("3421090001ff")
 STA = bytes.fromhex("02aabbccddee")

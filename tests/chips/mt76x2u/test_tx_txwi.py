@@ -8,7 +8,7 @@ iv(le32), eiv(le32), aid(u8), txstream(u8), ctl2(u8), pktid(u8).
 """
 import struct
 
-from wifit3.chips.mt76x2u import tx
+from wifit4.chips.mt76x2u import tx
 
 
 def _decode(txwi: bytes) -> dict:

@@ -10,14 +10,14 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from wifit3.chips.rtl8822cu.tx import (
+from wifit4.chips.rtl8822cu.tx import (
     TX_DESC_QSEL_MGMT,
     build_tx_desc_inject,
     build_tx_desc_mgmt,
     pick_bulk_out_ep,
     write_bulk,
 )
-from wifit3.chips.rtw88_base.registers import (
+from wifit4.chips.rtw88_base.registers import (
     DESC_RATE1M,
     DESC_RATE6M,
     TX_DESC_QSEL_BEACON,

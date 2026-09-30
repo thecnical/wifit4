@@ -2,8 +2,8 @@
 endpoint map from the target's responses."""
 import pytest
 
-from wifit3.chips.ar9271_v2 import constants as C, htc
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2 import constants as C, htc
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
 
 # Canned REG_IN (EP 0x83) responses captured from a real cold boot, in order: HTC_READY,
 # 9 connect-service responses (service -> endpoint), then the config-pipe response.

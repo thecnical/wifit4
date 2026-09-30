@@ -38,13 +38,13 @@ import usb.util
 
 from _hwstop import interruptible_sleep
 
-from wifit3.chips.rtl8821au_dkms import SUPPORTED_IDS, constants as C
-from wifit3.chips.rtl8821au_dkms import bb, chan, efuse, firmware, mac, rf, txpower
-from wifit3.chips.rtl8821au_dkms.driver import Rtl8821auDkmsDriver
-from wifit3.chips.rtl8821au_dkms.transport import RTL8821AUDkmsTransport
+from wifit4.chips.rtl8821au_dkms import SUPPORTED_IDS, constants as C
+from wifit4.chips.rtl8821au_dkms import bb, chan, efuse, firmware, mac, rf, txpower
+from wifit4.chips.rtl8821au_dkms.driver import Rtl8821auDkmsDriver
+from wifit4.chips.rtl8821au_dkms.transport import RTL8821AUDkmsTransport
 
 if TYPE_CHECKING:
-    from wifit3.dot11.packet import Packet
+    from wifit4.dot11.packet import Packet
 
 # A/B canary — strong nearby AP whose beacon rate is the DIG-health indicator. This
 # BSSID is the deliberately-committed fixed canary (on the git-history PII-scrub list);
@@ -117,7 +117,7 @@ async def _run_beacon(args) -> int:
     try:
         usb.util.claim_interface(dev, 0)
     except usb.core.USBError as e:
-        return _fail(f"claim_interface(0): {e}  (a running wifit3 may hold the card)")
+        return _fail(f"claim_interface(0): {e}  (a running wifit4 may hold the card)")
 
     driver = Rtl8821auDkmsDriver.from_usb_device(dev, id_entry)
     driver.enable_dig = not args.no_dig     # A/B: isolate the DIG watchdog's effect

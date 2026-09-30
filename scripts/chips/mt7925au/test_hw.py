@@ -33,8 +33,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
 import libusb_package
 import usb.core
 
-from wifit3.chips.mt7925au.driver import MT7925AUDriver
-from wifit3.dot11.packet import Packet
+from wifit4.chips.mt7925au.driver import MT7925AUDriver
+from wifit4.dot11.packet import Packet
 
 CONNECT_TIMEOUT = 60
 CHANNEL_TIMEOUT = 5

@@ -17,9 +17,9 @@ cold-boot wire stays byte-identical (scripts/chips/mt7921au/verify_pcap.py PASS)
 """
 import struct
 
-from wifit3.chips.mt7921au import rx, txpower
-from wifit3.chips.mt7921au.constants import MT_RXD1_NORMAL_GROUP_3, MT_RXD1_NORMAL_GROUP_5
-from wifit3.chips.mt7921au.mcu import (
+from wifit4.chips.mt7921au import rx, txpower
+from wifit4.chips.mt7921au.constants import MT_RXD1_NORMAL_GROUP_3, MT_RXD1_NORMAL_GROUP_5
+from wifit4.chips.mt7921au.mcu import (
     EXT_CMD_CHANNEL_SWITCH,
     EXT_CMD_SET_RX_PATH,
     MT_NIC_CAP_6G,

@@ -6,9 +6,9 @@ and, above all, the jgr2 PHY-status RSSI decode — including the fix that rejec
 saturated pwdb bytes (HW-observed pwdb 111-145 -> impossible >0 dBm) instead of
 letting them poison the per-AP mean.
 """
-from wifit3.chips.rtl8822bu_dkms import rx
-from wifit3.chips.rtl8822bu_dkms.driver import _rx_desc_stats
-from wifit3.chips.rtl8822bu_dkms.rx import RSSI_FLOOR, RSSI_UNKNOWN, _decode_rssi, _path_rssi
+from wifit4.chips.rtl8822bu_dkms import rx
+from wifit4.chips.rtl8822bu_dkms.driver import _rx_desc_stats
+from wifit4.chips.rtl8822bu_dkms.rx import RSSI_FLOOR, RSSI_UNKNOWN, _decode_rssi, _path_rssi
 
 
 def _desc(pkt_len, drvinfo_sz=0, shift_sz=0, crc=0, icv=0, physt=0, c2h=0):

@@ -1,8 +1,8 @@
 """Spec tests for the CSA/ECSA IE + beacon-rewrite builders."""
 import pytest
 
-from wifit3.dot11.ie import csa_ie, ecsa_ie, ssid_ie, rates_ie, ds_param_ie, secondary_channel_offset_ie
-from wifit3.dot11.csa import build_csa_beacon
+from wifit4.dot11.ie import csa_ie, ecsa_ie, ssid_ie, rates_ie, ds_param_ie, secondary_channel_offset_ie
+from wifit4.dot11.csa import build_csa_beacon
 
 _SCO = secondary_channel_offset_ie(0)          # every CSA beacon trails a 20 MHz secondary-offset IE
 _BODY = bytes(range(36))          # stand-in 24B header + 12B fixed; only its bytes must survive

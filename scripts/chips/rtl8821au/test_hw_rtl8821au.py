@@ -37,7 +37,7 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8821au.constants import (
+from wifit4.chips.rtl8821au.constants import (
     BIT_FWDL_CHK_RPT,
     BIT_MACRXEN,
     BIT_MACTXEN,
@@ -49,26 +49,26 @@ from wifit3.chips.rtl8821au.constants import (
     USB_PID_AWUS036ACS,
     USB_VID_REALTEK,
 )
-from wifit3.chips.rtl8821au.firmware import (
+from wifit4.chips.rtl8821au.firmware import (
     download_firmware_legacy,
     download_firmware_validate_legacy,
     en_download_firmware_legacy,
     load_firmware_blob,
 )
-from wifit3.chips.rtl8821au.chan import set_channel_2g_20mhz
-from wifit3.chips.rtl8821au.mac import (
+from wifit4.chips.rtl8821au.chan import set_channel_2g_20mhz
+from wifit4.chips.rtl8821au.mac import (
     mac_power_on,
     post_fw_mac_init,
     pre_fw_init,
 )
-from wifit3.chips.rtl8821au.phy import EfuseDefaults, post_mac_init_phy
-from wifit3.chips.rtl8821au.rx import (
+from wifit4.chips.rtl8821au.phy import EfuseDefaults, post_mac_init_phy
+from wifit4.chips.rtl8821au.rx import (
     iter_bulk_frames,
     probe_endpoints,
     read_rx_burst,
 )
-from wifit3.chips.rtl8821au.transport import RTL8821AUTransport
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8821au.transport import RTL8821AUTransport
+from wifit4.dot11.parser import WlanFrameParser
 
 
 def setup_logging(debug: bool) -> None:

@@ -19,7 +19,7 @@ RF_C = (
     REPO / "driver_captures" / "captures_rtl8814au" / "driver-source"
     / "hal" / "phydm" / "halrf" / "rtl8814a" / "halhwimg8814a_rf.c"
 )
-OUT_DIR = REPO / "src" / "wifit3" / "chips" / "rtl8814au_dkms"
+OUT_DIR = REPO / "src" / "wifit4" / "chips" / "rtl8814au_dkms"
 
 _U32 = re.compile(r"0x[0-9A-Fa-f]+")
 PATHS = (("a", 124), ("b", 2244), ("c", 4272), ("d", 6344))

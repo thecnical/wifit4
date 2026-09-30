@@ -11,13 +11,13 @@ from __future__ import annotations
 
 import pytest
 
-from wifit3.chips.rtl8821au.assets import (
+from wifit4.chips.rtl8821au.assets import (
     agc_tbl,
     bb_tbl,
     mac_tbl,
     rf_a_tbl,
 )
-from wifit3.chips.rtl8821au.phy_cond import (
+from wifit4.chips.rtl8821au.phy_cond import (
     BRANCH_ELSE,
     BRANCH_ENDIF,
     BRANCH_IF,

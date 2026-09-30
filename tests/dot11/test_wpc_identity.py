@@ -5,9 +5,9 @@ the None-vs-empty rules in _text(), and the WpsM1Identity.present property.
 End-to-end: parse a real build_m1() blob and confirm the device TLVs surface.
 """
 
-from wifit3.dot11.wsc import identity as I
-from wifit3.dot11.wsc import messages as M
-from wifit3.models import ApIdentity, IdSource
+from wifit4.dot11.wsc import identity as I
+from wifit4.dot11.wsc import messages as M
+from wifit4.models import ApIdentity, IdSource
 
 
 # ---- wps_text -------------------------------------------------------------

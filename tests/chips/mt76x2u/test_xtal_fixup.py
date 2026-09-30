@@ -7,8 +7,8 @@ Kernel reference: mt76x2/usb_mac.c:9-60. Covers:
   - The conditional XO_CTRL7 write based on NIC_CONF_2.XTAL_OPTION
 """
 
-from wifit3.chips.mt76x2u import constants as C
-from wifit3.chips.mt76x2u import mac
+from wifit4.chips.mt76x2u import constants as C
+from wifit4.chips.mt76x2u import mac
 
 
 # ---------------------------------------------------------------------------

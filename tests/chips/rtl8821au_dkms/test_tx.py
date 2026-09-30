@@ -11,7 +11,7 @@ from functools import reduce
 
 import pytest
 
-from wifit3.chips.rtl8821au_dkms import tx
+from wifit4.chips.rtl8821au_dkms import tx
 
 
 def _field(desc, byte_off, bit_start, bit_len):

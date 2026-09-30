@@ -6,7 +6,7 @@ Usage:
     # Just dump the kernel's bring-up sequence (frames during airmon-ng):
     python scripts/chips/rt2800usb/rt2800_ctrl_diff.py kernel
 
-    # Dump our wifit3 sequence from a capture you took:
+    # Dump our wifit4 sequence from a capture you took:
     python scripts/chips/rt2800usb/rt2800_ctrl_diff.py ours <our.pcap>
 
     # Diff the two:

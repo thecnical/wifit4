@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate ``src/wifit3/id/vendors.py`` from Wireshark's ``manuf`` feed.
+"""Regenerate ``src/wifit4/id/vendors.py`` from Wireshark's ``manuf`` feed.
 
 Populates the OUI -> vendor lookup table for MAC identity across APs, clients, and WPS.
 Resolves IEEE MA-L (24-bit), MA-M (28-bit), and MA-S (36-bit) allocations.
@@ -19,7 +19,7 @@ from typing import Optional
 _MANUF_URL = "https://www.wireshark.org/download/automated/data/manuf"
 
 _OUT = (Path(__file__).resolve().parents[2]
-        / "src" / "wifit3" / "id" / "vendors.py")
+        / "src" / "wifit4" / "id" / "vendors.py")
 
 # IEEE only ever allocates at these three widths (MA-L/MA-M/MA-S); manuf's optional "/N" suffix
 # names bit-width, but we key by hex nibbles (bits // 4) since every allocation is nibble-aligned.
@@ -113,7 +113,7 @@ def _load(source: str | None) -> str:
     if source:
         return Path(source).read_text(encoding="utf-8", errors="replace")
     print(f"Downloading {_MANUF_URL} ...")
-    req = urllib.request.Request(_MANUF_URL, headers={"User-Agent": "wifit3-fingerprint-vendor-gen"})
+    req = urllib.request.Request(_MANUF_URL, headers={"User-Agent": "wifit4-fingerprint-vendor-gen"})
     with urllib.request.urlopen(req, timeout=120) as r:  # noqa: S310 (fixed wireshark.org https host)
         return r.read().decode("utf-8", "replace")
 

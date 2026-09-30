@@ -24,7 +24,7 @@ def _parse_instance(instance: str) -> tuple[int, int] | None:
 
 
 def select_device(ifaces, card: str = "", *, instance: str = "", log=None):
-    """Select one wifit3 (USB) interface: exact ``instance`` "BUS:ADDR" wins (the only way to tell two
+    """Select one wifit4 (USB) interface: exact ``instance`` "BUS:ADDR" wins (the only way to tell two
     identical VID:PIDs apart), else a ``card`` name/description substring, else ifaces[0]; None
     (roster printed) if a non-blank instance/card matches nothing."""
     if instance:

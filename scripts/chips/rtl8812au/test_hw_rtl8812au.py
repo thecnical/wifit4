@@ -43,20 +43,20 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8812au.constants import (
+from wifit4.chips.rtl8812au.constants import (
     REG_SYS_CFG1,
     REG_SYS_CFG2,
     USB_PID_AWUS036ACH,
     USB_VID_REALTEK,
 )
-from wifit3.chips.rtl8812au.firmware import (
+from wifit4.chips.rtl8812au.firmware import (
     download_firmware_legacy,
     download_firmware_validate_legacy,
     en_download_firmware_legacy,
     load_firmware_blob,
 )
-from wifit3.chips.rtl8812au.constants import BIT_MACRXEN, BIT_MACTXEN, REG_CR
-from wifit3.chips.rtl8812au.mac import (
+from wifit4.chips.rtl8812au.constants import BIT_MACRXEN, BIT_MACTXEN, REG_CR
+from wifit4.chips.rtl8812au.mac import (
     ChipState,
     is_chip_warm,
     mac_power_on,
@@ -64,29 +64,29 @@ from wifit3.chips.rtl8812au.mac import (
     pre_fw_init,
     probe_chip_state,
 )
-from wifit3.chips.rtl8812au.chan import (
+from wifit4.chips.rtl8812au.chan import (
     CHANNELS_5G_ALL,
     channel_band_is_2g,
     set_channel_2g_20mhz,
     set_channel_5g_20mhz,
 )
-from wifit3.chips.rtl8812au.efuse import efuse_defaults_from_read, read_efuse_8812a
-from wifit3.chips.rtl8812au.phy import (
+from wifit4.chips.rtl8812au.efuse import efuse_defaults_from_read, read_efuse_8812a
+from wifit4.chips.rtl8812au.phy import (
     EfuseDefaults,
     post_mac_init_phy,
     switch_band_2g_20mhz,
     switch_band_5g_20mhz,
 )
-from wifit3.chips.rtl8812au.rx import iter_bulk_frames, probe_endpoints, read_rx_burst
-from wifit3.chips.rtl8812au.transport import RTL8812AUTransport
-from wifit3.chips.rtl8812au.tx import (
+from wifit4.chips.rtl8812au.rx import iter_bulk_frames, probe_endpoints, read_rx_burst
+from wifit4.chips.rtl8812au.transport import RTL8812AUTransport
+from wifit4.chips.rtl8812au.tx import (
     TX_DESC_QSEL_MGMT,
     build_deauth_frame,
     build_tx_desc_mgmt,
     pick_bulk_out_ep,
     write_bulk,
 )
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.dot11.parser import WlanFrameParser
 
 
 def _parse_mac(s: str) -> bytes:
@@ -94,8 +94,8 @@ def _parse_mac(s: str) -> bytes:
     if len(parts) != 6:
         raise ValueError(f"bad MAC: {s}")
     return bytes(int(p, 16) for p in parts)
-from wifit3.chips.rtw88_base.firmware_legacy import FW_READY_LEGACY
-from wifit3.chips.rtw88_base.registers import (
+from wifit4.chips.rtw88_base.firmware_legacy import FW_READY_LEGACY
+from wifit4.chips.rtw88_base.registers import (
     BIT_FWDL_CHK_RPT,
     BIT_MCUFWDL_EN,
     REG_MCUFW_CTRL,
@@ -229,7 +229,7 @@ def phase_fw(transport: RTL8812AUTransport, debug: bool):
     Returns FifoConf so phase_mac_init has the queue layout. On a warm
     chip we recompute it (pure-Python, no hardware I/O).
     """
-    from wifit3.chips.rtl8812au.fifo import set_trx_fifo_info
+    from wifit4.chips.rtl8812au.fifo import set_trx_fifo_info
     state = probe_chip_state(transport)
     if state is not ChipState.COLD:
         step(f"Chip is {state.value.upper()} — skipping FW upload + validate")
@@ -369,7 +369,7 @@ def phase_phy(transport: RTL8812AUTransport, efuse: EfuseDefaults | None = None)
     # The LSSI_WRITE_{A,B} registers should now reflect *something*
     # other than zero (they were written many times during table load).
     # Lighter check: read REG_SYS_FUNC_EN and confirm BB reset bits stuck.
-    from wifit3.chips.rtl8812au.constants import (
+    from wifit4.chips.rtl8812au.constants import (
         BIT_FEN_BB_GLB_RST, BIT_FEN_BB_RSTB, BIT_FEN_USBA, REG_SYS_FUNC_EN,
     )
     sfe = transport.read8(REG_SYS_FUNC_EN)
@@ -386,7 +386,7 @@ def phase_phy(transport: RTL8812AUTransport, efuse: EfuseDefaults | None = None)
     ok("BB enable bits set — PHY tables loaded successfully. M2-d DONE.")
 
     # Post-PHY readback: did the rfe pinmux writes actually land?
-    from wifit3.chips.rtl8812au.constants import (
+    from wifit4.chips.rtl8812au.constants import (
         REG_RFE_INV_A, REG_RFE_INV_B, REG_RFE_PINMUX_A, REG_RFE_PINMUX_B,
         REG_TXSCALE_A, REG_TXSCALE_B,
     )
@@ -396,7 +396,7 @@ def phase_phy(transport: RTL8812AUTransport, efuse: EfuseDefaults | None = None)
     inv_b = transport.read32(REG_RFE_INV_B)
     sca_a = transport.read32(REG_TXSCALE_A)
     sca_b = transport.read32(REG_TXSCALE_B)
-    from wifit3.chips.rtl8812au.constants import (
+    from wifit4.chips.rtl8812au.constants import (
         REG_RCR, REG_RX_DRVINFO_SZ as RDR_SZ,
     )
     rcr = transport.read32(REG_RCR)
@@ -443,7 +443,7 @@ def phase_channel(transport: RTL8812AUTransport, channel: int = 1,
     ok(f"Channel set in {dt_ms:.1f} ms")
 
     # Sanity: REG_BWINDICATION bits[1:0] = 1 (2G) or 2 (5G).
-    from wifit3.chips.rtl8812au.constants import REG_BWINDICATION
+    from wifit4.chips.rtl8812au.constants import REG_BWINDICATION
     bw = transport.read32(REG_BWINDICATION)
     expected = 1 if is_2g else 2
     print(f"  REG_BWINDICATION = 0x{bw:08x}  (bits[1:0]={bw & 0x3}, expected {expected})")
@@ -553,7 +553,7 @@ def phase_tx(dev, transport: RTL8812AUTransport, target_bssid: str,
         fail(f"bad MAC: {e}")
 
     # Pre-TX state dump — verify the chip is actually configured to TX.
-    from wifit3.chips.rtl8812au.constants import (
+    from wifit4.chips.rtl8812au.constants import (
         BIT_MACRXEN, BIT_MACTXEN, REG_CR, REG_RQPN, REG_RQPN_NPQ,
         REG_TXDMA_PQ_MAP,
     )
@@ -575,8 +575,8 @@ def phase_tx(dev, transport: RTL8812AUTransport, target_bssid: str,
     # something later in init clears them. Re-running shouldn't hurt and
     # might unstick a wedged queue.
     print(f"  Re-arming queue priority + reserved page mapping...")
-    from wifit3.chips.rtl8812au.fifo import set_trx_fifo_info
-    from wifit3.chips.rtl8812au.mac import (
+    from wifit4.chips.rtl8812au.fifo import set_trx_fifo_info
+    from wifit4.chips.rtl8812au.mac import (
         init_queue_priority,
         init_queue_reserved_page,
         init_tx_buffer_boundary,
@@ -628,7 +628,7 @@ def phase_tx(dev, transport: RTL8812AUTransport, target_bssid: str,
     # bulk-OUT EP, different reserved-page pool). This proves whether the
     # issue is queue-specific or chip-wide TX failure.
     if successes == 0:
-        from wifit3.chips.rtl8812au.tx import TX_DESC_QSEL_HIGH
+        from wifit4.chips.rtl8812au.tx import TX_DESC_QSEL_HIGH
         ep_high = pick_bulk_out_ep(eps.bulk_out, queue=TX_DESC_QSEL_HIGH)
         print(f"\n  Fallback: trying HIGH queue on 0x{ep_high:02x}")
         # Rebuild desc with QSEL=HIGH
@@ -638,7 +638,7 @@ def phase_tx(dev, transport: RTL8812AUTransport, target_bssid: str,
         w1 = (w1 & ~(0x1F << 8)) | ((TX_DESC_QSEL_HIGH & 0x1F) << 8)
         _struct.pack_into("<I", desc2, 4, w1)
         # Re-checksum
-        from wifit3.chips.rtw88_base.tx_common import fill_txdesc_checksum
+        from wifit4.chips.rtw88_base.tx_common import fill_txdesc_checksum
         # Zero out W7 first so checksum is consistent
         _struct.pack_into("<I", desc2, 7*4, 0)
         fill_txdesc_checksum(desc2, num_u16_words=16, w7_byte_offset=7*4)

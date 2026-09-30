@@ -8,7 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-INIT = Path(__file__).resolve().parents[1] / "src" / "wifit3" / "__init__.py"
+INIT = Path(__file__).resolve().parents[1] / "src" / "wifit4" / "__init__.py"
 IDX = {"major": 0, "minor": 1, "patch": 2}
 
 
@@ -59,7 +59,7 @@ def main():
 
     INIT.write_text(src[: m.start()] + f'__version__ = "{ver}"' + src[m.end() :], encoding="utf-8")
     git("add", str(INIT))
-    git("commit", "-m", f"chore(release): wifit3 {ver}")
+    git("commit", "-m", f"chore(release): wifit4 {ver}")
     git("tag", tag)
     print(f"{'.'.join(map(str, old))} -> {ver}  (tagged {tag})")
     if push:

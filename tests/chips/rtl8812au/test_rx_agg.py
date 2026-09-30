@@ -7,8 +7,8 @@ the WIRE-confirmed register contract.
 """
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtl8812au import constants as C
-from wifit3.chips.rtl8812au import mac
+from wifit4.chips.rtl8812au import constants as C
+from wifit4.chips.rtl8812au import mac
 
 
 def test_configure_rx_aggregation_writes_kernel_monitor_values():

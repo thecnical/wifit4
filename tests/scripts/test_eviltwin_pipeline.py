@@ -7,13 +7,13 @@ import importlib.util
 import sys
 from pathlib import Path
 
-from wifit3.dot11.ap import eapol_m1
-from wifit3.dot11.eapol import eapol_key, set_mic, data_header, LLC_SNAP_EAPOL
-from wifit3.dot11.ie import GENERIC_RSN_IE
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.crack import wpa_psk
-from wifit3.crack.hc22000_format import eapol_hashlines
-from wifit3.models import Handshake, HandshakeMessage
+from wifit4.dot11.ap import eapol_m1
+from wifit4.dot11.eapol import eapol_key, set_mic, data_header, LLC_SNAP_EAPOL
+from wifit4.dot11.ie import GENERIC_RSN_IE
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.crack import wpa_psk
+from wifit4.crack.hc22000_format import eapol_hashlines
+from wifit4.models import Handshake, HandshakeMessage
 
 _ROOT = Path(__file__).resolve().parents[2]
 

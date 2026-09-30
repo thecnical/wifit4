@@ -4,10 +4,10 @@ through the real ScannerView via _log_capture_event (WEP_KEY needs no disk save
 and exercises the key-ascii toast body)."""
 import pytest
 
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.scanner import ScannerView
-from wifit3.ui.capture_events import CaptureEvent, CaptureKind
-from wifit3.models import AccessPoint
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.scanner import ScannerView
+from wifit4.ui.capture_events import CaptureEvent, CaptureKind
+from wifit4.models import AccessPoint
 
 
 @pytest.mark.asyncio

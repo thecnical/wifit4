@@ -1,11 +1,11 @@
-"""wifit3 side of the card health check.
+"""wifit4 side of the card health check.
 
 Brings up our userland driver, dwells on each channel, and feeds every beacon
 to the shared aggregator via the SAME ``feed(ts, parsed, rssi, channel)`` call
-the Linux side uses. Writes ``wifit3-<chip>.json``.
+the Linux side uses. Writes ``wifit4-<chip>.json``.
 
-    python baseline_wifit3.py                         # SUPPORTED_CHANNELS
-    python baseline_wifit3.py --channels 1,6,11 --secs 15
+    python baseline_wifit4.py                         # SUPPORTED_CHANNELS
+    python baseline_wifit4.py --channels 1,6,11 --secs 15
 """
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from shared import Health, add_reference_args, load_reference_aps, ref_bssids
 from dev import select_device
 from baseline_diff import diff
 
-from wifit3.device.manager import wlan_ifaces, wlan_close
+from wifit4.device.manager import wlan_ifaces, wlan_close
 
 
 def _chip(iface) -> str:
@@ -57,7 +57,7 @@ async def run(args) -> int:
         return 1
 
     chip = args.chip or _chip(iface)
-    health = Health(chip, "wifit3")
+    health = Health(chip, "wifit4")
     cur_channel = {"ch": 0}
 
     def on_rx(pkt) -> None:
@@ -87,14 +87,14 @@ async def run(args) -> int:
     finally:
         await wlan_close(ifaces)
 
-    wifit3_json = _HERE / f"wifit3-{chip}.json"
-    health.to_json(wifit3_json)
+    wifit4_json = _HERE / f"wifit4-{chip}.json"
+    health.to_json(wifit4_json)
     # A/B diff fires from whichever side runs second. In the settled sweep order (linux first,
-    # wifit3 second) the diff would otherwise never print, since only baseline_linux used to call
+    # wifit4 second) the diff would otherwise never print, since only baseline_linux used to call
     # it. Pin the reference AP(s) so the beacon-rate line doesn't drift to a transient AP.
     linux_json = _HERE / f"linux-{chip}.json"
     if linux_json.exists():
-        diff(wifit3_json, linux_json, ref_bssids=ref_bssids(load_reference_aps(args)) or None)
+        diff(wifit4_json, linux_json, ref_bssids=ref_bssids(load_reference_aps(args)) or None)
     else:
         print(f"[*] no {linux_json.name} yet - run baseline_linux.py --chip {chip} "
               f"(--capture or --pcap) for the A/B.", file=sys.stderr)
@@ -102,7 +102,7 @@ async def run(args) -> int:
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="wifit3-side card health baseline.")
+    p = argparse.ArgumentParser(description="wifit4-side card health baseline.")
     p.add_argument("--channels", default=None, help="Comma-separated; default SUPPORTED_CHANNELS.")
     p.add_argument("--secs", type=float, default=15.0, help="Dwell seconds per channel.")
     p.add_argument("--card", default="",

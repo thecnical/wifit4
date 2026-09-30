@@ -29,7 +29,7 @@ Read only this chip's C source while porting, not other chips' drivers (METHODOL
 Creating `chips/<name>/`? Two registration rules the `Driver` ABC does not enforce:
 
 - **`__init__.py` declares the VID:PIDs, not the driver class.** It sets
-  `SUPPORTED_IDS = [DeviceID(...), ...]` (`from wifit3.models.device_id import DeviceID`) plus a
+  `SUPPORTED_IDS = [DeviceID(...), ...]` (`from wifit4.models.device_id import DeviceID`) plus a
   `def import_driver(): from .driver import <Class>; return <Class>`, and must NOT import `driver.py`
   at module top (discovery reads the light `__init__` and imports the driver only on a VID:PID match).
   Copy the shape from `chips/rtl8812au/__init__.py`.

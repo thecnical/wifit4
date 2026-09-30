@@ -12,20 +12,20 @@ import pytest_asyncio
 from textual.app import App
 from textual.widgets import Button
 
-from wifit3.campaigns.campaign import Campaign
-from wifit3.campaigns.deauth import DeauthCampaign
-from wifit3.campaigns.eviltwin import EvilTwinCampaign
-from wifit3.campaigns.pbc import WpsPbcCapture
-from wifit3.campaigns.pin import WpsCampaign
-from wifit3.campaigns.pmkid import PmkidHarvestAttack
-from wifit3.campaigns.wep import WepCampaign
-from wifit3.crack.wep import CRACK_READY_THRESHOLD
-from wifit3.models import AccessPoint, Handshake, IdKey, IdSource
-from wifit3.ui import focus_model as fm
+from wifit4.campaigns.campaign import Campaign
+from wifit4.campaigns.deauth import DeauthCampaign
+from wifit4.campaigns.eviltwin import EvilTwinCampaign
+from wifit4.campaigns.pbc import WpsPbcCapture
+from wifit4.campaigns.pin import WpsCampaign
+from wifit4.campaigns.pmkid import PmkidHarvestAttack
+from wifit4.campaigns.wep import WepCampaign
+from wifit4.crack.wep import CRACK_READY_THRESHOLD
+from wifit4.models import AccessPoint, Handshake, IdKey, IdSource
+from wifit4.ui import focus_model as fm
 from tests.wlan.mocks import build_ap
-from wifit3.ui.screens.focus_v2 import FocusViewV2
-from wifit3.persist.config import Config
-from wifit3.persist.vault import Vault
+from wifit4.ui.screens.focus_v2 import FocusViewV2
+from wifit4.persist.config import Config
+from wifit4.persist.vault import Vault
 
 
 @pytest.fixture(autouse=True)

@@ -8,7 +8,7 @@ It pushes the real BringupProgressModal over a fake dimmed splash and slides WiF
 see is exactly what the Windows install shows. Keys: [space] skip to the next message (great for
 eyeballing every message fast)  [i] install pack  [u] uninstall pack  [o] slide out ok  [e] slide
 out error  [q] quit. To tune the text-hole overlay, set _HOLE_* / the #wiffy-text background in
-src/wifit3/ui/wiffy.py (a loud `background: magenta` makes misalignment obvious), then flip back.
+src/wifit4/ui/wiffy.py (a loud `background: magenta` makes misalignment obvious), then flip back.
 """
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from textual.containers import Center, Vertical
 from textual.screen import Screen
 from textual.widgets import Label, Static
 
-from wifit3.ui.screens.bringup_progress import BringupProgressModal
-from wifit3.ui.wiffy import INSTALL_LINES, UNINSTALL_LINES, WiffyAssistant
+from wifit4.ui.screens.bringup_progress import BringupProgressModal
+from wifit4.ui.wiffy import INSTALL_LINES, UNINSTALL_LINES, WiffyAssistant
 
 
 class _FakeSplash(Screen):
@@ -34,7 +34,7 @@ class _FakeSplash(Screen):
     def compose(self) -> ComposeResult:
         with Vertical():
             with Center():
-                yield Static("[bold green]wifit3[/]  [dim green]// wireless auditor[/]")
+                yield Static("[bold green]wifit4[/]  [dim green]// wireless auditor[/]")
             for ssid in ("HackThePlanet", "linksys", "NETGEAR-5G", "xfinitywifi", "Pretty Fly 4 WiFi"):
                 yield Label(f"  [green]▮▮▮[/] {ssid}   [dim]WPA2[/]")
 
@@ -70,7 +70,7 @@ class WiffyPreview(App):
                    "wdi-simple: waiting for Windows to install the driver…", INSTALL_LINES)
 
     def action_show_uninstall(self) -> None:
-        self._open("Removing wifit3 driver for RTL8814AU (Alfa AWUS1900)…",
+        self._open("Removing wifit4 driver for RTL8814AU (Alfa AWUS1900)…",
                    "pnputil: removing the WinUSB driver…", UNINSTALL_LINES)
 
     def action_skip(self) -> None:

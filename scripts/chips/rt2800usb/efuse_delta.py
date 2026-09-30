@@ -29,13 +29,13 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rt2800usb.constants import (
+from wifit4.chips.rt2800usb.constants import (
     USB_PID_RT3572,
     USB_PID_RT5372,
     USB_PID_RT5572,
     USB_VID_RALINK,
 )
-from wifit3.chips.rt2800usb.eeprom import (
+from wifit4.chips.rt2800usb.eeprom import (
     EEPROM_OFFSET_NIC_CONF0,
     EEPROM_OFFSET_NIC_CONF1,
     EEPROM_OFFSET_FREQ,
@@ -49,8 +49,8 @@ from wifit3.chips.rt2800usb.eeprom import (
     parse_eeprom,
     read_eeprom_efuse,
 )
-from wifit3.chips.rt2800usb.mac import read_chip_id
-from wifit3.chips.rt2800usb.transport import RT2800USBTransport
+from wifit4.chips.rt2800usb.mac import read_chip_id
+from wifit4.chips.rt2800usb.transport import RT2800USBTransport
 
 
 def open_device():

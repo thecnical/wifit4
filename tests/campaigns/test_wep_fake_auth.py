@@ -1,13 +1,13 @@
 """Tests for WEP fake authentication (frame builders + RX state machine)."""
 import asyncio
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.dot11.parser import WlanFrameParser
 import struct
 
 import pytest
 
-from wifit3.models import AccessPoint
-from wifit3.campaigns.wep.fake_auth import WepFakeAuth
-from wifit3.dot11.auth_assoc import auth_req, assoc_req
+from wifit4.models import AccessPoint
+from wifit4.campaigns.wep.fake_auth import WepFakeAuth
+from wifit4.dot11.auth_assoc import auth_req, assoc_req
 
 SELF_MAC = b"\x02\x00\x00\x00\x00\x01"
 BSSID_BYTES = b"\x11\x22\x33\x44\x55\x66"

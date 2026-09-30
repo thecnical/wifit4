@@ -2,13 +2,13 @@ import pytest
 import subprocess
 import re
 from unittest.mock import patch, MagicMock
-from wifit3.scripts.capture import Capture, LogHelper
+from wifit4.scripts.capture import Capture, LogHelper
 
 
 def _capture(tmp_path):
     """Construct a Capture with its TemporaryDirectory pointed at tmp_path (so
     no real temp dir is created and logs land where the test can read them)."""
-    with patch('wifit3.scripts.capture.tempfile.TemporaryDirectory') as mock_tempdir:
+    with patch('wifit4.scripts.capture.tempfile.TemporaryDirectory') as mock_tempdir:
         mock_tempdir.return_value.name = str(tmp_path)
         return Capture()
 

@@ -1,7 +1,7 @@
 """Scanner pool summary line: names each card + its band tag, pluralizes, None when empty."""
 from types import SimpleNamespace
 
-from wifit3.ui.screens.scanner import device_scan_summary
+from wifit4.ui.screens.scanner import device_scan_summary
 
 
 def _member(chipset, channels):

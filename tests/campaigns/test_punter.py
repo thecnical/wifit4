@@ -1,8 +1,8 @@
 """Punter: builds the eviction frames for the enabled PuntModes and bursts them on the interface."""
 import struct
 
-from wifit3.campaigns.eviltwin import Punter, PuntMode
-from wifit3.dot11.ie import ssid_ie, rates_ie, ds_param_ie, GENERIC_RSN_IE
+from wifit4.campaigns.eviltwin import Punter, PuntMode
+from wifit4.dot11.ie import ssid_ie, rates_ie, ds_param_ie, GENERIC_RSN_IE
 
 _BSSID_B = bytes.fromhex("9483c48c3f78")
 _TWIN_B = bytes.fromhex("9483c48c3f79")

@@ -11,9 +11,9 @@ import pytest_asyncio
 from textual.app import App, ComposeResult
 from textual.widgets.data_table import ColumnKey
 
-from wifit3.models import AccessPoint
-from wifit3.persist.vault import Vault
-from wifit3.ui.screens.scanner import ScannerView, _APScanTable
+from wifit4.models import AccessPoint
+from wifit4.persist.vault import Vault
+from wifit4.ui.screens.scanner import ScannerView, _APScanTable
 
 
 class _TableApp(App):

@@ -32,7 +32,7 @@ _spec = importlib.util.spec_from_file_location(
 vp = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(vp)
 
-from wifit3.chips.rtl8814au_dkms import chan, driver as drv_mod, iqk, watchdog
+from wifit4.chips.rtl8814au_dkms import chan, driver as drv_mod, iqk, watchdog
 
 
 class Mutation:

@@ -9,8 +9,8 @@ from __future__ import annotations
 
 import pytest
 
-from wifit3.chips.rtl8821au import phy
-from wifit3.chips.rtl8821au.constants import (
+from wifit4.chips.rtl8821au import phy
+from wifit4.chips.rtl8821au.constants import (
     BASIC_RATES_2G,
     BIT_RF_EN,
     BIT_RF_RSTB,
@@ -20,7 +20,7 @@ from wifit3.chips.rtl8821au.constants import (
     REG_RFE_PINMUX_A,
     REG_RRSR,
 )
-from wifit3.chips.rtl8821au.phy import (
+from wifit4.chips.rtl8821au.phy import (
     EfuseDefaults,
     _cfg_rf,
     load_agc_table,

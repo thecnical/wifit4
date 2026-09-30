@@ -1,6 +1,6 @@
 """Tests for encryption / WEP / AKM-variant markup (format_encryption_markup)."""
-from wifit3.models import AccessPoint, WepStats
-from wifit3.ui.encryption_format import format_encryption_markup
+from wifit4.models import AccessPoint, WepStats
+from wifit4.ui.encryption_format import format_encryption_markup
 
 
 def _ap(**kw) -> AccessPoint:

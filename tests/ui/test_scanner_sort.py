@@ -6,10 +6,10 @@ import pytest
 from textual.app import App
 from textual.widgets import DataTable
 
-from wifit3.models import AccessPoint
-from wifit3.persist.config import Config
-from wifit3.persist.vault import Vault
-from wifit3.ui.screens.scanner import ScannerView
+from wifit4.models import AccessPoint
+from wifit4.persist.config import Config
+from wifit4.persist.vault import Vault
+from wifit4.ui.screens.scanner import ScannerView
 
 
 @pytest.fixture(autouse=True)
@@ -193,7 +193,7 @@ async def test_cursor_tracking_pins_highlight_on_resort():
 
 @pytest.mark.asyncio
 async def test_forget_row_evicts_ap_and_its_clients():
-    from wifit3.models import Client
+    from wifit4.models import Client
     ap1 = _make_ap("aa:bb:cc:00:00:01", ssid="AP1", signal=-40)
     ap2 = _make_ap("aa:bb:cc:00:00:02", ssid="AP2", signal=-60)
     c1 = Client(mac="11:22:33:44:55:01", bssid=ap1.bssid)

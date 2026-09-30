@@ -43,13 +43,13 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rt2x00_pcap_replay as rp
-from wifit3.chips.rt2800usb import chan as _chan
-from wifit3.chips.rt2800usb import bbp as _bbp
-from wifit3.chips.rt2800usb import firmware as _fw
-from wifit3.chips.rt2800usb import mac as _mac
-from wifit3.chips.rt2800usb import reg_init as _reg
-from wifit3.chips.rt2800usb import rfcsr as _rfcsr
-from wifit3.chips.rt2800usb.constants import (
+from wifit4.chips.rt2800usb import chan as _chan
+from wifit4.chips.rt2800usb import bbp as _bbp
+from wifit4.chips.rt2800usb import firmware as _fw
+from wifit4.chips.rt2800usb import mac as _mac
+from wifit4.chips.rt2800usb import reg_init as _reg
+from wifit4.chips.rt2800usb import rfcsr as _rfcsr
+from wifit4.chips.rt2800usb.constants import (
     BBP_CSR_CFG,
     CH_IDLE_STA,
     FIF_ALLMULTI,
@@ -77,18 +77,18 @@ from wifit3.chips.rt2800usb.constants import (
     TXWI_W1_PACKETID_ENTRY,
     TXWI_W1_PACKETID_QUEUE,
 )
-from wifit3.chips.rt2800usb.link_tuner import (
+from wifit4.chips.rt2800usb.link_tuner import (
     get_default_vgc,
     set_vgc,
 )
-from wifit3.chips.rt2800usb.eeprom import (
+from wifit4.chips.rt2800usb.eeprom import (
     EEPROM_OFFSET_FREQ,
     parse_eeprom,
     read_eeprom_efuse,
 )
-from wifit3.chips.rt2800usb.firmware import load_firmware_blob
-from wifit3.chips.rt2800usb.transport import RT2800USBTransport
-from wifit3.chips.rt2800usb.tx import (
+from wifit4.chips.rt2800usb.firmware import load_firmware_blob
+from wifit4.chips.rt2800usb.transport import RT2800USBTransport
+from wifit4.chips.rt2800usb.tx import (
     build_tx_descriptors,
     txwi_size_for_silicon,
 )
@@ -158,7 +158,7 @@ def verify_cold_walk(pcap: Path, dev: int, silicon: int):
         step("init_registers (disable_wpdma+usb_reset+MAC block)",
              lambda t: _reg.init_registers(t, silicon))
         chip = box["chip"]
-        from wifit3.chips.rt2800usb.constants import (
+        from wifit4.chips.rt2800usb.constants import (
             EEPROM_NIC_CONF1_ANT_DIVERSITY_MASK, EEPROM_NIC_CONF1_ANT_DIVERSITY_SHIFT,
         )
         ant_div = (ev.nic_conf1 & EEPROM_NIC_CONF1_ANT_DIVERSITY_MASK) \
@@ -334,7 +334,7 @@ def verify_cold_walk(pcap: Path, dev: int, silicon: int):
         # ---- TX-injection region ----
         # After the last full-bracket hop the capture is the kernel draining TX status:
         # it polls TX_STA_FIFO (read-to-pop) to reap each aireplay inject's completion,
-        # interleaved with the final 1-2 channel hops + async filter reapplies. wifit3
+        # interleaved with the final 1-2 channel hops + async filter reapplies. wifit4
         # fires TX without this drain loop, so the FIFO reads are kernel TX-completion
         # tracking (reproduced so the single cursor can traverse the region and reach the
         # interleaved hops); the injected frames themselves are verified byte-for-byte in

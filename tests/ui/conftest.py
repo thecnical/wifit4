@@ -1,15 +1,15 @@
 import pytest
 from unittest.mock import patch
 
-from wifit3.persist.config import Config
+from wifit4.persist.config import Config
 
 
 @pytest.fixture(autouse=True)
 def _isolate_config(tmp_path, monkeypatch):
     """UI tests build WifiteApp, which loads and persists Config: keep that off the real on-disk
     config file and reset the class-level defaults so a theme edit can't leak between tests."""
-    monkeypatch.setattr("wifit3.persist.config._PATH", tmp_path / "config.toml")
-    Config.theme = "wifit3-green-dark"
+    monkeypatch.setattr("wifit4.persist.config._PATH", tmp_path / "config.toml")
+    Config.theme = "wifit4-green-dark"
     Config.scanner_sort = "signal"
     Config.scanner_sort_reverse = True
     Config.silenced_bssids = []
@@ -26,5 +26,5 @@ def no_usb_devices():
     """
     # usb.core.find covers libusb; present_usb_ids covers the Windows PnP merge in devices().
     with patch('usb.core.find', return_value=[]), \
-         patch('wifit3.device.windows_pnp.present_usb_ids', return_value=set()):
+         patch('wifit4.device.windows_pnp.present_usb_ids', return_value=set()):
         yield

@@ -6,7 +6,7 @@ Frames are fed via a monkeypatched iter_bulk_frames. ``_enable_rx_acks`` opens R
 the tally and arming live on the ``Driver`` base (``record_ack`` / ``enable_rx_acks`` / ``acks_seen``)."""
 from unittest.mock import MagicMock
 
-import wifit3.chips.rtl8821au.driver as drv
+import wifit4.chips.rtl8821au.driver as drv
 
 
 def _ack_mpdu(ra: bytes) -> bytes:

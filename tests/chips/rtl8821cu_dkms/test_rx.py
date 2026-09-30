@@ -4,7 +4,7 @@ The old-AGC CCK RSSI uses a per-card LNA-gain table keyed on cck_agc_report_type
 rfe-0x22 reference) -> the 16-entry table_1; 0 (WLG/WLA) -> the 8-entry table_0.
 [SRC] phydm_cck_rssi_8821c phydm_hal_api8821c.c:42-60 / phydm_cck_lna_bit_num_chk phydm.c:178-185.
 """
-from wifit3.chips.rtl8821cu_dkms import rx
+from wifit4.chips.rtl8821cu_dkms import rx
 
 
 def _cck_phystatus(lna_idx: int, vga_idx: int) -> bytes:

@@ -48,7 +48,7 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rt2500usb.constants import (
+from wifit4.chips.rt2500usb.constants import (
     EEPROM_ANTENNA,
     EEPROM_ANTENNA_RF_TYPE,
     EEPROM_MAC_ADDR_0,
@@ -81,26 +81,26 @@ from wifit3.chips.rt2500usb.constants import (
     USB_PID_NINTENDO_WIFI,
     USB_VID_MELCO,
 )
-from wifit3.chips.rt2500usb.bbp import (
+from wifit4.chips.rt2500usb.bbp import (
     bbp_read,
     eeprom_bbp_overrides,
     init_bbp,
 )
-from wifit3.chips.rt2500usb.chan import antenna_defaults, config_ant, set_channel
-from wifit3.chips.rt2500usb.mac import (
+from wifit4.chips.rt2500usb.chan import antenna_defaults, config_ant, set_channel
+from wifit4.chips.rt2500usb.mac import (
     apply_monitor_filter,
     init_registers,
     is_chip_warm,
     read_revision,
 )
-from wifit3.chips.rt2500usb.rx import (
+from wifit4.chips.rt2500usb.rx import (
     parse_rx_urb,
     probe_endpoints,
     read_rx_burst,
 )
-from wifit3.chips.rt2500usb.tx import inject as tx_inject
-from wifit3.chips.rt2500usb.transport import RT2500USBTransport, get_field16
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.chips.rt2500usb.tx import inject as tx_inject
+from wifit4.chips.rt2500usb.transport import RT2500USBTransport, get_field16
+from wifit4.dot11.parser import WlanFrameParser
 
 # After apply_monitor_filter: accept bits must be CLEAR (we surface these
 # frames); error bits must be SET (drop CRC + PLCP + version — the RX loop

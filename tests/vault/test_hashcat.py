@@ -3,10 +3,10 @@ import sys
 
 import pytest
 
-from wifit3.vault.tools.hashcat import HashcatTool
-from wifit3.models import PersistedCapture
-from wifit3.models.access_point import CaptureType
-from wifit3.models.jobs import ToolStatus
+from wifit4.vault.tools.hashcat import HashcatTool
+from wifit4.models import PersistedCapture
+from wifit4.models.access_point import CaptureType
+from wifit4.models.jobs import ToolStatus
 
 
 def test_poll_status_reports_key_from_potfile(tmp_path):

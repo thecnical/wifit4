@@ -1,5 +1,5 @@
 name: Bug report
-description: Crashes, errors, or incorrect behavior in wifit3.
+description: Crashes, errors, or incorrect behavior in wifit4.
 title: "[Bug]: "
 labels: ["bug"]
 body:
@@ -41,8 +41,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: wifit3 version
-      description: "The release version shown in the app title (e.g. 'wifit3 - v0.3.11'), or if you're running from source, the git short hash (`git rev-parse --short HEAD`)."
+      label: wifit4 version
+      description: "The release version shown in the app title (e.g. 'wifit4 - v0.3.11'), or if you're running from source, the git short hash (`git rev-parse --short HEAD`)."
       placeholder: "v0.3.11  —or—  a1b2c3d"
     validations:
       required: true
@@ -50,5 +50,5 @@ body:
     id: logs
     attributes:
       label: Output / logs
-      description: Paste the relevant wifit3.log output or error text.
+      description: Paste the relevant wifit4.log output or error text.
       render: text

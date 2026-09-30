@@ -1,4 +1,4 @@
-# Wifit3 — Features & QoL Backlog
+# wifit4 — Features & QoL Backlog
 
 Known bugs live in `BUGS.md`.
 
@@ -7,7 +7,7 @@ Known bugs live in `BUGS.md`.
 ### About page / Check-for-updates
 
 If the user has internet connection, it's trivial to query
-[the releases page](https://github.com/derv82/wifit3/releases) to fectch the latest version,
+[the releases page](https://github.com/derv82/wifit4/releases) to fectch the latest version,
 compare with the current version, and show a Toast notification about the newest version,
 clicking Toast notification -> opens releases page.
 

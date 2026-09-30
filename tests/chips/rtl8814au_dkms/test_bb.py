@@ -4,9 +4,9 @@ The full byte-for-byte check vs the cold-boot capture is
 `scripts/chips/rtl8814au_dkms/verify_pcap.py`; this pins the walker's branch logic and
 the chip-param `driver1` that selects taken rows.
 """
-from wifit3.chips.rtl8814au_dkms import phy_cond
-from wifit3.chips.rtl8814au_dkms.bb_agc_tab_tbl import AGC_TAB
-from wifit3.chips.rtl8814au_dkms.bb_phy_reg_tbl import PHY_REG
+from wifit4.chips.rtl8814au_dkms import phy_cond
+from wifit4.chips.rtl8814au_dkms.bb_agc_tab_tbl import AGC_TAB
+from wifit4.chips.rtl8814au_dkms.bb_phy_reg_tbl import PHY_REG
 
 
 def _collect(table, driver1):

@@ -1,4 +1,4 @@
-from wifit3.models import AccessPoint, HandshakeMessage, Handshake
+from wifit4.models import AccessPoint, HandshakeMessage, Handshake
 
 
 def test_access_point_model_defaults():

@@ -10,10 +10,10 @@ reference) vs RF5370 (1T1R) vs RF5390/RF5392, distinguished only by EEPROM_CHIP_
 """
 from __future__ import annotations
 
-from wifit3.chips.rt5372 import chan
-from wifit3.chips.rt5372 import constants as C
-from wifit3.chips.rt5372.constants import RF5370, RF5372, RF5390, RF5392, RT5390, RT5392, ChipInfo
-from wifit3.chips.rt5372.eeprom import parse_eeprom, resolve_rf_chip
+from wifit4.chips.rt5372 import chan
+from wifit4.chips.rt5372 import constants as C
+from wifit4.chips.rt5372.constants import RF5370, RF5372, RF5390, RF5392, RT5390, RT5392, ChipInfo
+from wifit4.chips.rt5372.eeprom import parse_eeprom, resolve_rf_chip
 
 
 def _eeprom(chip_id: int = 0, nic_conf0: int = 0, nic_conf1: int = 0) -> bytes:

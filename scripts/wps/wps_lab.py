@@ -36,12 +36,12 @@ for _stream in (sys.stdout, sys.stderr):
 
 from wps_probe import discover_iface, find_ap, load_default_target, write_pcap
 
-from wifit3.campaigns.auth_assoc import (
+from wifit4.campaigns.auth_assoc import (
     Association, WlanTransport, random_client_mac, str_to_mac,
 )
-from wifit3.dot11.wsc.assoc_ie import WPS_REQ_REGISTRAR, wps_assoc_ie
-from wifit3.campaigns.wps.registrar import WpsRegistrar
-from wifit3.persist.config import Config
+from wifit4.dot11.wsc.assoc_ie import WPS_REQ_REGISTRAR, wps_assoc_ie
+from wifit4.campaigns.wps.registrar import WpsRegistrar
+from wifit4.persist.config import Config
 
 # Safety: the lab only targets the BSSID configured in driver_sources/wps_pin.txt (gitignored),
 # the user's own test router. No real BSSID is hardcoded here (it must not enter git).
@@ -313,7 +313,7 @@ async def mode_campaign(iface, array, tgt, args):
     import tempfile
     from types import SimpleNamespace
 
-    from wifit3.campaigns.pin import WpsCampaign, _state_path
+    from wifit4.campaigns.pin import WpsCampaign, _state_path
     bssid = tgt["bssid"]
     tmp = tempfile.mkdtemp(prefix="wpslab_")   # isolated state dir; don't touch captures/
     if args.fresh:

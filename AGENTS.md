@@ -11,7 +11,7 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## Porting Session Cheatsheet
 
-- **Porting code style**: When porting or working within `src/wifit3/chips/**/*`: `docs/porting/CODE-STYLE.md`.
+- **Porting code style**: When porting or working within `src/wifit4/chips/**/*`: `docs/porting/CODE-STYLE.md`.
 - **Porting / bringing up a chip?** Playbook: `docs/porting/METHODOLOGY.md` (or run `/port <chip>` in `.claude/skills/port`).
 - **Per-chipset port-reference docs**: each chip dir has a `<CHIP>.md`. Template + rules in `docs/porting/CHIP-DOC.md`.
 - **Within `chips/`, don't re-use code from another driver.** *Why:* a shared core meant a fix for one device forced re-testing every device and risked regressing the others.
@@ -27,7 +27,7 @@ This repo uses **`uv`** for env management. Always run Python via `uv run` (or `
 uv sync --group dev               # preferred; or: pip install -e ".[dev]"
 
 # Run
-uv run wifit3                     # or: uv run python -m wifit3
+uv run wifit4                     # or: uv run python -m wifit4
 
 # Tests
 uv run pytest                          # all tests
@@ -38,7 +38,7 @@ uv run pytest tests/wlan/test_parser.py::test_wlan_frame_parser_extracts_ssid
 uv run ruff check src/
 
 # Textual live dev (hot-reload)
-uv run textual run --dev src/wifit3/ui/app.py
+uv run textual run --dev src/wifit4/ui/app.py
 ```
 
 Tests require no hardware: all USB interactions are mocked via `pytest-mock`. `asyncio_mode = "auto"` is set globally, so async tests require no decorator.
@@ -47,7 +47,7 @@ Tests require no hardware: all USB interactions are mocked via `pytest-mock`. `a
 
 ## Architecture Overview
 
-Wifit3 is a userland 802.11 auditing tool. It communicates directly with USB wireless devices via **PyUSB**.
+wifit4 is a userland 802.11 auditing tool. It communicates directly with USB wireless devices via **PyUSB**.
 The TUI is built on **Textual**.
 
 ### Where things live
@@ -81,11 +81,11 @@ Not every chip uses every module; add modules as the chip's protocol needs them.
 
 Discovery is a `pkgutil` walk over `chips/*` that reads each package's light `__init__` (its VID:PID list) WITHOUT importing the driver; the matched driver is imported only on a hit. There is no manual registry to edit. To add a chip:
 
-1. Create `src/wifit3/chips/<name>/` with at minimum `__init__.py`, `driver.py`, `transport.py`, `constants.py` (+ `firmware.py` if the chip needs a FW upload).
+1. Create `src/wifit4/chips/<name>/` with at minimum `__init__.py`, `driver.py`, `transport.py`, `constants.py` (+ `firmware.py` if the chip needs a FW upload).
 2. `chips/<name>/__init__.py` declares the hardware, and must NOT import `driver.py` at module top:
-   - `SUPPORTED_IDS: list[DeviceID]` (`from wifit3.models import DeviceID`): every VID:PID this driver claims, with a human-readable description and any chip-id discriminator in `extras={}`.
+   - `SUPPORTED_IDS: list[DeviceID]` (`from wifit4.models import DeviceID`): every VID:PID this driver claims, with a human-readable description and any chip-id discriminator in `extras={}`.
    - `def import_driver()`: the one heavy import, lazy (`from .driver import <Class>; return <Class>`).
-3. `driver.py` must subclass the `Driver` ABC (`wifit3.chips.driver`); Python enforces the surface at instantiation:
+3. `driver.py` must subclass the `Driver` ABC (`wifit4.chips.driver`); Python enforces the surface at instantiation:
    - Class attr `SUPPORTED_CHANNELS: list[int]`: every channel the driver can tune to (consumed by `WlanInterface.start_hopping`). `SUPPORTED_IDS` lives in `__init__.py`, not on the class.
    - Classmethod `from_usb_device(cls, dev, id_entry) -> Driver`: driver-side construction (transport wrapping, chip_id reads from `extras`).
    - Runtime methods: `connect()`, `set_channel()`, `inject_frame()`, `close()`, plus the `register_rx_callback()` hook.

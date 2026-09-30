@@ -4,7 +4,7 @@ The full byte-for-byte check vs the cold-boot capture is
 `scripts/chips/rtl8814au_dkms/verify_pcap.py`; this pins the rate table, the pg/clamp
 math, the efuse diff unpacking, and the 0x1998 write format.
 """
-from wifit3.chips.rtl8814au_dkms import efuse, txpower
+from wifit4.chips.rtl8814au_dkms import efuse, txpower
 
 
 def test_rate_table_shape_and_order():

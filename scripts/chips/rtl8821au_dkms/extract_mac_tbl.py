@@ -15,7 +15,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 SRC = REPO / "driver_captures/captures_rtl8821au/driver-source/hal/phydm/rtl8821a/halhwimg8821a_mac.c"
-OUT = REPO / "src/wifit3/chips/rtl8821au_dkms/mac_reg_tbl.py"
+OUT = REPO / "src/wifit4/chips/rtl8821au_dkms/mac_reg_tbl.py"
 
 
 def main() -> int:

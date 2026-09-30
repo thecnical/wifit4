@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-_CORE = Path(__file__).resolve().parent.parent / "src" / "wifit3"
+_CORE = Path(__file__).resolve().parent.parent / "src" / "wifit4"
 _EMDASH = "—"
 
 

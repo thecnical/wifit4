@@ -6,11 +6,11 @@ registry. These are the picture assertions that used to live on WlanInterface, r
 
 import struct
 
-from wifit3.dot11.mac import str_to_mac
-from wifit3.dot11.wsc import messages as WSC
-from wifit3.models import IdKey, IdSource
-from wifit3.wlan.sink import WlanSink
-from wifit3.wlan.packet_stats import PACKET_CLASSES
+from wifit4.dot11.mac import str_to_mac
+from wifit4.dot11.wsc import messages as WSC
+from wifit4.models import IdKey, IdSource
+from wifit4.wlan.sink import WlanSink
+from wifit4.wlan.packet_stats import PACKET_CLASSES
 
 from tests.frames import pkt
 

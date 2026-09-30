@@ -6,9 +6,9 @@ associate() now waits for the Open-System Auth Resp (status 0), then sends Assoc
 falling back to sending it anyway if no matchable Auth Resp arrives.
 """
 import struct
-from wifit3.dot11.parser import WlanFrameParser
+from wifit4.dot11.parser import WlanFrameParser
 
-from wifit3.campaigns.auth_assoc import Association
+from wifit4.campaigns.auth_assoc import Association
 
 _BSSID = "34:21:09:00:01:ff"
 _BSSID_B = bytes.fromhex("3421090001ff")
@@ -132,7 +132,7 @@ def test_rx_cb_decodes_deauth_and_disassoc_reason():
 
 
 def test_assoc_req_rates_and_ht_caps_per_band():
-    from wifit3.dot11.auth_assoc import assoc_req
+    from wifit4.dot11.auth_assoc import assoc_req
     f_24 = assoc_req(_BSSID_B, _US, "Net", channel=6)
     # 2.4 GHz has DSSS basic rate 0x82 (1 Mbps) and extended rates tag 50
     assert b"\x82" in f_24
@@ -148,7 +148,7 @@ def test_assoc_req_rates_and_ht_caps_per_band():
 
 
 def test_assoc_req_dynamic_privacy():
-    from wifit3.dot11.auth_assoc import assoc_req
+    from wifit4.dot11.auth_assoc import assoc_req
     wps_trailer = b"\xdd\x08\x00\x50\xf2\x04\x00\x01\x00\x01"
     rsn_trailer = b"\x30\x14\x01\x00\x00\x0f\xac\x04\x01\x00\x00\x0f\xac\x04\x01\x00\x00\x0f\xac\x02\x00\x00"
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.chips.rtl8821au.rx import (
+from wifit4.chips.rtl8821au.rx import (
     RX_PKT_DESC_SZ,
     iter_bulk_frames,
     parse_rx_pkt_desc,

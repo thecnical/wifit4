@@ -3,7 +3,7 @@
 Locks the RX-BAR enable (init_hw_mlme_ext), the MSR NOLINK RMW, the monitor RCR value, and
 the single RXFLTMAP2 open. These vendor ops are byte-diffed against the wire by verify_pcap.
 """
-from wifit3.chips.rtl8188eus_dkms import monitor
+from wifit4.chips.rtl8188eus_dkms import monitor
 
 
 class Tx:

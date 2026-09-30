@@ -4,9 +4,9 @@ The autouse _captures_to_tmp fixture points Config.captures_dir at tmp_path, and
 import pytest
 from textual.widgets import Button, DataTable
 
-from wifit3.ui.app import WifiteApp
-from wifit3.ui.screens.vault_drawer import VaultDrawer
-from wifit3.ui.screens.vault_item import ConfirmModal, _CapturePanel
+from wifit4.ui.app import WifiteApp
+from wifit4.ui.screens.vault_drawer import VaultDrawer
+from wifit4.ui.screens.vault_item import ConfirmModal, _CapturePanel
 
 _HS_LINE = "WPA*02*" + "0" * 32 + "*aabbccddeeff*112233445566*5465737431***2\n"
 _PMKID_LINE = "WPA*01*" + "0" * 32 + "*aabbccddeeff*112233445566*5465737431***\n"
@@ -51,7 +51,7 @@ async def test_delete_in_panel_confirms_and_removes(tmp_path):
 @pytest.mark.usefixtures("no_usb_devices")
 async def test_toast_on_job_completion(tmp_path):
     from unittest.mock import patch
-    from wifit3.models.jobs import JobState, ToolStatus
+    from wifit4.models.jobs import JobState, ToolStatus
 
     def make(status, msg):
         return JobState(job_id="j1", tool_name="hashcat", capture_path="x",

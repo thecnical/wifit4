@@ -34,9 +34,9 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8822cu import watchdog
-from wifit3.chips.rtl8822cu.driver import RTL8822CUDriver, _DEFAULT_CHANNEL
-from wifit3.chips.rtl8822cu.phy import switch_channel
+from wifit4.chips.rtl8822cu import watchdog
+from wifit4.chips.rtl8822cu.driver import RTL8822CUDriver, _DEFAULT_CHANNEL
+from wifit4.chips.rtl8822cu.phy import switch_channel
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl88x2cu"
 

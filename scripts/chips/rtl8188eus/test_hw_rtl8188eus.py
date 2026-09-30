@@ -46,7 +46,7 @@ import libusb_package
 import usb.core
 import usb.util
 
-from wifit3.chips.rtl8188eus.constants import (
+from wifit4.chips.rtl8188eus.constants import (
     CR_INIT_POWER_ON,
     CR_MAC_RX_ENABLE,
     CR_MAC_TX_ENABLE,
@@ -59,38 +59,38 @@ from wifit3.chips.rtl8188eus.constants import (
     TOTAL_PAGE_NUM_8188E,
     TRXFF_BOUNDARY_8188E,
 )
-from wifit3.chips.rtl8188eus.firmware import (
+from wifit4.chips.rtl8188eus.firmware import (
     download_firmware,
     load_firmware_blob,
     start_firmware,
 )
-from wifit3.chips.rtl8188eus.chan import read_rfreg, set_channel_2g_20mhz
-from wifit3.chips.rtl8188eus.efuse import EfuseDefaults, read_and_parse, read_efuse_map
-from wifit3.chips.rtl8188eus.constants import (
+from wifit4.chips.rtl8188eus.chan import read_rfreg, set_channel_2g_20mhz
+from wifit4.chips.rtl8188eus.efuse import EfuseDefaults, read_and_parse, read_efuse_map
+from wifit4.chips.rtl8188eus.constants import (
     MODE_AG_BW_20MHZ_8723B,
     MODE_AG_BW_MASK,
     MODE_AG_CHANNEL_MASK,
     RF6052_REG_MODE_AG,
 )
-from wifit3.chips.rtl8188eus.mac import enable_rx_data_path, is_chip_warm, post_fw_mac_init
-from wifit3.chips.rtl8188eus.phy import RF_A, enable_cck_ofdm_block, enable_rf, post_mac_init_phy
-from wifit3.chips.rtl8188eus.rx import (
+from wifit4.chips.rtl8188eus.mac import enable_rx_data_path, is_chip_warm, post_fw_mac_init
+from wifit4.chips.rtl8188eus.phy import RF_A, enable_cck_ofdm_block, enable_rf, post_mac_init_phy
+from wifit4.chips.rtl8188eus.rx import (
     iter_bulk_frames,
     probe_endpoints,
     read_rx_burst,
 )
-from wifit3.chips.rtl8188eus.tx import (
+from wifit4.chips.rtl8188eus.tx import (
     build_deauth,
     pick_bulk_out_mgmt,
     send_mgmt_frame,
 )
-from wifit3.dot11.parser import WlanFrameParser
-from wifit3.chips.rtl8188eus.phy_tables import (
+from wifit4.dot11.parser import WlanFrameParser
+from wifit4.chips.rtl8188eus.phy_tables import (
     AGC_TABLE_8188E,
     PHY_INIT_TABLE_8188E,
     RADIO_A_INIT_TABLE_8188E,
 )
-from wifit3.chips.rtl8188eus.transport import RTL8188EUSTransport
+from wifit4.chips.rtl8188eus.transport import RTL8188EUSTransport
 
 USB_VID_TPLINK = 0x2357
 USB_PID_TL_WN722N_V2 = 0x010C
@@ -163,7 +163,7 @@ def phase_open(transport: RTL8188EUSTransport) -> None:
 
 
 def phase_power(transport: RTL8188EUSTransport) -> None:
-    from wifit3.chips.rtl8188eus.driver import RTL8188EUSDriver
+    from wifit4.chips.rtl8188eus.driver import RTL8188EUSDriver
     step("rtl8188eu_power_on (disabled->emu->active + REG_CR init)")
     # We don't have a full driver instance here, so call the helper bits
     # by hand. driver._power_on is a private method but the kernel path
@@ -565,10 +565,10 @@ def phase_warm(transport: RTL8188EUSTransport) -> None:
     print(f"  REG_CR        = 0x{cr:04x}      (MAC_TX_ENABLE bit 6 = {bool(cr & CR_MAC_TX_ENABLE)}, MAC_RX_ENABLE bit 7 = {bool(cr & CR_MAC_RX_ENABLE)})")
     print(f"  is_chip_warm() = {warm}")
     if warm:
-        ok("Chip is WARM — a previous wifit3 session left FW running + MAC enabled.")
+        ok("Chip is WARM — a previous wifit4 session left FW running + MAC enabled.")
         print("  → driver.connect() will skip FW upload + MAC/PHY init + channel set + enable_rf.")
     else:
-        ok("Chip is COLD — no prior wifit3 state detected. Full bring-up needed.")
+        ok("Chip is COLD — no prior wifit4 state detected. Full bring-up needed.")
         print("  → Run --phase all first, then re-run --phase warm to verify warm path.")
 
 
@@ -633,7 +633,7 @@ def main() -> int:
             phase_warm(transport)
         if args.phase == "efuse":
             # EFUSE needs FW running — run the FW-upload chain first if cold.
-            from wifit3.chips.rtl8188eus.mac import is_chip_warm as _ic_warm
+            from wifit4.chips.rtl8188eus.mac import is_chip_warm as _ic_warm
             if not _ic_warm(transport):
                 phase_power(transport)
                 phase_fw(transport, args.debug)

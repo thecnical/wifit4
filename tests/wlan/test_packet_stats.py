@@ -1,7 +1,7 @@
 """Tests for the Focus live-packet-dashboard counters (pure PacketStats tally). The RX/TX wiring
 now lives in WlanSink (see test_sink.py: update() records RX, record_tx() classifies TX)."""
 
-from wifit3.wlan.packet_stats import PACKET_CLASSES, PacketStats
+from wifit4.wlan.packet_stats import PACKET_CLASSES, PacketStats
 
 BSSID = "00:11:22:33:44:55"
 

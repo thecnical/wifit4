@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from wifit3.dot11.packet import Packet
+    from wifit4.dot11.packet import Packet
 
 _DATA = Path(__file__).resolve().parent.parent.parent / "driver_sources"
 _REF_FILE = _DATA / "reference_aps.txt"
@@ -34,7 +34,7 @@ class Health:
 
     def __init__(self, chip: str, source: str) -> None:
         self.chip = chip
-        self.source = source  # "wifit3" | "linux"
+        self.source = source  # "wifit4" | "linux"
         # channel -> bssid -> {beacons, rssi[list], secs{sec:count}, adv_channel}
         self._ch: dict[int, dict[str, dict]] = {}
         self._t0: dict[int, float] = {}

@@ -6,7 +6,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "src"))
-from wifit3.chips.rtl8822cu.txpwr_tables import ARRAY_MP_8822C_PHY_REG_PG  # noqa: E402
+from wifit4.chips.rtl8822cu.txpwr_tables import ARRAY_MP_8822C_PHY_REG_PG  # noqa: E402
 
 SRC = REPO / "driver_captures/captures_rtl88x2cu/driver-source/hal/phydm/rtl8822c/halhwimg8822c_bb.c"
 text = SRC.read_text(errors="replace")

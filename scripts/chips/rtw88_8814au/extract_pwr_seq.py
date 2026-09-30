@@ -2,11 +2,11 @@
 
 Parses `driver_sources/rtw88-source-v6.18/rtw8814a_table.c` (the 8814a pwr_seq
 trans tables live in the *table* file, not rtw8814a.c) and emits Python tuples
-matching `wifit3.chips.rtw88_base.power_seq` conventions:
+matching `wifit4.chips.rtw88_base.power_seq` conventions:
 
     (offset, cut_mask, intf_mask, base, cmd, mask, value)
 
-Writes to `src/wifit3/chips/rtw88_8814au/assets/pwr_seq.py`. Re-run whenever
+Writes to `src/wifit4/chips/rtw88_8814au/assets/pwr_seq.py`. Re-run whenever
 the upstream kernel driver changes.
 """
 

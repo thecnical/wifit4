@@ -1,8 +1,8 @@
 """RTL8822BU DKMS EFUSE decode: synthetic maps, no hardware."""
 from unittest.mock import MagicMock
 
-from wifit3.chips.rtl8822bu_dkms import efuse as efuse_mod
-from wifit3.chips.rtl8822bu_dkms.constants import (
+from wifit4.chips.rtl8822bu_dkms import efuse as efuse_mod
+from wifit4.chips.rtl8822bu_dkms.constants import (
     BIT_AUTOLOAD_SUS,
     EEPROM_2G_5G_PA_TYPE,
     EEPROM_2G_LNA_TYPE_GAIN_SEL_AB,

@@ -39,7 +39,7 @@ from pathlib import Path
 _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE.parent.parent / "src"))
 
-from wifit3.device.manager import devices
+from wifit4.device.manager import devices
 
 SOAK = _HERE / "soak.py"
 REPORTS_DIR = _HERE / "reports"

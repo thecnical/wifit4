@@ -2,8 +2,8 @@
 ath9k_htc init issues (sampled from the cold-boot capture)."""
 import struct
 
-from wifit3.chips.ar9271_v2 import wmi as W
-from wifit3.chips.ar9271_v2.transport import AR9271Transport
+from wifit4.chips.ar9271_v2 import wmi as W
+from wifit4.chips.ar9271_v2.transport import AR9271Transport
 
 
 class FakeDev:

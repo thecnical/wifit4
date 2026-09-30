@@ -11,8 +11,8 @@ from textual.app import App
 from textual.screen import Screen
 from textual.widgets import Label
 
-from wifit3.ui.screens.scanner import ScannerView
-from wifit3.models import AccessPoint
+from wifit4.ui.screens.scanner import ScannerView
+from wifit4.models import AccessPoint
 
 
 class _Overlay(Screen):

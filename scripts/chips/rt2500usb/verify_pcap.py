@@ -16,7 +16,7 @@ BBP/RF paths, the single-writes) replays with zero reimplementation.
 
 We do not run airmon-ng / airodump-ng / iw / aireplay-ng against the port; the chip
 only sees register writes, so the *kernel-driver* writes those tools trigger are
-ours to reproduce. wifit3 is the trigger: connect() stands in for the probe + airmon
+ours to reproduce. wifit4 is the trigger: connect() stands in for the probe + airmon
 monitor entry, the channel hopper for airodump/iw (per-hop tune_hop). rt2500usb has
 no periodic link_tuner, so there is no ~1 Hz async writer to dispatch.
 
@@ -34,8 +34,8 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rt2x00_pcap_replay as rp
-from wifit3.chips.rt2500usb import bbp, chan, mac, monitor
-from wifit3.chips.rt2500usb.constants import (
+from wifit4.chips.rt2500usb import bbp, chan, mac, monitor
+from wifit4.chips.rt2500usb.constants import (
     EEPROM_ANTENNA,
     EEPROM_ANTENNA_RF_TYPE,
     MAC_CSR0,
@@ -47,8 +47,8 @@ from wifit3.chips.rt2500usb.constants import (
     USB_EEPROM_READ,
     USB_MODE_TEST,
 )
-from wifit3.chips.rt2500usb.chan import RF_VALS_2525E, RF2525E_HALFBAND
-from wifit3.chips.rt2500usb.transport import RT2500USBTransport, get_field16
+from wifit4.chips.rt2500usb.chan import RF_VALS_2525E, RF2525E_HALFBAND
+from wifit4.chips.rt2500usb.transport import RT2500USBTransport, get_field16
 
 CAP_DIR = REPO / "driver_captures" / "captures_rt2500usb_2"
 

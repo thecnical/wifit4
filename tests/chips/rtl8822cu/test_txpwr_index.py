@@ -10,17 +10,17 @@ Nothing here reads a capture, a dump file, the MAC or the VID/PID.
 """
 import pytest
 
-from wifit3.chips.rtl8822cu import txpwr_index
-from wifit3.chips.rtl8822cu.constants import (
+from wifit4.chips.rtl8822cu import txpwr_index
+from wifit4.chips.rtl8822cu.constants import (
     DIS_DPD_RATE_ALL,
     DIS_DPD_RATE_NONE,
     HAL_SPEC_PG_TXGI_DIFF_FACTOR,
     HAL_SPEC_TXGI_MAX,
     HAL_SPEC_TXGI_PDBM,
 )
-from wifit3.chips.rtl8822cu.efuse import EfuseInfo, hal_rfpath_init
-from wifit3.chips.rtl8822cu.txpower import BAND_ON_2_4G, BAND_ON_5G
-from wifit3.chips.rtl8822cu.txpwr_index import (
+from wifit4.chips.rtl8822cu.efuse import EfuseInfo, hal_rfpath_init
+from wifit4.chips.rtl8822cu.txpower import BAND_ON_2_4G, BAND_ON_5G
+from wifit4.chips.rtl8822cu.txpwr_index import (
     CHANNEL_WIDTH_20,
     CHANNEL_WIDTH_40,
     CHANNEL_WIDTH_80,
@@ -35,7 +35,7 @@ from wifit3.chips.rtl8822cu.txpwr_index import (
     rate_idx_to_rs,
     txpwr_idx_state,
 )
-from wifit3.chips.rtl8822cu.txpwr_tables import CCK, HT_1SS, HT_2SS, OFDM, VHT_1SS, VHT_2SS
+from wifit4.chips.rtl8822cu.txpwr_tables import CCK, HT_1SS, HT_2SS, OFDM, VHT_1SS, VHT_2SS
 
 from .recorded_txagc import (
     BYRATE_OFFSET,
@@ -177,7 +177,7 @@ def test_a_tssi_unit_yields_no_state_at_all():
 
 
 def test_an_unburned_efuse_logs_and_still_computes(caplog):
-    """An all 0xFF map cannot TX, but wifit3 keeps it for RX, so nothing may raise. The PG region
+    """An all 0xFF map cannot TX, but wifit4 keeps it for RX, so nothing may raise. The PG region
     falls through to rtl8822c_pg_txpwr_def_info, whose bases are all 0x33."""
     blank = EfuseInfo(True, False, b"\xff" * 768, b"\xff" * 512)
     with caplog.at_level("ERROR"):

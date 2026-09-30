@@ -56,8 +56,8 @@ def extract_and_compact():
     first_5g = next(ch for ch in channels if ch >= 36)
     base_5g = all_seqs[first_5g]
 
-    output_path = "src/wifit3/chips/rt5572/assets/rt5572_tuning.py"
-    Path("src/wifit3/chips/rt5572/assets").mkdir(parents=True, exist_ok=True)
+    output_path = "src/wifit4/chips/rt5572/assets/rt5572_tuning.py"
+    Path("src/wifit4/chips/rt5572/assets").mkdir(parents=True, exist_ok=True)
     
     with open(output_path, 'w') as f:
         f.write("# RT5572 Tuning Sequences (Super-Compacted, Hex Strings)\n\n")

@@ -4,14 +4,14 @@ software seq-stamp + global retry routing. No hardware — synthetic frames + a 
 import struct
 from unittest.mock import MagicMock
 
-from wifit3.chips.mt76x0u.constants import (
+from wifit4.chips.mt76x0u.constants import (
     MT_RX_FILTR_CFG,
     MT_RX_FILTR_CFG_ACK,
     MT_TX_RETRY_CFG,
     MT_TXWI_ACK_CTL_REQ,
 )
-from wifit3.chips.mt76x0u.mac import init_mac_registers
-from wifit3.chips.mt76x0u.driver import MT76x0UDriver
+from wifit4.chips.mt76x0u.mac import init_mac_registers
+from wifit4.chips.mt76x0u.driver import MT76x0UDriver
 
 _RXFILT_BASE = 0x00017B97   # monitor RX filter with the ACK-admit bit already clear
 

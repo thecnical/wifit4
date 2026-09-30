@@ -33,8 +33,8 @@ from typing import Optional
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from wifit3.chips.rtl8821cu_dkms.rf import read_rf
-from wifit3.device.manager import wlan_iface, devices
+from wifit4.chips.rtl8821cu_dkms.rf import read_rf
+from wifit4.device.manager import wlan_iface, devices
 
 _CHIPSET = "RTL8821CU"
 _RF18_5G_BIT = 1 << 16

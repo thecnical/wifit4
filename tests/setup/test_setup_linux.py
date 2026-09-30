@@ -8,9 +8,9 @@ from dataclasses import replace
 
 import pytest
 
-import wifit3.setup.linux as lin
-from wifit3.models import DeviceID
-from wifit3.setup import SetupTarget
+import wifit4.setup.linux as lin
+from wifit4.models import DeviceID
+from wifit4.setup import SetupTarget
 
 _DEV = DeviceID(0x0BDA, 0x8813, "RTL8814AU (Alfa AWUS1900)", bus=1, address=5)
 
@@ -143,7 +143,7 @@ async def test_uninstall_nothing_installed(monkeypatch):
     monkeypatch.setattr(lin, "target_for_vidpid", lambda v, p: _target())
     monkeypatch.setattr(lin, "plan_uninstall", lambda t: _Plan(removable=False))
     res = await lin.SetupLinux().uninstall(_DEV, FakePrompter())
-    assert res.ok and "No wifit3 rules" in res.message
+    assert res.ok and "No wifit4 rules" in res.message
 
 
 async def test_uninstall_cancelled(monkeypatch):

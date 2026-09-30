@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import struct
 
-from wifit3.chips.rtw88_base.registers import (
+from wifit4.chips.rtw88_base.registers import (
     DESC_RATE1M,
     DESC_RATE6M,
     TX_DESC_QSEL_MGMT,
 )
-from wifit3.chips.rtw88_8814au.tx import build_deauth_frame, build_tx_desc_mgmt
+from wifit4.chips.rtw88_8814au.tx import build_deauth_frame, build_tx_desc_mgmt
 
 _AP = bytes.fromhex("aabbccddee01")
 _CLIENT = bytes.fromhex("b2c3d4e5f607")

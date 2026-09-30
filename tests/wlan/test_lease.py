@@ -1,5 +1,5 @@
 """Unit tests for the interface Lease: config on enter, restore on exit."""
-from wifit3.wlan.lease import Lease, SPOOFABLE
+from wifit4.wlan.lease import Lease, SPOOFABLE
 
 
 class FakeIface:

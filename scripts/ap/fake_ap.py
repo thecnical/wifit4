@@ -28,15 +28,15 @@ except Exception:                                                 # noqa: BLE001
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "src"))
 
-from wifit3.device.manager import wlan_ifaces
-from wifit3.chips.driver import FakeMacSupport
-from wifit3.dot11 import build_deauth
-from wifit3.dot11.ap import beacon_clone, auth_resp, assoc_resp, eapol_m1
-from wifit3.dot11.probe import probe_resp
-from wifit3.dot11.csa import build_csa_beacon
-from wifit3.dot11.ie import ssid_ie, rates_ie, ext_rates_ie, ds_param_ie, GENERIC_RSN_IE
-from wifit3.models import Handshake, HandshakeMessage
-from wifit3.crack.hc22000_format import eapol_hashlines
+from wifit4.device.manager import wlan_ifaces
+from wifit4.chips.driver import FakeMacSupport
+from wifit4.dot11 import build_deauth
+from wifit4.dot11.ap import beacon_clone, auth_resp, assoc_resp, eapol_m1
+from wifit4.dot11.probe import probe_resp
+from wifit4.dot11.csa import build_csa_beacon
+from wifit4.dot11.ie import ssid_ie, rates_ie, ext_rates_ie, ds_param_ie, GENERIC_RSN_IE
+from wifit4.models import Handshake, HandshakeMessage
+from wifit4.crack.hc22000_format import eapol_hashlines
 
 _BCAST = b"\xff\xff\xff\xff\xff\xff"
 _BEACON_INTERVAL_TU = 100

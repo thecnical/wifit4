@@ -5,8 +5,8 @@ from types import SimpleNamespace
 
 from textual.app import App
 
-from wifit3.chips.driver import FakeMacSupport
-from wifit3.ui.screens.focus_v2.tx_picker import TxDevicePicker, build_rows
+from wifit4.chips.driver import FakeMacSupport
+from wifit4.ui.screens.focus_v2.tx_picker import TxDevicePicker, build_rows
 
 
 def _iface(name, channels, fake_mac=FakeMacSupport.SPOOFABLE):

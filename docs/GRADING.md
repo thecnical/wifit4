@@ -5,7 +5,7 @@ notes, the matrix. This doc is the **process** behind it: the columns, the grade
 checklist, and the metric definitions. Not auto-loaded; open when running a verification pass or
 editing `SUPPORTED-HARDWARE.md`.
 
-The tooling lives in `scripts/baseline/` (`baseline_linux.py`, `baseline_wifit3.py`, `baseline_diff.py`);
+The tooling lives in `scripts/baseline/` (`baseline_linux.py`, `baseline_wifit4.py`, `baseline_diff.py`);
 `scripts/baseline/BASELINING.md` documents those scripts. This doc is the layer above them: what we
 measure, how we score it, how we fill a card's subsection.
 
@@ -13,7 +13,7 @@ measure, how we score it, how we fill a card's subsection.
 
 A card can be bad for two unrelated reasons, and the table must say which:
 
-- **Port fidelity** — wifit3 vs the Linux kernel driver *on the same card*. A gap here is our port
+- **Port fidelity** — wifit4 vs the Linux kernel driver *on the same card*. A gap here is our port
   leaving performance on the table (fixable). This is the **Port** column.
 - **Hardware ceiling** — how good the card is at all, even under the best (Linux) driver, vs the
   field. If Linux itself is weak on this silicon, no port can save it. This feeds the **Grade**.
@@ -58,9 +58,9 @@ top-level matrix is *not* touched until every card is done.
 1. **Linux baseline first** (card bound to its kernel driver). Verify the bound driver matches the one
    we ported from (`modinfo` / the source bundle in `driver_captures/`), else the comparison is
    apples-to-oranges. Run `baseline_linux.py --capture` over the card's channels.
-2. **Replug into wifit3-ready state** (install rules, then *physically replug*: stale warm state
-   carries over otherwise), confirm beacons. Run `baseline_wifit3.py` over the **same** channels.
-3. **Compare** — `baseline_diff.py --diff wifit3-<slug>.json linux-<slug>.json` → the **Port %** and
+2. **Replug into wifit4-ready state** (install rules, then *physically replug*: stale warm state
+   carries over otherwise), confirm beacons. Run `baseline_wifit4.py` over the **same** channels.
+3. **Compare** — `baseline_diff.py --diff wifit4-<slug>.json linux-<slug>.json` → the **Port %** and
    the RX numbers (beacon rate, breadth, channel tune, RSSI).
 4. **TX attacks** (user runs live TX): Deauth, PMKID, WPS PBC, WEP (2.4 GHz). On 5 GHz: Deauth,
    PMKID, WPS PBC (WEP skipped: no 5 GHz WEP target). Record sustained IVs/s from the WEP crack.
@@ -70,7 +70,7 @@ top-level matrix is *not* touched until every card is done.
 
 **Channels.** Sweep the same list on both sides. Under the US regulatory domain the Linux monitor
 capture can't tune 2.4 GHz ch12–13 (kernel-disabled), so the comparable set is **ch1–11 + 5 GHz
-non-DFS**. wifit3's userland tuning *can* reach 12–13, but they're excluded for parity and carry no
+non-DFS**. wifit4's userland tuning *can* reach 12–13, but they're excluded for parity and carry no
 real-world APs in a US environment.
 
 ## Metric definitions
@@ -87,11 +87,11 @@ real-world APs in a US environment.
 
 ## DKMS vs mainline
 
-Some Realtek cards ship both a DKMS-source port and a mainline port (`WIFIT3_<CHIP>=mainline` opts
+Some Realtek cards ship both a DKMS-source port and a mainline port (`wifit4_<CHIP>=mainline` opts
 into the non-default). Two distinct comparisons:
 
-- **Justify the default** — wifit3-dkms vs wifit3-mainline, both userland, no kernel driver needed.
-- **True Port %** — wifit3-<variant> vs the Linux **same** driver; needs that kernel driver installed
+- **Justify the default** — wifit4-dkms vs wifit4-mainline, both userland, no kernel driver needed.
+- **True Port %** — wifit4-<variant> vs the Linux **same** driver; needs that kernel driver installed
   (in-tree Ralink is already present; out-of-tree Realtek DKMS drivers must be installed: source
   versions are in `driver_captures/driver-sources/`). Where the matching driver isn't installed, note
   `Port` as measured against mainline instead: a cross-driver number, not true fidelity.

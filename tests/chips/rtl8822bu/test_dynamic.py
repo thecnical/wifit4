@@ -8,7 +8,7 @@ transport stands in for USB — no hardware.
 """
 from __future__ import annotations
 
-from wifit3.chips.rtl8822bu import dynamic
+from wifit4.chips.rtl8822bu import dynamic
 
 
 class FakeTransport:

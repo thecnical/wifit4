@@ -5,7 +5,7 @@ ACKs, so ``_enable_rx_acks`` is a documented no-op; the tally + arming live on t
 (``record_ack`` / ``enable_rx_acks`` / ``acks_seen``)."""
 from unittest.mock import MagicMock
 
-import wifit3.chips.rt5370.driver as drv
+import wifit4.chips.rt5370.driver as drv
 
 
 def _ack_mpdu(ra: bytes) -> bytes:

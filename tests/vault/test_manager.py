@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from wifit3.vault.manager import JobManager
-from wifit3.models.jobs import ToolCapability, ToolStatus, ToolResult
-from wifit3.models import PersistedCapture
+from wifit4.vault.manager import JobManager
+from wifit4.models.jobs import ToolCapability, ToolStatus, ToolResult
+from wifit4.models import PersistedCapture
 
 class DummyTool:
     def __init__(self, name="dummy", capabilities=ToolCapability.NONE):
@@ -26,15 +26,15 @@ class DummyTool:
 def manager(mocker):
     vault = MagicMock()
     # Mock save to avoid writing to disk
-    mocker.patch("wifit3.vault.manager.JobManager._save")
-    mocker.patch("wifit3.vault.manager.JobManager._load")
+    mocker.patch("wifit4.vault.manager.JobManager._save")
+    mocker.patch("wifit4.vault.manager.JobManager._load")
 
     mgr = JobManager(vault)
     mgr.tools["dummy"] = DummyTool()
     return mgr
 
 def test_job_lifecycle(manager):
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     cap = PersistedCapture(type=CaptureType.HS, timestamp=0, path="test.pcap", bssid="00:11:22:33:44:55")
     manager.vault.all_captures.return_value = [cap]
     
@@ -58,8 +58,8 @@ def test_job_lifecycle(manager):
 
 
 def test_crack_success_persists_key(manager, tmp_path, monkeypatch):
-    from wifit3.models.access_point import CaptureType
-    from wifit3.persist.config import Config
+    from wifit4.models.access_point import CaptureType
+    from wifit4.persist.config import Config
     monkeypatch.setattr(Config, "captures_dir", str(tmp_path))
     cap = PersistedCapture(type=CaptureType.HS, timestamp=0, path="test.pcap",
                            bssid="00:11:22:33:44:55", ssid="TestNet")
@@ -80,8 +80,8 @@ def test_crack_success_persists_key(manager, tmp_path, monkeypatch):
 
 
 def test_crack_success_writes_real_essid(manager, tmp_path, monkeypatch):
-    from wifit3.models.access_point import CaptureType
-    from wifit3.persist.config import Config
+    from wifit4.models.access_point import CaptureType
+    from wifit4.persist.config import Config
     monkeypatch.setattr(Config, "captures_dir", str(tmp_path))
     # The hashline essid ("Cafe WiFi") is the lossless SSID, vs the sanitized filename name.
     cap_file = tmp_path / "Cafe_WiFi_00-11-22-33-44-55.hc22000"
@@ -104,7 +104,7 @@ def test_crack_success_writes_real_essid(manager, tmp_path, monkeypatch):
 
 
 def test_reconcile_resolves_dead_running_job(manager):
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     cap = PersistedCapture(type=CaptureType.HS, timestamp=0, path="test.pcap", bssid="00:11:22:33:44:55")
     manager.vault.all_captures.return_value = [cap]
 
@@ -121,7 +121,7 @@ def test_reconcile_resolves_dead_running_job(manager):
 
 def test_reconcile_adopts_live_running_job(manager):
     """A process still alive at startup (tool reports RUNNING) is kept RUNNING, not resolved."""
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     cap = PersistedCapture(type=CaptureType.HS, timestamp=0, path="test.pcap", bssid="00:11:22:33:44:55")
     manager.vault.all_captures.return_value = [cap]
 
@@ -135,7 +135,7 @@ def test_reconcile_adopts_live_running_job(manager):
 
 def test_reconcile_isolates_a_failing_job(manager):
     """One job whose poll_status raises is marked ERROR without aborting the loop."""
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     cap = PersistedCapture(type=CaptureType.HS, timestamp=0, path="test.pcap", bssid="00:11:22:33:44:55")
     manager.vault.all_captures.return_value = [cap]
     job_id = manager.submit_job("dummy", cap, {})
@@ -148,7 +148,7 @@ def test_reconcile_isolates_a_failing_job(manager):
 
 
 def test_singleton_tool_runs_one_at_a_time(manager):
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     manager.tools["dummy"].capabilities = ToolCapability.SINGLETON
     cap1 = PersistedCapture(type=CaptureType.HS, timestamp=0, path="a.pcap", bssid="00:11:22:33:44:55")
     cap2 = PersistedCapture(type=CaptureType.HS, timestamp=0, path="b.pcap", bssid="00:11:22:33:44:66")
@@ -163,7 +163,7 @@ def test_singleton_tool_runs_one_at_a_time(manager):
 
 
 def test_non_singleton_tool_allows_concurrent_jobs(manager):
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     cap1 = PersistedCapture(type=CaptureType.HS, timestamp=0, path="a.pcap", bssid="00:11:22:33:44:55")
     cap2 = PersistedCapture(type=CaptureType.HS, timestamp=0, path="b.pcap", bssid="00:11:22:33:44:66")
     manager.vault.all_captures.return_value = [cap1, cap2]
@@ -177,7 +177,7 @@ def test_non_singleton_tool_allows_concurrent_jobs(manager):
 
 
 def test_kill_all_running_respects_killable(manager):
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     killable = DummyTool(name="killable", capabilities=ToolCapability.KILLABLE)
     headless = DummyTool(name="headless", capabilities=ToolCapability.NONE)
     manager.tools["killable"] = killable
@@ -198,7 +198,7 @@ def test_kill_all_running_respects_killable(manager):
 def test_kill_all_running_leaves_adoptable_alive(manager):
     """An ADOPTABLE tool (e.g. hashcat) is left running on shutdown so its job survives to be
     adopted on the next launch."""
-    from wifit3.models.access_point import CaptureType
+    from wifit4.models.access_point import CaptureType
     adoptable = DummyTool(name="adoptable",
                           capabilities=ToolCapability.KILLABLE | ToolCapability.ADOPTABLE)
     manager.tools["adoptable"] = adoptable
@@ -214,7 +214,7 @@ def test_kill_all_running_leaves_adoptable_alive(manager):
 
 def test_load_skips_bad_entry_keeps_good(tmp_path, monkeypatch):
     import json
-    from wifit3.persist.config import Config
+    from wifit4.persist.config import Config
     monkeypatch.setattr(Config, "captures_dir", str(tmp_path))
     good = {"job_id": "g", "tool_name": "hashcat", "capture_path": "x.hc22000",
             "status": "RUNNING", "progress_msg": "..."}

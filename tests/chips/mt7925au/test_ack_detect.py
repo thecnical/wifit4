@@ -9,7 +9,7 @@ before the parser drops the ACK control frame; the tally and arming live on the 
 import struct
 from unittest.mock import AsyncMock, MagicMock
 
-from wifit3.chips.mt7925au.driver import MT7925AUDriver
+from wifit4.chips.mt7925au.driver import MT7925AUDriver
 
 
 def _ack_rx(ra: bytes) -> bytes:

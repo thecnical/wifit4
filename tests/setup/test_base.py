@@ -1,8 +1,8 @@
 """The Setup contract: NoSetup's no-ops and for_platform's dispatch."""
 import sys
 
-from wifit3.models import DeviceID
-from wifit3.setup.base import NoSetup, Setup, SetupResult
+from wifit4.models import DeviceID
+from wifit4.setup.base import NoSetup, Setup, SetupResult
 
 
 class _FakePrompter:
@@ -33,7 +33,7 @@ async def test_nosetup_uninstall_reports_ok():
 
 
 def test_for_platform_macos(monkeypatch):
-    from wifit3.setup.macos import SetupMacOS
+    from wifit4.setup.macos import SetupMacOS
     monkeypatch.setattr(sys, "platform", "darwin")
     assert isinstance(Setup.for_platform(), SetupMacOS)
 

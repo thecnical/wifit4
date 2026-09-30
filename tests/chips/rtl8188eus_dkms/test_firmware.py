@@ -4,8 +4,8 @@ Locks the FW-blob identity and the block-write splitting so a refactor can't dri
 from the cold-boot wire. The full USB-replay verification (byte-for-byte against the
 capture) lives in ``scripts/chips/rtl8188eus_dkms/verify_pcap.py``.
 """
-from wifit3.chips.rtl8188eus_dkms import firmware
-from wifit3.chips.rtl8188eus_dkms.constants import (
+from wifit4.chips.rtl8188eus_dkms import firmware
+from wifit4.chips.rtl8188eus_dkms.constants import (
     FW_8188E_START_ADDRESS,
     MAX_REG_BLOCK_SIZE,
 )

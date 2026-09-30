@@ -1,0 +1,16 @@
+[package]
+name    = "wifit4_core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name    = "wifit4_core"
+crate-type = ["cdylib"]   # PyO3 requires cdylib
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module"] }
+
+[profile.release]
+lto       = true
+opt-level = 3
+codegen-units = 1

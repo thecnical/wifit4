@@ -44,8 +44,8 @@ jobs:
       - name: Import smoke (UI + every driver registers)
         run: |
           uv run python - <<'PY'
-          from wifit3.ui.app import WifiteApp  # noqa: F401  -- UI + textual import path
-          from wifit3.device.manager import supported_ids
+          from wifit4.ui.app import WifiteApp  # noqa: F401  -- UI + textual import path
+          from wifit4.device.manager import supported_ids
           classes = {import_driver() for (_entry, _key, import_driver) in supported_ids().values()}
           print(f"{len(classes)} driver classes import cleanly across {len(supported_ids())} VID:PIDs")
           assert len(classes) >= 10, f"driver registry looks broken: {len(classes)}"

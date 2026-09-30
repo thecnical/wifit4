@@ -3,8 +3,8 @@
 No pcap to diff against (the capture's only TX is aireplay-ng's), so these assert the HALMAC field
 offsets + the XOR-16 checksum invariant directly — the strongest available offline guarantee.
 """
-from wifit3.chips.rtl8822bu_dkms.constants import DESC_RATE6M, RATEID_IDX_B
-from wifit3.chips.rtl8822bu_dkms.tx import build_inject_txdesc
+from wifit4.chips.rtl8822bu_dkms.constants import DESC_RATE6M, RATEID_IDX_B
+from wifit4.chips.rtl8822bu_dkms.tx import build_inject_txdesc
 
 # A 26-byte deauth (FC=c0:00, dur, addr1=broadcast, addr2, addr3, seq) — addr1 multicast bit set.
 _DEAUTH_BCAST = bytes.fromhex(

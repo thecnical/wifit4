@@ -4,10 +4,10 @@ BreathingArt runtime art swap. Pure logic, no mounting (BreathingArt is driven b
 hand, as in test_focus_v2_layout)."""
 from types import SimpleNamespace
 
-from wifit3.chips.ar9271_v2.driver import AR9271V2Driver
-from wifit3.chips.mt7921au.driver import MT7921AUDriver
-from wifit3.chips.products import AMBIGUOUS_AR9271, AMBIGUOUS_MT7921AU, ALFA, Panda, TPLink
-from wifit3.ui.screens.focus_v2 import art
+from wifit4.chips.ar9271_v2.driver import AR9271V2Driver
+from wifit4.chips.mt7921au.driver import MT7921AUDriver
+from wifit4.chips.products import AMBIGUOUS_AR9271, AMBIGUOUS_MT7921AU, ALFA, Panda, TPLink
+from wifit4.ui.screens.focus_v2 import art
 
 
 def _iface(product_name=None, chipset=None, driver_product=None):
@@ -130,7 +130,7 @@ def test_every_supported_device_renders_art():
     card art (its own or the generic fallback) without raising, so no supported
     device can crash the card endpoint. A DeviceID stands in for the interface:
     art selection only reads .driver / .product_name / .chipset via getattr."""
-    from wifit3.device import manager
+    from wifit4.device import manager
 
     manager.supported_ids.cache_clear()
     ids = manager.supported_ids()

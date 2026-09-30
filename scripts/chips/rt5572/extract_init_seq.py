@@ -20,8 +20,8 @@ def extract_init_seq(pcap_path):
             
     print(f"Extracted {len(seq)} registers for Init Sequence")
     
-    output_path = "src/wifit3/chips/rt5572/assets/rt5572_init.py"
-    Path("src/wifit3/chips/rt5572/assets").mkdir(parents=True, exist_ok=True)
+    output_path = "src/wifit4/chips/rt5572/assets/rt5572_init.py"
+    Path("src/wifit4/chips/rt5572/assets").mkdir(parents=True, exist_ok=True)
     
     with open(output_path, 'w') as f:
         f.write("# RT5572 Initialization Sequence (Extracted from capture-1.pcap)\n\n")

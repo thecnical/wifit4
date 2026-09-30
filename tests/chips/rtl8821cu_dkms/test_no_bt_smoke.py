@@ -17,8 +17,8 @@ The no-BT branches this exercises (each a place the combo path would touch ``t.b
 
 Keepable regression insurance for exactly the reported bug; easily deleted if unwanted.
 """
-from wifit3.chips.rtl8821cu_dkms import efuse
-from wifit3.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
+from wifit4.chips.rtl8821cu_dkms import efuse
+from wifit4.chips.rtl8821cu_dkms.driver import Rtl8821cuDkmsDriver
 
 
 def _pack_block(blk: int, words: dict) -> bytes:

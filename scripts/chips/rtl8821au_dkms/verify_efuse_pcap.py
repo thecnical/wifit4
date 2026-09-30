@@ -16,7 +16,7 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "porting"))
 
 import rtw88_pcap_replay as rp
-from wifit3.chips.rtl8821au_dkms import efuse
+from wifit4.chips.rtl8821au_dkms import efuse
 
 CAP_DIR = REPO / "driver_captures" / "captures_rtl8821au"
 DEV_ADDR = {"capture-1": 39}

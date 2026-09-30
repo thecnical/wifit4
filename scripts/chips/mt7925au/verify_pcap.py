@@ -20,14 +20,14 @@ sys.path.insert(0, str(REPO / "scripts" / "porting"))
 import struct
 
 import mt76_verify_replay as E
-import wifit3.chips.mt7925au as mt_pkg
-from wifit3.chips.mt7925au import init as mt_init
-from wifit3.chips.mt7925au import mac as mt_mac
-from wifit3.chips.mt7925au import mcu as mt_mcu
-from wifit3.chips.mt7925au import rx as mt_rx
-from wifit3.chips.mt7925au import tx as mt_tx
-from wifit3.chips.mt7925au import txpower as mt_txpower
-from wifit3.chips.mt7925au.constants import (
+import wifit4.chips.mt7925au as mt_pkg
+from wifit4.chips.mt7925au import init as mt_init
+from wifit4.chips.mt7925au import mac as mt_mac
+from wifit4.chips.mt7925au import mcu as mt_mcu
+from wifit4.chips.mt7925au import rx as mt_rx
+from wifit4.chips.mt7925au import tx as mt_tx
+from wifit4.chips.mt7925au import txpower as mt_txpower
+from wifit4.chips.mt7925au.constants import (
     MT7925_RXD_SEQ_OFF, MT_MIB_SDR9, MT_MIB_SDR3, MT_TX_AGG_CNT, MT_WTBL_UPDATE,
     MT792x_WTBL_RESERVED, EP_OUT_MCU, EP_OUT_HCCA, MT_SDIO_TXD_SIZE, SDIO_HDR_SIZE,
     MCU_UNI_CMD_DEV_INFO_UPDATE, MCU_UNI_CMD_BSS_INFO_UPDATE, MCU_UNI_CMD_SNIFFER,
@@ -36,8 +36,8 @@ from wifit3.chips.mt7925au.constants import (
     UNI_BAND_CONFIG_SET_MAC80211_RX_FILTER, UNI_BAND_CONFIG_RTS_THRESHOLD,
     UNI_BSS_INFO_BASIC, UNI_BSS_INFO_PM_DISABLE,
 )
-from wifit3.chips.mt7925au.firmware import MT7925AUFirmwareLoader
-from wifit3.chips.mt7925au.transport import MT7925AUTransport
+from wifit4.chips.mt7925au.firmware import MT7925AUFirmwareLoader
+from wifit4.chips.mt7925au.transport import MT7925AUTransport
 
 # mac_work burst first-read markers (band 0).
 _SURVEY_FIRST = MT_MIB_SDR9(0)      # 0x820ed02c
@@ -71,7 +71,7 @@ def _tx_mpdu(data: bytes) -> bytes:
 def _is_ctrl_tx(op) -> bool:
     """True for an EP-0x09 frame carrying an 802.11 control MPDU (ftype 1). aireplay's
     RTS/control frames carry a tid from skb->priority (offline-underivable) and are not
-    frames wifit3's inject path emits, so they stay waived."""
+    frames wifit4's inject path emits, so they stay waived."""
     if op.cls == "bulk" and op.ep == EP_OUT_HCCA and len(op.data) > _TX_MPDU_OFF + 1:
         fc = op.data[_TX_MPDU_OFF] | (op.data[_TX_MPDU_OFF + 1] << 8)
         return (fc & 0x0C) == 0x04
@@ -299,7 +299,7 @@ def _tx_bytematch(capture, title: str) -> "bool | None":
             continue
         mpdu = _tx_mpdu(op.data)
         # build_tx_no_ack (not the production build_tx): the captured aireplay frames set
-        # MT_TXD3_NO_ACK, which wifit3's inject path never does. This replay-only builder
+        # MT_TXD3_NO_ACK, which wifit4's inject path never does. This replay-only builder
         # adds that one bit so the byte-match reflects the exact captured frames.
         built = mt_tx.build_tx_no_ack(mpdu, wcid_idx=MT792x_WTBL_RESERVED)
         if built == op.data:
@@ -317,7 +317,7 @@ def _tx_bytematch(capture, title: str) -> "bool | None":
     print(f"injectable mgmt frames reproduced byte-exact: {match}/{match + miss}")
     if ctrl:
         print(f"control frames (RTS) out of scope .........: {ctrl}  "
-              "(aireplay-injected; TXWI tid from skb->priority, not a wifit3 inject frame)")
+              "(aireplay-injected; TXWI tid from skb->priority, not a wifit4 inject frame)")
     for idx, frame, d, wb, pb in misses:
         print(f"    MISS op #{idx} @f{frame} byte {d}: wire {wb} vs port {pb}")
     print("-" * 78)
@@ -330,7 +330,7 @@ def _tx_bytematch(capture, title: str) -> "bool | None":
 
 def run(cap: str | None = None, verbose: bool = False) -> int:
     if not verbose:
-        logging.getLogger("wifit3").setLevel(logging.CRITICAL)
+        logging.getLogger("wifit4").setLevel(logging.CRITICAL)
     _real_sleep, time.sleep = time.sleep, lambda *a, **k: None
     _real_asleep = asyncio.sleep
 

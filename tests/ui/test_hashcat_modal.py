@@ -1,5 +1,5 @@
-import wifit3.ui.vault.modals.hashcat as mod
-from wifit3.ui.vault.modals.hashcat import _default_hashcat_path
+import wifit4.ui.vault.modals.hashcat as mod
+from wifit4.ui.vault.modals.hashcat import _default_hashcat_path
 
 
 def test_default_path_prefers_which(monkeypatch):
